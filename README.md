@@ -1,4 +1,4 @@
-# AssisteAi
+# Assiste Ai
 
 "Assiste ai" is a site where you can share your movie and series ratings to your friends, as well as create a list of movies and series that you want to watch in the future.
 

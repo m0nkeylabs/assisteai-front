@@ -12,18 +12,20 @@
         align-items: center;
         justify-content: space-between;
 
-        .icon {
-          &:hover, &.active { color: $logo-blue; }
+        .icon-filters-container {
+          align-items: center;
 
-          &.filter-icon {
-            padding: 5px 10px;
+          .icon {
+            &:hover, &.active { color: $logo-blue; }
 
-            &:hover {
-              color: $white;
-            }
+            &.filter-icon {
+              &:hover {
+                color: $white;
+              }
 
-            &.active {
-              color: $white;
+              &.active {
+                color: $white;
+              }
             }
           }
         }
@@ -31,9 +33,6 @@
     }
 
     .filter-options {
-
-      justify-content: space-between;
-
       .chip-default {
         &.active {
           color: $white;

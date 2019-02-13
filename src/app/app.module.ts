@@ -9,8 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 
-
-import { MatIconModule, MatFormFieldModule, MatInputModule, MatChipsModule } from '@angular/material';
+import { MatIconModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatButtonModule} from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
@@ -37,7 +36,8 @@ import { HomeService } from '@services/home.service';
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonModule
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]

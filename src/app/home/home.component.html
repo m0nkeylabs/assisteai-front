@@ -6,25 +6,28 @@
         <mat-icon class="icon-input">search</mat-icon>
       </div>
       <div class="flex-row col-md-9 filters">
-        <div class="exibition-container">
+        <div class="icon-filters-container flex-row col-md-6">
           <mat-icon class="icon margin-right-1" matTooltip="Todos" [ngClass]="{'active': filters.exibition === 'all'}" (click)="setExibition('all')">public</mat-icon>
-          <mat-icon class="icon" matTooltip="Seguindo" [ngClass]="{'active': filters.exibition === 'group'}" (click)="setExibition('group')">group</mat-icon>
+          <mat-icon class="icon margin-right-1" matTooltip="Seguindo" [ngClass]="{'active': filters.exibition === 'group'}" (click)="setExibition('group')">group</mat-icon>
+          <span class="divider margin-right-1"></span>
+          <mat-icon class="icon filter-icon" matTooltip="Filtro" [ngClass]="{'active': filterOpened}" (click)="filterOpened = !filterOpened">filter_list</mat-icon>
         </div>
-
-        <mat-icon class="icon filter-icon" matTooltip="Filter" [ngClass]="{'active': filterOpened}" (click)="filterOpened = !filterOpened">filter_list</mat-icon>
+        <button mat-button class="btn-default"  matTooltip="Nova indicação">
+            <mat-icon class="icon filter-icon">playlist_add</mat-icon> Nova indicação
+        </button>
       </div>
     </div>
 
     <div class="margin-top-2" *ngIf="filterOpened">
       <div class="flex-row filter-options">
-        <div class="form-group">
+        <div class="form-group margin-right-2">
             <mat-chip-list>
               <mat-chip *ngFor="let rating of ratings" class="chip-default {{rating.tag}}" [ngClass]="{'active': isRatingActive(rating.tag)}" (click)='updateRatingFilter(rating.tag)'>
                 {{rating.label}}
               </mat-chip>
             </mat-chip-list>
         </div>
-
+        <span class="divider margin-right-2"></span>
         <div class="form-group">
             <mat-chip-list>
               <mat-chip *ngFor="let type of types" class="chip-default {{type.tag}}" [ngClass]="{'active': isTypeActive(type.tag)}" (click)='updateTypeFilter(type.tag)'>

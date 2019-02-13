@@ -25,6 +25,8 @@ body {
 
   h3 { font-size: 1.28rem; }
 
+  .divider { background-color: $darkest-gray-border; padding: 10px 1px; }
+
   .flex-row { display: flex; flex-direction: row; }
   .flex-column { display: flex; flex-direction: column; }
   .flex-wrap { flex-wrap: wrap; }
