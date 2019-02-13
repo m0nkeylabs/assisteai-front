@@ -1,0 +1,30 @@
+<section class="main">
+  <div class="cards-container">
+    <div class="card {{getClassPoster(movie.averageRating)}}" *ngFor="let movie of movies">
+      <div class="poster-container">
+        <img src="{{movie.urlPoster}}" class="img-poster">
+        <div class="overlay">
+          <div class="poster-detail">
+            <h3 class="poster-title">{{movie.name}}</h3>
+
+            <span class="poster-chip {{getClassCategory(movie.category)}}">{{movie.category}}</span>
+
+            <div class="rating-container">
+              <span>Avaliação Média</span>
+              <span class="poster-chip {{getClassPoster(movie.averageRating)}}">{{movie.averageRating}}</span>
+
+              <span>Última avaliação</span>
+              <span class="poster-chip {{getClassPoster(movie.lastRating)}}">{{movie.lastRating}}</span>
+            </div>
+
+            <div class="poster-actions">
+                <a href="#" matTooltip="Assistir depois" class="watch-later"><mat-icon>access_time</mat-icon></a>
+                <a href="#" matTooltip="Indicar {{movie.category}}" class="indicate-now"><mat-icon>playlist_add</mat-icon></a>
+                <a href="#" matTooltip="Mais informações" class="more-details"><mat-icon>arrow_forward</mat-icon></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

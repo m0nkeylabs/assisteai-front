@@ -1,27 +1,45 @@
 # AssisteAi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+"Assiste ai" is a site where you can share your movie and series ratings to your friends, as well as create a list of movies and series that you want to watch in the future.
 
-## Development server
+# Setup and install
+Your can fork this repo clone or simply download the .zip bundle with the contents inside.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Environment installation
 
-## Code scaffolding
+To run this project you'll need development dependencies of which run on [Node.js](https://nodejs.org/en/download/).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Project installation
 
-## Build
+ Clone the project from github
+```
+  https://github.com/m0nkeylabs/assiste-ai
+```
+Open a terminal and use `cd` to enter into directory where you clone the project.
+```
+cd <assiste-ai>
+yarn install
+OR
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Usage 
 
-## Running unit tests
+Inside project directory run:
+```
+yarn start 
+OR
+npm start
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+While you haven't a backend, you can run `json-server --watch db.json` on another tab of the terminal to show a mock.
 
-## Running end-to-end tests
+Go to `localhost:4200` to access the application.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Credits
 
-## Further help
+* [Bruno Martinelli](https://github.com/martinelli4630) 
+* [Thiago Augusto](https://github.com/thiaugpr) 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# License
+* MIT
