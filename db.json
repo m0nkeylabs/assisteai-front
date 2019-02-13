@@ -2,56 +2,56 @@
   "get-list-home": [
       {
         "name": "Spider-Man: Into the Spider-Verse (2018)",
-        "category": "Filme",
+        "type": "Filme",
         "averageRating": "Imperdível",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg"
       },
       {
         "name": "The Predator (2018)",
-        "category": "Série",
+        "type": "Série",
         "averageRating": "Muito Bom",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg"
       },
       {
         "name": "The Meg (2018)",
-        "category": "Filme",
+        "type": "Filme",
         "averageRating": "Bom",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg"
       },
       {
         "name": "Bird Box (2018)",
-        "category": "Série",
+        "type": "Série",
         "averageRating": "Legal",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg"
       },
       {
         "name": "Spider-Man: Into the Spider-Verse (2018)",
-        "category": "Filme",
+        "type": "Filme",
         "averageRating": "Ruinzinho",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg"
       },
       {
         "name": "The Meg (2018)",
-        "category": "Filme",
+        "type": "Filme",
         "averageRating": "Muito Ruim",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg"
       },
       {
         "name": "Bird Box (2018)",
-        "category": "Filme",
+        "type": "Filme",
         "averageRating": "Fique Longe",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg"
       },
       {
         "name": "Spider-Man: Into the Spider-Verse (2018)",
-        "category": "Filme",
+        "type": "Filme",
         "averageRating": "Imperdível",
         "lastRating": "Muito Bom",
         "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg"

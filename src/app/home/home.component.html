@@ -1,15 +1,52 @@
-<section class="main">
-  <div class="cards-container">
+<main class="main">
+  <section class="filter-container flex-column">
+    <div class="flex-row filter-icons col-md-12">
+      <div class="form-group flex-row form-prefix col-md-3 margin-right-2">
+        <input id="search" name="search" type="text" placeholder="Busca" [ngModel]="filters.search" />
+        <mat-icon class="icon-input">search</mat-icon>
+      </div>
+      <div class="flex-row col-md-9 filters">
+        <div class="exibition-container">
+          <mat-icon class="icon margin-right-1" matTooltip="Todos" [ngClass]="{'active': filters.exibition === 'all'}" (click)="setExibition('all')">public</mat-icon>
+          <mat-icon class="icon" matTooltip="Seguindo" [ngClass]="{'active': filters.exibition === 'group'}" (click)="setExibition('group')">group</mat-icon>
+        </div>
+
+        <mat-icon class="icon filter-icon" matTooltip="Filter" [ngClass]="{'active': filterOpened}" (click)="filterOpened = !filterOpened">filter_list</mat-icon>
+      </div>
+    </div>
+
+    <div class="margin-top-2" *ngIf="filterOpened">
+      <div class="flex-row filter-options">
+        <div class="form-group">
+            <mat-chip-list>
+              <mat-chip *ngFor="let rating of ratings" class="chip-default {{rating.tag}}" [ngClass]="{'active': isRatingActive(rating.tag)}" (click)='updateRatingFilter(rating.tag)'>
+                {{rating.label}}
+              </mat-chip>
+            </mat-chip-list>
+        </div>
+
+        <div class="form-group">
+            <mat-chip-list>
+              <mat-chip *ngFor="let type of types" class="chip-default {{type.tag}}" [ngClass]="{'active': isTypeActive(type.tag)}" (click)='updateTypeFilter(type.tag)'>
+                {{type.label}}
+              </mat-chip>
+            </mat-chip-list>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards-container flex-row flex-wrap">
     <div class="card {{getClassPoster(movie.averageRating)}}" *ngFor="let movie of movies">
       <div class="poster-container">
         <img src="{{movie.urlPoster}}" class="img-poster">
         <div class="overlay">
-          <div class="poster-detail">
+          <div class="poster-detail flex-column">
             <h3 class="poster-title">{{movie.name}}</h3>
 
-            <span class="poster-chip {{getClassCategory(movie.category)}}">{{movie.category}}</span>
+            <span class="poster-chip {{getClassType(movie.type)}}">{{movie.type}}</span>
 
-            <div class="rating-container">
+            <div class="rating-container flex-column">
               <span>Avaliação Média</span>
               <span class="poster-chip {{getClassPoster(movie.averageRating)}}">{{movie.averageRating}}</span>
 
@@ -17,14 +54,14 @@
               <span class="poster-chip {{getClassPoster(movie.lastRating)}}">{{movie.lastRating}}</span>
             </div>
 
-            <div class="poster-actions">
+            <div class="poster-actions flex-row">
                 <a href="#" matTooltip="Assistir depois" class="watch-later"><mat-icon>access_time</mat-icon></a>
-                <a href="#" matTooltip="Indicar {{movie.category}}" class="indicate-now"><mat-icon>playlist_add</mat-icon></a>
+                <a href="#" matTooltip="Indicar {{movie.type}}" class="indicate-now"><mat-icon>playlist_add</mat-icon></a>
                 <a href="#" matTooltip="Mais informações" class="more-details"><mat-icon>arrow_forward</mat-icon></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>

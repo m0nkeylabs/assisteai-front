@@ -1,0 +1,24 @@
+.form-group {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 10px;
+    background-color: $darkest-gray-border;
+    border: 1px solid $darkest-gray;
+    border-radius: $radius-default;
+    color: $lightest-gray;
+
+    &:focus { outline: none; }
+  }
+
+  .icon-input {
+    position: absolute;
+    top: 7px;
+    left: 10px;
+  }
+
+  &.form-prefix {
+    input { padding-left: 40px; }
+  }
+}

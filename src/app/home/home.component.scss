@@ -1,10 +1,59 @@
 @import 'assets/scss/variables.scss';
 
 .main {
+  .filter-container {
+    position: relative;
+    margin-bottom: 20px;
+
+    .filter-icons {
+      align-items: center;
+
+      .filters {
+        align-items: center;
+        justify-content: space-between;
+
+        .icon {
+          &:hover, &.active { color: $logo-blue; }
+
+          &.filter-icon {
+            padding: 5px 10px;
+
+            &:hover {
+              color: $white;
+            }
+
+            &.active {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+
+    .filter-options {
+
+      justify-content: space-between;
+
+      .chip-default {
+        &.active {
+          color: $white;
+
+          &.imperdivel { background: $rating-7 }
+          &.mt-bom { background: $rating-6 }
+          &.bom { background: $rating-5 }
+          &.legal { background: $rating-4 }
+          &.ruinzinho { background: $rating-3 }
+          &.mt-ruim { background: $rating-2 }
+          &.fq-longe { background: $rating-1 }
+
+          &.movie{ background: $color-movie }
+          &.serie { background: $color-serie }
+        }
+      }
+    }
+  }
   .cards-container {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
 
     .card {
       position: relative;
@@ -48,8 +97,6 @@
           }
 
           .poster-detail {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: space-between;
             padding: 15px;
@@ -66,8 +113,6 @@
             }
 
             .rating-container {
-              display: flex;
-              flex-direction: column;
               text-align: center;
 
               .poster-chip {
@@ -81,7 +126,6 @@
             }
 
             .poster-actions {
-              display: flex;
               justify-content: space-around;
               width: 100%;
 
@@ -113,31 +157,31 @@
 
 @media (max-width: 599px) {
   .cards-container .card {
-    flex: 1 0 $width-1;
-    max-width: calc(#{$width-1} - 30px);
+    flex: 1 0 $width-1-columns;
+    max-width: calc(#{$width-1-columns} - 30px);
   }
 }
 @media (min-width: 600px) {
   .cards-container .card {
-    flex: 1 0 $width-3;
-    max-width: calc(#{$width-3} - 30px);
+    flex: 1 0 $width-3-columns;
+    max-width: calc(#{$width-3-columns} - 30px);
   }
 }
 @media (min-width: 930px) {
   .cards-container .card {
-    flex: 1 0 $width-4;
-    max-width: calc(#{$width-4} - 30px);
+    flex: 1 0 $width-4-columns;
+    max-width: calc(#{$width-4-columns} - 30px);
   }
 }
 @media (min-width: 1250px) {
   .cards-container .card {
-    flex: 1 0 $width-5;
-    max-width: calc(#{$width-5} - 30px);
+    flex: 1 0 $width-5-columns;
+    max-width: calc(#{$width-5-columns} - 30px);
   }
 }
 @media (min-width: 1460px) {
   .cards-container .card {
-    flex: 1 0 $width-6;
-    max-width: calc(#{$width-6} - 30px);
+    flex: 1 0 $width-6-columns;
+    max-width: calc(#{$width-6-columns} - 30px);
   }
 }
