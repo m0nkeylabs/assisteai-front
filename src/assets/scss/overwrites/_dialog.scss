@@ -1,0 +1,8 @@
+.mat-dialog-container {
+  color: $lighter-gray;
+  background: $background;
+
+  .mat-dialog-actions {
+    justify-content: flex-end;
+  }
+}

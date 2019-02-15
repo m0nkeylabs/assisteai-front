@@ -3,7 +3,7 @@
 .main {
   .filter-container {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     .filter-icons {
       align-items: center;
@@ -37,16 +37,16 @@
         &.active {
           color: $white;
 
-          &.imperdivel { background: $rating-7 }
-          &.mt-bom { background: $rating-6 }
-          &.bom { background: $rating-5 }
-          &.legal { background: $rating-4 }
-          &.ruinzinho { background: $rating-3 }
-          &.mt-ruim { background: $rating-2 }
-          &.fq-longe { background: $rating-1 }
+          &.UNMISSABLE { background: $rating-7 }
+          &.VERY_GOOD { background: $rating-6 }
+          &.GOOD { background: $rating-5 }
+          &.COOL { background: $rating-4 }
+          &.BAD { background: $rating-3 }
+          &.VERY_BAD { background: $rating-2 }
+          &.STAY_AWAY { background: $rating-1 }
 
-          &.movie{ background: $color-movie }
-          &.serie { background: $color-serie }
+          &.MOVIE{ background: $color-movie }
+          &.SERIE { background: $color-serie }
         }
       }
     }

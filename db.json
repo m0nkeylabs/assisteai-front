@@ -2,59 +2,67 @@
   "get-list-home": [
       {
         "name": "Spider-Man: Into the Spider-Verse (2018)",
-        "type": "Filme",
-        "averageRating": "Imperdível",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg"
+        "type": "MOVIE",
+        "averageRating": "UNMISSABLE",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "The Predator (2018)",
-        "type": "Série",
-        "averageRating": "Muito Bom",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg"
+        "type": "SERIE",
+        "averageRating": "VERY_GOOD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "The Meg (2018)",
-        "type": "Filme",
-        "averageRating": "Bom",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg"
+        "type": "MOVIE",
+        "averageRating": "GOOD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "Bird Box (2018)",
-        "type": "Série",
-        "averageRating": "Legal",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg"
+        "type": "SERIE",
+        "averageRating": "COOL",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "Spider-Man: Into the Spider-Verse (2018)",
-        "type": "Filme",
-        "averageRating": "Ruinzinho",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg"
+        "type": "MOVIE",
+        "averageRating": "BAD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "The Meg (2018)",
-        "type": "Filme",
-        "averageRating": "Muito Ruim",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg"
+        "type": "MOVIE",
+        "averageRating": "VERY_BAD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "Bird Box (2018)",
-        "type": "Filme",
-        "averageRating": "Fique Longe",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg"
+        "type": "MOVIE",
+        "averageRating": "STAY_AWAY",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       },
       {
         "name": "Spider-Man: Into the Spider-Verse (2018)",
-        "type": "Filme",
-        "averageRating": "Imperdível",
-        "lastRating": "Muito Bom",
-        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg"
+        "type": "MOVIE",
+        "averageRating": "UNMISSABLE",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/"
       }
   ]
 }

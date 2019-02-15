@@ -20,6 +20,8 @@
     ],
     "paths": {
       "@main": ["app/main-components"],
+      "@models*": ["app/core/models/*"],
+      "@constants*": ["app/core/constants/*"],
       "@services*": ["app/services/*"]
     }
   }

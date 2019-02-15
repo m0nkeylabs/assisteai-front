@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 import { HomeService } from '@services/home.service';
+
+import { ratings } from '@constants/ratings';
+import { types } from '@constants/types';
+
+import { IndicateComponent } from 'app/indicate/indicate.component';
 
 import * as _ from 'lodash';
 
@@ -13,28 +19,21 @@ export class HomeComponent implements OnInit {
   floatLabel = 'always';
   filterOpened = false;
 
-  movies: Array<any> = [];
-  types: Array<any> = [
-    {label: 'Filme' , tag: 'movie'},
-    {label: 'Série' , tag: 'serie'}
-  ];
-  ratings: Array<any> = [
-    {label: 'Imperdível' , tag: 'imperdivel'},
-    {label: 'Muito Bom' , tag: 'mt-bom'},
-    {label: 'Bom' , tag: 'bom'},
-    {label: 'Legal' , tag: 'legal'},
-    {label: 'Ruinzinho' , tag: 'ruinzinho'},
-    {label: 'Muito Ruim' , tag: 'mt-ruim'},
-    {label: 'Fique Longe' , tag: 'fq-longe'},
-  ];
+  movies: Array<any>;
+
+  typeEnum = types;
+  typeArray = _.keys(types);
+  rantingEnum = ratings;
+  ratingArray = _.keys(ratings);
+
   filters: any = {
     search: '',
     exibition: 'all',
-    ratings: ['imperdivel', 'mt-bom', 'bom', 'legal', 'ruinzinho', 'mt-ruim', 'fq-longe'],
-    types: ['movie', 'serie']
+    ratings: ['UNMISSABLE', 'VERY_GOOD', 'GOOD', 'COOL', 'BAD', 'VERY_BAD', 'STAY_AWAY'],
+    types: ['MOVIE', 'SERIE']
   };
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.homeService.getAllMoviesAndSeries().subscribe((result) => {
@@ -46,12 +45,24 @@ export class HomeComponent implements OnInit {
     this.filters.exibition = exibition;
   }
 
-  isRatingActive(tag) {
-    return _.includes(this.filters.ratings, tag);
+  isRatingActive(rating) {
+    return _.includes(this.filters.ratings, rating);
   }
 
-  isTypeActive(tag) {
-    return _.includes(this.filters.types, tag);
+  isTypeActive(type) {
+    return _.includes(this.filters.types, type);
+  }
+
+  openDialog(urlIndication?): void {
+    const dialogRef = this.dialog.open(IndicateComponent, {
+      width: '90%',
+      maxWidth: '700px',
+      data: {url: urlIndication}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   updateRatingFilter(tag) {
@@ -81,29 +92,28 @@ export class HomeComponent implements OnInit {
   getClassPoster(averageRating) {
     let ratingClass: string;
     switch (averageRating) {
-      case 'Fique Longe':
+      case 'STAY_AWAY':
         ratingClass = 'rating-1';
         break;
-      case 'Muito Ruim':
+      case 'VERY_BAD':
         ratingClass = 'rating-2';
         break;
-      case 'Ruinzinho':
+      case 'BAD':
         ratingClass = 'rating-3';
         break;
-      case 'Legal':
+      case 'COOL':
         ratingClass = 'rating-4';
         break;
-      case 'Bom':
+      case 'GOOD':
         ratingClass = 'rating-5';
         break;
-      case 'Muito Bom':
+      case 'VERY_GOOD':
         ratingClass = 'rating-6';
         break;
-      case 'Imperdível':
+      case 'UNMISSABLE':
         ratingClass = 'rating-7';
         break;
       default:
-        ratingClass = '';
         break;
     }
 
@@ -113,14 +123,13 @@ export class HomeComponent implements OnInit {
   getClassType(type) {
     let typeClass: string;
     switch (type) {
-      case 'Filme':
+      case 'MOVIE':
         typeClass = 'type-movie';
         break;
-      case 'Série':
+      case 'SERIE':
         typeClass = 'type-serie';
         break;
       default:
-        typeClass = '';
         break;
     }
 
