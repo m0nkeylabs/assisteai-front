@@ -36,6 +36,7 @@ import { HomeComponent } from 'app/home/home.component';
 import { IndicateComponent } from 'app/indicate/indicate.component';
 
 import { HomeService } from '@services/home.service';
+import { LoadingComponent } from '@shared/components';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { HomeService } from '@services/home.service';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    IndicateComponent
+    IndicateComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

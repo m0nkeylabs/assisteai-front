@@ -67,5 +67,7 @@
         </div>
       </div>
     </div>
+
+    <app-loading *ngIf="(loading$ | async)"></app-loading>
   </section>
 </main>

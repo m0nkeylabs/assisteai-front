@@ -49,6 +49,14 @@ body {
 
   .type-movie { background: $color-movie; }
   .type-serie { background: $color-serie; }
+
+  .bg-yellow { background-color: $logo-yellow; }
+  .bg-green { background-color: $logo-green; }
+  .bg-pink { background-color: $logo-pink; }
+  .bg-red { background-color: $logo-red; }
+  .bg-blue { background-color: $logo-blue; }
+
+  app-loading { width: 100%; }
 }
 
 @media (min-width: 1460px) {
