@@ -26,7 +26,7 @@ export class IndicateComponent implements OnInit {
     this.formGroup = this.fb.group({
       url: [this.data.url, Validators.required],
       rating: ['', Validators.required],
-      commentary: ['']
+      comment: ['']
     });
   }
 

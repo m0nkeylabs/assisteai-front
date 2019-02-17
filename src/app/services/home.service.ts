@@ -8,7 +8,7 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMoviesAndSeries(): Observable<any> {
+  getAllMoviesAndSeries(filters): Observable<any> {
     return this.http.get<any>('http://localhost:3000/get-list-home');
   }
 }

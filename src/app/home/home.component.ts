@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { HomeService } from '@services/home.service';
 
 import { ratings } from '@constants/ratings';
 import { types } from '@constants/types';
 
 import { IndicateComponent } from 'app/indicate/indicate.component';
+import { throttle } from '@shared/decorators/throttle';
 
+import * as fromStore from 'app/home/store';
 import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-home',
@@ -16,6 +22,10 @@ import * as _ from 'lodash';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  loading$: Observable<boolean>;
+  pagination$: Observable<any>;
+  moviesList$: Observable<Array<any>>;
+
   floatLabel = 'always';
   filterOpened = false;
 
@@ -33,16 +43,22 @@ export class HomeComponent implements OnInit {
     types: ['MOVIE', 'SERIE']
   };
 
-  constructor(private homeService: HomeService, public dialog: MatDialog) { }
+  constructor(
+    private store: Store<fromStore.HomeListState>,
+    private homeService: HomeService,
+    public dialog: MatDialog) {
+    this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
+    this.pagination$ = store.pipe(select(fromStore.getHomeListPagination));
+    this.loading$ = store.pipe(select(fromStore.getHomeListLoading));
+  }
 
   ngOnInit() {
-    this.homeService.getAllMoviesAndSeries().subscribe((result) => {
-      this.movies = result;
-    });
+    this.store.dispatch(new fromStore.LoadHomeList(this.filters));
   }
 
   setExibition(exibition) {
     this.filters.exibition = exibition;
+    this.updateList();
   }
 
   isRatingActive(rating) {
@@ -61,8 +77,15 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        this.updateList();
+      }
     });
+  }
+
+  @throttle(800)
+  updateList() {
+    console.log('buscou');
   }
 
   updateRatingFilter(tag) {
@@ -75,6 +98,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.filters.ratings.push(tag);
     }
+
+    this.updateList();
   }
 
   updateTypeFilter(tag) {
@@ -87,6 +112,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.filters.types.push(tag);
     }
+
+    this.updateList();
   }
 
   getClassPoster(averageRating) {

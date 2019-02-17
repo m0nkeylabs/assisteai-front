@@ -6,8 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import 'hammerjs';
 import { AppRoutingModule } from './app-routing.module';
-
-
+import * as fromHomeStore from 'app/home/store';
 
 import {
   MatIconModule,
@@ -16,9 +15,20 @@ import {
   MatChipsModule,
   MatButtonModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTooltipModule
 } from '@angular/material';
-import { MatTooltipModule } from '@angular/material/tooltip';
+
+import {
+  ToastrModule,
+  ToastNoAnimationModule,
+} from 'ngx-toastr';
+
+import { CustomSerializer, metaReducers, rootReducer } from './sotre.config';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule, MetaReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from 'app/app.component';
 import { HeaderComponent } from '@main';
@@ -51,7 +61,19 @@ import { HomeService } from '@services/home.service';
     MatChipsModule,
     MatButtonModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+
+    ToastNoAnimationModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      preventDuplicates: true
+    }),
+
+    StoreModule.forRoot(rootReducer, { metaReducers }),
+    StoreModule.forFeature('homeList', fromHomeStore.reducers),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([...fromHomeStore.effects]),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   entryComponents: [IndicateComponent],
   providers: [HomeService],
