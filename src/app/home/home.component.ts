@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { Store, select } from '@ngrx/store';
@@ -14,6 +14,9 @@ import { throttle } from '@shared/decorators/throttle';
 
 import * as fromStore from 'app/home/store';
 import * as _ from 'lodash';
+import { Pagination } from '@models/pagination';
+import { MoviesList } from '@models/movies-list';
+import { FilterHome } from '@models/filter-home';
 
 
 @Component({
@@ -22,21 +25,22 @@ import * as _ from 'lodash';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
   loading$: Observable<boolean>;
-  pagination$: Observable<any>;
-  moviesList$: Observable<Array<any>>;
+  pagination$: Observable<Pagination>;
+  moviesList$: Observable<Array<MoviesList>>;
 
   floatLabel = 'always';
   filterOpened = false;
 
-  movies: Array<any>;
+  movies: Array<MoviesList>;
 
   typeEnum = types;
   typeArray = _.keys(types);
   rantingEnum = ratings;
   ratingArray = _.keys(ratings);
 
-  filters: any = {
+  filters: FilterHome = {
     search: '',
     exibition: 'all',
     ratings: ['UNMISSABLE', 'VERY_GOOD', 'GOOD', 'COOL', 'BAD', 'VERY_BAD', 'STAY_AWAY'],
@@ -161,6 +165,14 @@ export class HomeComponent implements OnInit {
     }
 
     return typeClass;
+  }
+
+  @HostListener('document:scroll', ['$event'])
+  onScroll($event) {
+    console.log();
+    if ((window.innerHeight + window.scrollY) > document.body.offsetHeight) {
+      this.store.dispatch(new fromStore.LoadHomeList(this.filters));
+    }
   }
 
 }

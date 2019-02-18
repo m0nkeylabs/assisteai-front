@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { HomeService } from '@services/home.service';
 
 import * as fromActions from 'app/home/store/actions';
+import { Paginable } from '@models/paginable';
+import { MoviesList } from '@models/movies-list';
 
 
 @Injectable()
@@ -18,7 +20,7 @@ export class HomeEffects {
     ofType(fromActions.LOAD_HOME_LIST),
     switchMap((params: fromActions.LoadHomeList) =>
       this.service.getAllMoviesAndSeries(params.filter).pipe(
-        map((response: Array<any>) => new fromActions.LoadHomeListSuccess(response)),
+        map((response: Paginable<MoviesList>) => new fromActions.LoadHomeListSuccess(response)),
         catchError(error => of(new fromActions.LoadHomeListFail(error)))
       )
     )

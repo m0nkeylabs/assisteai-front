@@ -56,7 +56,7 @@ body {
   .bg-red { background-color: $logo-red; }
   .bg-blue { background-color: $logo-blue; }
 
-  app-loading { width: 100%; }
+  app-loading { width: 100%; margin: 20px 0; }
 }
 
 @media (min-width: 1460px) {

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Paginable } from '@models/paginable';
+import { MoviesList } from '@models/movies-list';
+import { FilterHome } from '@models/filter-home';
 // import { baseLocal } from 'app/constants';
 
 @Injectable()
@@ -8,7 +11,7 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMoviesAndSeries(filters): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/get-list-home');
+  getAllMoviesAndSeries(filters: FilterHome): Observable<Paginable<MoviesList>> {
+    return this.http.get<Paginable<MoviesList>>('http://localhost:3000/get-list-home');
   }
 }

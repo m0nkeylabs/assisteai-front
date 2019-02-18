@@ -1,14 +1,18 @@
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 import * as fromActions from 'app/home/store/actions';
+import { Pagination } from '@models/pagination';
+import { MoviesList } from '@models/movies-list';
 
 export interface State extends EntityState<any> {
     loading: boolean;
     loaded: boolean;
-    homeList: any;
-    pagination: any;
+    homeList: Array<MoviesList>;
+    pagination: Pagination;
 }
 
-export const adapter: EntityAdapter<any> = createEntityAdapter<any>();
+export const adapter: EntityAdapter<MoviesList> = createEntityAdapter<MoviesList>({
+  selectId: (moviesList: MoviesList) => moviesList.uuid
+});
 
 export const initialState: State = adapter.getInitialState({
     loading: false,
@@ -28,11 +32,11 @@ export function reducer(state = initialState, action: fromActions.HomeList): Sta
 
         case fromActions.LOAD_HOME_LIST_SUCCESS: {
             return {
-                ...adapter.addOne(action.response, state),
+                ...state,
                 loading: false,
                 loaded: true,
-                homeList: action.response.movies.data,
-                pagination: action.response.movies
+                homeList: [...state.homeList, ...action.response.data],
+                pagination: new Pagination(action.response)
             };
         }
 

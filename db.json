@@ -1,90 +1,95 @@
 {
   "get-list-home": {
-      "success": true,
-      "movies": {
-        "current_page": 1,
-        "data": [
-          {
-            "name": "Spider-Man: Into the Spider-Verse (2018)",
-            "type": "MOVIE",
-            "averageRating": "UNMISSABLE",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": true
-          },
-          {
-            "name": "The Predator (2018)",
-            "type": "SERIE",
-            "averageRating": "VERY_GOOD",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          },
-          {
-            "name": "The Meg (2018)",
-            "type": "MOVIE",
-            "averageRating": "GOOD",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          },
-          {
-            "name": "Bird Box (2018)",
-            "type": "SERIE",
-            "averageRating": "COOL",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          },
-          {
-            "name": "Spider-Man: Into the Spider-Verse (2018)",
-            "type": "MOVIE",
-            "averageRating": "BAD",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          },
-          {
-            "name": "The Meg (2018)",
-            "type": "MOVIE",
-            "averageRating": "VERY_BAD",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          },
-          {
-            "name": "Bird Box (2018)",
-            "type": "MOVIE",
-            "averageRating": "STAY_AWAY",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          },
-          {
-            "name": "Spider-Man: Into the Spider-Verse (2018)",
-            "type": "MOVIE",
-            "averageRating": "UNMISSABLE",
-            "lastRating": "VERY_GOOD",
-            "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
-            "urlIndication": "https://www.imdb.com/title/tt4633694/",
-            "watchLater": false
-          }
-        ],
-        "first_page_url": "link",
-        "from": 1,
-        "last_page": 19,
-        "last_page_url": "link",
-        "next_page_url": "link",
-        "path": "link",
-        "per_page": 24,
-        "prev_page_url": null
+    "current_page": 1,
+    "data": [
+      {
+        "uuid": 1,
+        "name": "Spider-Man: Into the Spider-Verse (2018)",
+        "type": "MOVIE",
+        "averageRating": "UNMISSABLE",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": true
+      },
+      {
+        "uuid": 2,
+        "name": "The Predator (2018)",
+        "type": "SERIE",
+        "averageRating": "VERY_GOOD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
+      },
+      {
+        "uuid": 3,
+        "name": "The Meg (2018)",
+        "type": "MOVIE",
+        "averageRating": "GOOD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
+      },
+      {
+        "uuid": 4,
+        "name": "Bird Box (2018)",
+        "type": "SERIE",
+        "averageRating": "COOL",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
+      },
+      {
+        "uuid": 5,
+        "name": "Spider-Man: Into the Spider-Verse (2018)",
+        "type": "MOVIE",
+        "averageRating": "BAD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
+      },
+      {
+        "uuid": 6,
+        "name": "The Meg (2018)",
+        "type": "MOVIE",
+        "averageRating": "VERY_BAD",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/eyWICPcxOuTcDDDbTMOZawoOn8d.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
+      },
+      {
+        "uuid": 7,
+        "name": "Bird Box (2018)",
+        "type": "MOVIE",
+        "averageRating": "STAY_AWAY",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
+      },
+      {
+        "uuid": 8,
+        "name": "Spider-Man: Into the Spider-Verse (2018)",
+        "type": "MOVIE",
+        "averageRating": "UNMISSABLE",
+        "lastRating": "VERY_GOOD",
+        "urlPoster": "https://image.tmdb.org/t/p/w500/laMM4lpQSh5z6KIBPwWogkjzBVQ.jpg",
+        "urlIndication": "https://www.imdb.com/title/tt4633694/",
+        "watchLater": false
       }
+    ],
+    "first_page_url": "link",
+    "from": 1,
+    "last_page": 19,
+    "last_page_url": "link",
+    "next_page_url": "link",
+    "path": "link",
+    "per_page": 24,
+    "prev_page_url": null
   }
 }
