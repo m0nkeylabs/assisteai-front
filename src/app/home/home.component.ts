@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { HomeService } from '@services/home.service';
+import { TokenService } from '@services/token.service';
 
 import { ratings } from '@constants/ratings';
 import { types } from '@constants/types';
 
+import { LoginComponent } from 'app/login/login.component';
 import { IndicateComponent } from 'app/indicate/indicate.component';
 import { throttle } from '@shared/decorators/throttle';
 
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.HomeListState>,
-    private homeService: HomeService,
+    private tokenService: TokenService,
     public dialog: MatDialog) {
     this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
     this.pagination$ = store.pipe(select(fromStore.getHomeListPagination));
@@ -74,17 +75,31 @@ export class HomeComponent implements OnInit {
   }
 
   openDialog(urlIndication?): void {
-    const dialogRef = this.dialog.open(IndicateComponent, {
-      width: '90%',
-      maxWidth: '700px',
-      data: {url: urlIndication}
-    });
+    if (!this.tokenService.hasToken()) {
+      const dialogRef = this.dialog.open(IndicateComponent, {
+        width: '90%',
+        maxWidth: '700px',
+        data: {url: urlIndication}
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.updateList();
-      }
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.updateList();
+        }
+      });
+    } else {
+      const dialogRef = this.dialog.open(LoginComponent, {
+        width: '90%',
+        maxWidth: '700px',
+        data: {url: urlIndication}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.updateList();
+        }
+      });
+    }
   }
 
   @throttle(800)

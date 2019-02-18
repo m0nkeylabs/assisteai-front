@@ -36,8 +36,10 @@ import { HomeComponent } from 'app/home/home.component';
 import { IndicateComponent } from 'app/indicate/indicate.component';
 
 import { HomeService } from '@services/home.service';
-import { LoadingComponent } from '@shared/components';
+import { TokenService } from '@services/token.service';
 
+import { LoadingComponent } from '@shared/components';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { LoadingComponent } from '@shared/components';
     HeaderComponent,
     HomeComponent,
     IndicateComponent,
-    LoadingComponent
+    LoadingComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -77,8 +80,8 @@ import { LoadingComponent } from '@shared/components';
     EffectsModule.forFeature([...fromHomeStore.effects]),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
-  entryComponents: [IndicateComponent],
-  providers: [HomeService],
+  entryComponents: [IndicateComponent, LoginComponent],
+  providers: [HomeService, TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,11 +6,11 @@ import { ratings } from '@constants/ratings';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-indicate',
-  templateUrl: './indicate.component.html',
-  styleUrls: ['./indicate.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class IndicateComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   formGroup: FormGroup;
 
@@ -19,22 +19,18 @@ export class IndicateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<IndicateComponent>,
+    public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
-    this.formGroup = this.fb.group({
-      url: [this.data.url, Validators.required],
-      rating: ['', Validators.required],
-      comment: ['']
-    });
+
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  saveIndication() {
+  teste() {
     if (this.formGroup.valid) {
       this.dialogRef.close(this.formGroup.value);
     }
