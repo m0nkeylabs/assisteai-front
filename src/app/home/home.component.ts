@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   openDialog(urlIndication?): void {
-    if (!this.tokenService.hasToken()) {
+    if (this.tokenService.hasToken()) {
       const dialogRef = this.dialog.open(IndicateComponent, {
         width: '90%',
         maxWidth: '700px',
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
     } else {
       const dialogRef = this.dialog.open(LoginComponent, {
         width: '90%',
-        maxWidth: '700px',
+        maxWidth: '400px',
         data: {url: urlIndication}
       });
 

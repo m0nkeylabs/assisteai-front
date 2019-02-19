@@ -1,4 +1,16 @@
+.btn {
+  border: 0;
+  border-radius: $radius-default;
+  padding: 5px;
+}
+
 .btn-default {
   background-color: $button-primary;
+  color: $white;
+}
+
+.btn-facebook {
+  padding: 7px 27px 7px 7px;
+  background-color: $background-facebook;
   color: $white;
 }
