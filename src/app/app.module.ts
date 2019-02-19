@@ -16,7 +16,8 @@ import {
   MatButtonModule,
   MatDialogModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTabsModule
 } from '@angular/material';
 
 import {
@@ -67,6 +68,7 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
+    MatTabsModule,
 
     ToastNoAnimationModule,
     ToastrModule.forRoot({

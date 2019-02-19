@@ -1,8 +1,32 @@
-.login-container {
-    .btn-facebook {
-        display: flex;
-        align-items: center;
+@import 'assets/scss/variables.scss';
 
-        img { margin-right: 20px;}
+.login-container {
+
+  .social-login {
+    border-bottom: 1px solid $darkest-gray-border;
+
+    .btn-facebook {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      img { margin-right: 10px;}
     }
+  }
+
+  .forget-password {
+    text-align: right;
+    margin: 5px 0 10px;
+
+    span {
+      color: $dark-gray;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        color: $lightest-gray;
+      }
+    }
+  }
 }

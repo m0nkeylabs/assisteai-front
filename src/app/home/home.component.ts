@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
       const dialogRef = this.dialog.open(LoginComponent, {
         width: '90%',
         maxWidth: '400px',
-        data: {url: urlIndication}
+        data: {tab: 0}
       });
 
       dialogRef.afterClosed().subscribe(result => {

@@ -22,6 +22,22 @@ header {
       display: flex;
       align-items: center;
 
+      .signIn-container {
+        font-size: 14px;
+        span {
+          display: inline-block;
+          color: $lightest-gray;
+          cursor: pointer;
+
+          &:first-child { margin-right: 7px; }
+          &:last-child { margin-left: 7px; }
+
+          &:hover {
+            color: $logo-yellow;
+          }
+        }
+      }
+
       .profile-image {
         width: 43px;
         height: 43px;

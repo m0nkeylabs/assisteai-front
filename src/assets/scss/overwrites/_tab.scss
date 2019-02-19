@@ -1,0 +1,44 @@
+.tab-login {
+  .mat-tab-label {
+    width: 50%;
+  }
+}
+
+.mat-tab-group {
+  .mat-tab-header {
+    .mat-tab-label {
+      opacity: 1;
+
+      .mat-tab-label-content {
+        color: $dark-gray;
+        font-size: 15px;
+      }
+
+      &.mat-tab-label-active {
+        .mat-tab-label-content {
+          color: $lightest-gray;
+
+        }
+      }
+    }
+  }
+  .mat-tab-body-wrapper {
+    .mat-tab-body {
+      padding: 20px 10px 0;
+      opacity: 0;
+      transition: opacity .4s ease-in-out;
+
+      .mat-tab-body-content {
+        overflow: visible;
+      }
+
+      &.mat-tab-body-active { opacity: 1;}
+    }
+  }
+
+  &.mat-primary {
+    .mat-ink-bar {
+      background-color: $logo-yellow;
+    }
+  }
+}

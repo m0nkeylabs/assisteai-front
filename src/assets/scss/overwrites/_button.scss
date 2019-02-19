@@ -2,6 +2,8 @@
   border: 0;
   border-radius: $radius-default;
   padding: 5px;
+  outline: none;
+  cursor: pointer;
 }
 
 .btn-default {
@@ -10,7 +12,13 @@
 }
 
 .btn-facebook {
-  padding: 7px 27px 7px 7px;
+  padding: 7px;
   background-color: $background-facebook;
   color: $white;
+  font-size: 15px;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background: $background-facebook-hover
+  }
 }

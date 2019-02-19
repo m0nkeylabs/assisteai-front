@@ -12,10 +12,15 @@ import * as _ from 'lodash';
 })
 export class LoginComponent implements OnInit {
 
-  formGroup: FormGroup;
+  formSignIn: FormGroup;
+  formRegister: FormGroup;
+  formForgetPassword: FormGroup;
 
   ratingEnum = ratings;
   ratingArray = _.keys(ratings);
+
+  isForgetPassword: boolean;
+  tabActive: string;
 
   constructor(
     private fb: FormBuilder,
@@ -23,16 +28,47 @@ export class LoginComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
+    this.tabActive = this.data.tab;
 
+    this.formSignIn = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    this.formRegister = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    this.formForgetPassword = this.fb.group({
+      email: ['', Validators.required]
+    });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  teste() {
-    if (this.formGroup.valid) {
-      this.dialogRef.close(this.formGroup.value);
+  signIn() {
+    if (this.formSignIn.valid) {
+      this.dialogRef.close(this.formSignIn.value);
     }
+  }
+
+  forgetPassword() {
+    if (this.formForgetPassword.valid) {
+      this.dialogRef.close(this.formSignIn.value);
+    }
+  }
+
+  register() {
+    if (this.formRegister.valid) {
+      this.dialogRef.close(this.formSignIn.value);
+    }
+  }
+
+  setForgetPassword() {
+    this.isForgetPassword = !this.isForgetPassword;
   }
 }

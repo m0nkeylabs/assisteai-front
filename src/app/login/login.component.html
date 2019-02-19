@@ -1,3 +1,82 @@
 <div class="login-container">
-  <button class="btn btn-facebook"><img src="assets/img/facebook.png" height="25px"> <span>Entrar com o Facebook</span></button>
+  <div class="social-login margin-bottom-2">
+    <button class="btn btn-facebook margin-bottom-2"><img src="assets/img/facebook.png" height="25px"> <span>Entrar com o Facebook</span></button>
+  </div>
+  <div class="manual-login">
+    <mat-tab-group class="tab-login" animationDuration="1500ms" [selectedIndex]="tabActive">
+      <mat-tab label="Login">
+        <ng-container *ngIf="!isForgetPassword">
+          <form novalidate [formGroup]="formSignIn" (submit)="signIn()">
+            <div class="flex-row col-md-12">
+              <mat-form-field appearance="outline" class="col-md-12 dialog-input-prefix">
+                <mat-label>E-mail</mat-label>
+                <input matInput autocomplete="off" formControlName='email'
+                  placeholder="email@email.com.br">
+                <mat-icon matPrefix>email</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="flex-column col-md-12">
+              <mat-form-field appearance="outline" class="col-md-12 dialog-input-prefix">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" formControlName='password'>
+                <mat-icon matPrefix>lock</mat-icon>
+              </mat-form-field>
+              <div class="forget-password">
+                <span (click)="setForgetPassword()">Esqueceu sua senha?</span>
+              </div>
+            </div>
+            <div class="flex-row col-md-12 margin-top-1">
+              <button mat-button cdkFocusInitial class="btn-default col-md-12" type="submit">Entrar</button>
+            </div>
+          </form>
+        </ng-container>
+
+        <ng-container *ngIf="isForgetPassword">
+          <form novalidate [formGroup]="formForgetPassword" (submit)="forgetPassword()">
+            <div class="flex-row col-md-12">
+              <mat-form-field appearance="outline" class="col-md-12 dialog-input-prefix">
+                <mat-label>E-mail</mat-label>
+                <input matInput autocomplete="off" formControlName='email'
+                  placeholder="email@email.com.br">
+                <mat-icon matPrefix>email</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="flex-column align-items-center col-md-12 margin-top-1">
+              <button mat-button cdkFocusInitial class="btn-default col-md-12" type="submit">Enviar e-mail</button>
+              <button mat-button class="col-md-5 margin-top-1" (click)="setForgetPassword()">Voltar</button>
+            </div>
+          </form>
+        </ng-container>
+      </mat-tab>
+      <mat-tab label="Cadastrar">
+        <form novalidate [formGroup]="formRegister" (submit)="register()">
+          <div class="flex-row col-md-12">
+            <mat-form-field appearance="outline" class="col-md-12 dialog-input-prefix">
+              <mat-label>Nome</mat-label>
+              <input matInput autocomplete="off" formControlName='name'>
+              <mat-icon matPrefix>perm_identity</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="flex-row col-md-12">
+            <mat-form-field appearance="outline" class="col-md-12 dialog-input-prefix">
+              <mat-label>E-mail</mat-label>
+              <input matInput autocomplete="off" formControlName='email'
+                placeholder="email@email.com.br">
+              <mat-icon matPrefix>email</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="flex-column col-md-12">
+            <mat-form-field appearance="outline" class="col-md-12 dialog-input-prefix">
+              <mat-label>Senha</mat-label>
+              <input matInput type="password" formControlName='password'>
+              <mat-icon matPrefix>lock</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="flex-row col-md-12 margin-top-1">
+            <button mat-button cdkFocusInitial class="btn-default col-md-12" type="submit">Cadastrar</button>
+          </div>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
