@@ -7,7 +7,7 @@
       <div class="profile-image" *ngIf="isLogged">
         <img src="assets/img/user.jpg">
       </div>
-      <div class="signIn-container">
+      <div class="signIn-container" *ngIf="!isLogged">
         <span (click)="openDialog(0)">Entrar</span> ou <span (click)="openDialog(1)">Cadastrar</span>
       </div>
     </div>

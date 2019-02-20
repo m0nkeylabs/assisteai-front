@@ -72,8 +72,8 @@ import { LoginComponent } from './login/login.component';
 
     ToastNoAnimationModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
-      preventDuplicates: true
+      timeOut: 4000,
+      preventDuplicates: false
     }),
 
     StoreModule.forRoot(rootReducer, { metaReducers }),

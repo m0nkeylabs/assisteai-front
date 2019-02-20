@@ -4,7 +4,7 @@ import { MoviesList } from '@models/movies-list';
 export class Pagination {
   currentPage: number;
   from: number;
-  lastPage: number;
+  lastPage?: number;
   perPage: number;
   firstPageUrl: string;
   lastPageUrl: string;

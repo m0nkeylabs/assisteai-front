@@ -30,7 +30,26 @@ export class HomeEffects {
   loadHomeListFail$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.LOAD_HOME_LIST_FAIL),
     tap((action: fromActions.LoadHomeListFail) => {
-          this.toastr.error(`action.payload.error.message`);
+      this.toastr.error('<i class="material-icons">error</i> Ocorreu um erro inesperado ao listar as indicações.', '', {enableHtml: true});
+    })
+  );
+
+  @Effect()
+  updateHomeList$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.UPDATE_HOME_LIST),
+    switchMap((params: fromActions.UpdateHomeList) =>
+      this.service.getAllMoviesAndSeries(params.filter).pipe(
+        map((response: Paginable<MoviesList>) => new fromActions.UpdateHomeListSuccess(response)),
+        catchError(error => of(new fromActions.UpdateHomeListFail(error)))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  updateHomeListFail$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.UPDATE_HOME_LIST_FAIL),
+    tap((action: fromActions.UpdateHomeListFail) => {
+      this.toastr.error('<i class="material-icons">error</i> Ocorreu um erro inesperado ao listar as indicações.', '', {enableHtml: true});
     })
   );
 

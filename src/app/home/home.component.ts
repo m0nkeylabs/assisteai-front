@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
   moviesList$: Observable<Array<MoviesList>>;
 
   floatLabel = 'always';
-  filterOpened = false;
+  filterOpened: boolean;
+  scollTopActive: boolean;
 
   movies: Array<MoviesList>;
 
@@ -45,7 +46,9 @@ export class HomeComponent implements OnInit {
     search: '',
     exibition: 'all',
     ratings: ['UNMISSABLE', 'VERY_GOOD', 'GOOD', 'COOL', 'BAD', 'VERY_BAD', 'STAY_AWAY'],
-    types: ['MOVIE', 'SERIE']
+    types: ['MOVIE', 'SERIE'],
+    currentPage: 1,
+    lastPage: null
   };
 
   constructor(
@@ -59,6 +62,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadHomeList(this.filters));
+
+    this.pagination$.subscribe(result => {
+      if (result) {
+        this.filters.currentPage = result.currentPage;
+        this.filters.lastPage = result.lastPage;
+      }
+    });
   }
 
   setExibition(exibition) {
@@ -84,7 +94,10 @@ export class HomeComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.updateList();
+          this.filters.currentPage = 1;
+          this.filters.lastPage = null;
+          this.store.dispatch(new fromStore.UpdateHomeList(this.filters));
+          window.scroll(0, 0);
         }
       });
     } else {
@@ -182,9 +195,17 @@ export class HomeComponent implements OnInit {
     return typeClass;
   }
 
+  scollTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
   @HostListener('document:scroll', ['$event'])
   onScroll($event) {
-    console.log();
+    this.scollTopActive = window.scrollY >= 100 ? true : false;
     if ((window.innerHeight + window.scrollY) > document.body.offsetHeight) {
       this.store.dispatch(new fromStore.LoadHomeList(this.filters));
     }

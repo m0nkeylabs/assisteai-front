@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ratings } from '@constants/ratings';
 
+import { ToastrService } from 'ngx-toastr';
 import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-indicate',
@@ -18,6 +20,7 @@ export class IndicateComponent implements OnInit {
   ratingArray = _.keys(ratings);
 
   constructor(
+    private toastr: ToastrService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<IndicateComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
@@ -31,12 +34,13 @@ export class IndicateComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   saveIndication() {
     if (this.formGroup.valid) {
-      this.dialogRef.close(this.formGroup.value);
+      this.toastr.success('<i class="material-icons">done</i>Indicação realizada com sucesso!', '', { enableHtml: true });
+      this.dialogRef.close(true);
     }
   }
 }
