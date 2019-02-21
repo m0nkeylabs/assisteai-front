@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+
 import { MatDialog } from '@angular/material';
 
 import { Store, select } from '@ngrx/store';
@@ -23,7 +25,30 @@ import { FilterHome } from '@models/filter-home';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('listStagger', [
+      transition('* <=> *', [
+        query(
+          ':enter',
+          [
+            style({ opacity: 0, transform: 'translateY(-15px)' }),
+            stagger(
+              '50ms',
+              animate(
+                '550ms ease-out',
+                style({ opacity: 1, transform: 'translateY(0px)' })
+              )
+            )
+          ],
+          { optional: true }
+        ),
+        query(':leave', animate('50ms', style({ opacity: 0 })), {
+          optional: true
+        })
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -35,8 +60,6 @@ export class HomeComponent implements OnInit {
   filterOpened: boolean;
   scollTopActive: boolean;
   isLoading: boolean;
-
-  movies: Array<MoviesList>;
 
   typeEnum = types;
   typeArray = _.keys(types);

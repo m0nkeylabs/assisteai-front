@@ -40,7 +40,7 @@
     </div>
   </section>
 
-  <section class="cards-container flex-row flex-wrap">
+  <section class="cards-container flex-row flex-wrap" [@listStagger]='(moviesList$ | async).length'>
     <div class="card {{getClassPoster(movie.average_rating)}}" *ngFor="let movie of moviesList$ | async">
       <div class="poster-container">
         <div class="img-poster" [ngStyle]="{'background-image': 'url(' + movie.poster_path + ')'}"></div>
