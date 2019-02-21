@@ -70,7 +70,7 @@
         overflow: hidden;
         border-radius: $radius-default;
 
-        transition: all .4s ease-in-out;
+        transition: all .4s ease;
         background-position: center;
         background-size: cover;
         height: 0;
@@ -94,7 +94,7 @@
           border-radius: $radius-default;
           color: #ffffff;
           text-decoration: none;
-          transition: opacity .4s ease-in-out;
+          transition: opacity .4s ease;
           opacity: 0;
           background: rgba(0,0,0,0.80);
           backface-visibility: hidden;
@@ -151,7 +151,7 @@
         }
 
         .img-poster {
-          transition: all .4s ease-in-out;
+          transition: all .4s ease;
           background-position: center;
           background-size: cover;
           padding-bottom: 150%;
