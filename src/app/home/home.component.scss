@@ -96,7 +96,7 @@
           text-decoration: none;
           transition: opacity .4s ease-in-out;
           opacity: 0;
-          background-image: radial-gradient(circle, rgba(0,0,0,0.55),rgba(0,0,0,0.75),rgba(0,0,0,0.95));
+          background: rgba(0,0,0,0.80);
 
           &:hover {
             opacity: 1;
