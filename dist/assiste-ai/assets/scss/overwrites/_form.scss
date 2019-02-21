@@ -1,0 +1,71 @@
+.mat-form-field-appearance-outline {
+  .mat-form-field-wrapper {
+    padding-bottom: 5px;
+
+    .mat-form-field-outline  {
+      background-color: $darkest-gray-border;
+      border-radius: $radius-default;
+    }
+    .mat-form-field-outline-thick {
+      color: $darkest-gray;
+    }
+    .mat-form-field-outline-start { border: 1px solid $darkest-gray; border-right-style: none; }
+    .mat-form-field-outline-gap { border: 1px solid $darkest-gray; border-left-style: none; border-right-style: none; }
+    .mat-form-field-outline-end { border: 1px solid $darkest-gray; border-left-style: none; }
+
+    .mat-form-field-infix {
+      textarea { min-height: 85px;}
+      .mat-input-element {
+        color: $lightest-gray;
+        caret-color: $lightest-gray;
+
+        &::placeholder {
+          color: $dark-gray;
+        }
+      }
+
+      .mat-form-field-label-wrapper {
+        .mat-form-field-label {
+          color:$darker-gray;
+        }
+      }
+
+      .mat-select {
+        .mat-select-value { color: $lightest-gray; }
+        .mat-select-arrow-wrapper {
+          .mat-select-arrow { color: $dark-gray}
+        }
+      }
+    }
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: $lightest-gray !important;
+  -webkit-box-shadow: 0 0 0px 1000px $darkest-gray-border inset;
+  box-shadow: 0 0 0px 1000px $darkest-gray-border inset;
+}
+
+.panel-dark {
+  background: $gray;
+  .mat-option {
+    color: $darkest-gray;
+
+    &.mat-selected:not(.mat-option-disabled) { color: $darkest-gray-border; font-weight: 700; }
+  }
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label { color: $invalid-color !important}
+
+/* Bug fixed:  https://github.com/angular/material2/issues/15027 */
+.dialog-input-prefix {
+  .mat-form-field-prefix {
+    .mat-icon {
+      color: $dark-gray;
+    }
+
+    .mat-form-field-outline-start { width: 27.1px !important; }
+  }
+
+  .mat-form-field-outline-start { width: 27.1px !important; }
+}

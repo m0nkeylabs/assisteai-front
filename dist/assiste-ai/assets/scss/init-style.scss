@@ -1,0 +1,73 @@
+html,
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato','Helvetica Neue',Arial,Helvetica,sans-serif;
+  background-color: $background;
+  color: $font-default;
+  font-size: $size-default;
+
+  .main {
+    margin: 30px auto;
+    width: 90%;
+  }
+
+
+  h1, h2, h3, h4, h5 {
+    line-height: 1.2857em;
+    margin: calc(2rem - .14285em) 0 1rem;
+    font-weight: 700;
+    padding: 0;
+
+    &:first-child { margin-top: 0; }
+  }
+
+  h3 { font-size: 1.28rem; }
+
+  .divider { background-color: $darkest-gray-border; padding: 10px 1px; }
+
+  .flex-row { display: flex; flex-direction: row; }
+  .flex-column { display: flex; flex-direction: column; }
+  .flex-wrap { flex-wrap: wrap; }
+  .align-items-center { align-items: center; }
+
+  .margin-top-none { margin-top: 0; }
+  .margin-top-1 { margin-top: 10px; }
+  .margin-top-2 { margin-top: 20px; }
+
+  .margin-bottom-none { margin-bottom: 0; }
+  .margin-bottom-1 { margin-bottom: 10px; }
+  .margin-bottom-2 { margin-bottom: 20px; }
+
+  .margin-right-none { margin-right: 0; }
+  .margin-right-1 { margin-right: 10px; }
+  .margin-right-2 { margin-right: 20px; }
+
+  .rating-1 { background: $rating-1 }
+  .rating-2 { background: $rating-2 }
+  .rating-3 { background: $rating-3 }
+  .rating-4 { background: $rating-4 }
+  .rating-5 { background: $rating-5 }
+  .rating-6 { background: $rating-6 }
+  .rating-7 { background: $rating-7 }
+
+  .type-movie { background: $color-movie; }
+  .type-serie { background: $color-serie; }
+
+  .bg-yellow { background-color: $logo-yellow; }
+  .bg-green { background-color: $logo-green; }
+  .bg-pink { background-color: $logo-pink; }
+  .bg-red { background-color: $logo-red; }
+  .bg-blue { background-color: $logo-blue; }
+
+  app-loading { width: 100%; margin: 20px 0; }
+}
+
+@media (min-width: 1460px) {
+  body {
+    .main {
+      max-width: 1460px;
+    }
+  }
+}
