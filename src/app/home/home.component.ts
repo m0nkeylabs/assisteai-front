@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   floatLabel = 'always';
   filterOpened: boolean;
   scollTopActive: boolean;
+  isLoading: boolean;
 
   movies: Array<MoviesList>;
 
@@ -68,6 +69,10 @@ export class HomeComponent implements OnInit {
         this.filters.currentPage = result.currentPage;
         this.filters.lastPage = result.lastPage;
       }
+    });
+
+    this.loading$.subscribe(result => {
+      this.isLoading = result;
     });
   }
 
@@ -206,9 +211,11 @@ export class HomeComponent implements OnInit {
   @HostListener('document:scroll', ['$event'])
   onScroll($event) {
     this.scollTopActive = window.scrollY >= 100 ? true : false;
-    if (((window.innerHeight + window.scrollY) > document.body.offsetHeight) && this.filters.currentPage < this.filters.lastPage) {
-      this.filters.currentPage = this.filters.currentPage + 1;
-      this.store.dispatch(new fromStore.LoadHomeList(this.filters));
+    if (((window.innerHeight + window.scrollY) > document.body.offsetHeight)
+          && this.filters.currentPage < this.filters.lastPage
+          && !this.isLoading) {
+            this.filters.currentPage = this.filters.currentPage + 1;
+            this.store.dispatch(new fromStore.LoadHomeList(this.filters));
     }
   }
 

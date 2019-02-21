@@ -1,6 +1,7 @@
 .mat-form-field-appearance-outline {
   .mat-form-field-wrapper {
     padding-bottom: 5px;
+    margin: .25em 0 0 !important;
 
     .mat-form-field-outline  {
       background-color: $darkest-gray-border;
