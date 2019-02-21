@@ -97,6 +97,7 @@
           transition: opacity .4s ease-in-out;
           opacity: 0;
           background: rgba(0,0,0,0.80);
+          backface-visibility: hidden;
 
           &:hover {
             opacity: 1;
@@ -154,6 +155,8 @@
           background-position: center;
           background-size: cover;
           padding-bottom: 150%;
+          width: 100.5%;
+          backface-visibility: hidden;
         }
       }
     }
