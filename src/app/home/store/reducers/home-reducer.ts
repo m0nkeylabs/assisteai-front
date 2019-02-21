@@ -11,7 +11,7 @@ export interface State extends EntityState<any> {
 }
 
 export const adapter: EntityAdapter<MoviesList> = createEntityAdapter<MoviesList>({
-  selectId: (moviesList: MoviesList) => moviesList.uuid
+  selectId: (moviesList: MoviesList) => moviesList.id
 });
 
 export const initialState: State = adapter.getInitialState({
