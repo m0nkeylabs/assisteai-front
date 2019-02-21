@@ -12,6 +12,6 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getAllMoviesAndSeries(filters: FilterHome): Observable<Paginable<MoviesList>> {
-    return this.http.get< Paginable< MoviesList>>('https://api.assisteai.com.br/movies');
+    return this.http.get< Paginable< MoviesList>>('https://api.assisteai.com.br/movies?page=' + filters.currentPage);
   }
 }

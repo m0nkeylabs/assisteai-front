@@ -206,7 +206,8 @@ export class HomeComponent implements OnInit {
   @HostListener('document:scroll', ['$event'])
   onScroll($event) {
     this.scollTopActive = window.scrollY >= 100 ? true : false;
-    if ((window.innerHeight + window.scrollY) > document.body.offsetHeight) {
+    if (((window.innerHeight + window.scrollY) > document.body.offsetHeight) && this.filters.currentPage < this.filters.lastPage) {
+      this.filters.currentPage = this.filters.currentPage + 1;
       this.store.dispatch(new fromStore.LoadHomeList(this.filters));
     }
   }
