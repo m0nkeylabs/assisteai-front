@@ -4,15 +4,15 @@
     margin: .25em 0 0 !important;
 
     .mat-form-field-outline  {
-      background-color: $darkest-gray-border;
+      background-color: $darkest-gray-border !important;
       border-radius: $radius-default;
     }
     .mat-form-field-outline-thick {
       color: $darkest-gray;
     }
-    .mat-form-field-outline-start { border: 1px solid $darkest-gray; border-right-style: none; }
-    .mat-form-field-outline-gap { border: 1px solid $darkest-gray; border-left-style: none; border-right-style: none; }
-    .mat-form-field-outline-end { border: 1px solid $darkest-gray; border-left-style: none; }
+    .mat-form-field-outline-start { border: 1px solid $darkest-gray !important; border-right-style: none !important;}
+    .mat-form-field-outline-gap { border: 1px solid $darkest-gray !important; border-left-style: none !important; border-right-style: none !important; }
+    .mat-form-field-outline-end { border: 1px solid $darkest-gray !important; border-left-style: none !important; }
 
     .mat-form-field-infix {
       textarea { min-height: 85px;}

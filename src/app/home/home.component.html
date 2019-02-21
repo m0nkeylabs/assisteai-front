@@ -43,7 +43,7 @@
   <section class="cards-container flex-row flex-wrap">
     <div class="card {{getClassPoster(movie.average_rating)}}" *ngFor="let movie of moviesList$ | async">
       <div class="poster-container">
-        <img src="{{movie.poster_path}}" class="img-poster">
+        <div class="img-poster" [ngStyle]="{'background-image': 'url(' + movie.poster_path + ')'}"></div>
         <div class="overlay">
           <div class="poster-detail flex-column">
             <h3 class="poster-title">{{movie.original_title}}</h3>

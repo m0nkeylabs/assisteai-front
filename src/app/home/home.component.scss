@@ -70,6 +70,12 @@
         overflow: hidden;
         border-radius: $radius-default;
 
+        transition: all .4s ease-in-out;
+        background-position: center;
+        background-size: cover;
+        height: 0;
+        padding-bottom: 150%;
+
         &:hover {
           .img-poster {
             transform: scale(1.1, 1.1);
@@ -144,31 +150,29 @@
         }
 
         .img-poster {
-          border: 0;
-          position: relative;
-          border-radius: $radius-default;
-          width: 100%;
-          vertical-align: middle;
           transition: all .4s ease-in-out;
+          background-position: center;
+          background-size: cover;
+          padding-bottom: 150%;
         }
       }
     }
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 849px) {
   .cards-container .card {
-    flex: 1 0 $width-1-columns;
-    max-width: calc(#{$width-1-columns} - 30px);
+    flex: 1 0 $width-2-columns;
+    max-width: calc(#{$width-2-columns} - 30px);
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 850px) {
   .cards-container .card {
     flex: 1 0 $width-3-columns;
     max-width: calc(#{$width-3-columns} - 30px);
   }
 }
-@media (min-width: 930px) {
+@media (min-width: 1101px) {
   .cards-container .card {
     flex: 1 0 $width-4-columns;
     max-width: calc(#{$width-4-columns} - 30px);
