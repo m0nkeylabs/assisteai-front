@@ -82,7 +82,6 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog) {
     this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
     this.pagination$ = store.pipe(select(fromStore.getHomeListPagination));
-    this.loading$ = store.pipe(select(fromStore.getHomeListLoading));
   }
 
   ngOnInit() {

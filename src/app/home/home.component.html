@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-    <app-loading *ngIf="!isLoaded"></app-loading>
+    <app-loading [hidden]="isLoaded"></app-loading>
     <button class="scroll-btn" [ngClass]="{'active': scollTopActive}" (click)="scollTop()"><mat-icon>arrow_upward</mat-icon></button>
   </section>
 </main>
