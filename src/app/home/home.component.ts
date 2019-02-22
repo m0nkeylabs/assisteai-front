@@ -55,11 +55,12 @@ export class HomeComponent implements OnInit {
   loading$: Observable<boolean>;
   pagination$: Observable<Pagination>;
   moviesList$: Observable<Array<MoviesList>>;
+  moviesList: Array<MoviesList>;
 
   floatLabel = 'always';
   filterOpened: boolean;
   scollTopActive: boolean;
-  isLoading: boolean;
+  isLoaded: boolean;
 
   typeEnum = types;
   typeArray = _.keys(types);
@@ -87,15 +88,29 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadHomeList(this.filters));
 
+    this.moviesList$.subscribe(result => {
+      if (result.length) {
+        let totalLoaded = 0;
+        result.map((r) => {
+          const objImg = new Image();
+          objImg.onload = () => {
+            totalLoaded++;
+            if (totalLoaded === result.length) {
+              this.moviesList = result;
+              this.isLoaded = true;
+            }
+          };
+
+          objImg.src = r.poster_path;
+        });
+      }
+    });
+
     this.pagination$.subscribe(result => {
       if (result) {
         this.filters.currentPage = result.currentPage;
         this.filters.lastPage = result.lastPage;
       }
-    });
-
-    this.loading$.subscribe(result => {
-      this.isLoading = result;
     });
   }
 
@@ -236,7 +251,8 @@ export class HomeComponent implements OnInit {
     this.scollTopActive = window.scrollY >= 100 ? true : false;
     if (((window.innerHeight + window.scrollY) > document.body.offsetHeight)
           && this.filters.currentPage < this.filters.lastPage
-          && !this.isLoading) {
+          && this.isLoaded) {
+            this.isLoaded = false;
             this.filters.currentPage = this.filters.currentPage + 1;
             this.store.dispatch(new fromStore.LoadHomeList(this.filters));
     }
