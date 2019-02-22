@@ -37,10 +37,11 @@ import { HomeComponent } from 'app/home/home.component';
 import { IndicateComponent } from 'app/indicate/indicate.component';
 
 import { HomeService } from '@services/home.service';
+import { LoginService } from '@services/login.service';
 import { TokenService } from '@services/token.service';
 
 import { LoadingComponent } from '@shared/components';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from 'app/login/login.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { LoginComponent } from './login/login.component';
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   entryComponents: [IndicateComponent, LoginComponent],
-  providers: [HomeService, TokenService],
+  providers: [HomeService, LoginService, TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

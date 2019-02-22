@@ -11,8 +11,8 @@ export class TokenService {
     constructor() {}
 
     hasToken() {
-      return true;
-      // return !!this.getToken();
+      // return true;
+      return !!this.getToken();
     }
 
     setToken(headers) {

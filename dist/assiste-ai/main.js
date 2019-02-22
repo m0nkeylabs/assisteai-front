@@ -150,9 +150,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var app_home_home_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! app/home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! app/indicate/indicate.component */ "./src/app/indicate/indicate.component.ts");
 /* harmony import */ var _services_home_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @services/home.service */ "./src/app/services/home.service.ts");
-/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @services/token.service */ "./src/app/services/token.service.ts");
-/* harmony import */ var _shared_components__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @shared/components */ "./src/app/shared/components/index.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _services_login_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @services/login.service */ "./src/app/services/login.service.ts");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var _shared_components__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @shared/components */ "./src/app/shared/components/index.ts");
+/* harmony import */ var app_login_login_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! app/login/login.component */ "./src/app/login/login.component.ts");
+
 
 
 
@@ -188,8 +190,8 @@ var AppModule = /** @class */ (function () {
                 _main__WEBPACK_IMPORTED_MODULE_18__["HeaderComponent"],
                 app_home_home_component__WEBPACK_IMPORTED_MODULE_19__["HomeComponent"],
                 app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_20__["IndicateComponent"],
-                _shared_components__WEBPACK_IMPORTED_MODULE_23__["LoadingComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_24__["LoginComponent"]
+                _shared_components__WEBPACK_IMPORTED_MODULE_24__["LoadingComponent"],
+                app_login_login_component__WEBPACK_IMPORTED_MODULE_25__["LoginComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -219,8 +221,8 @@ var AppModule = /** @class */ (function () {
                 _ngrx_effects__WEBPACK_IMPORTED_MODULE_15__["EffectsModule"].forFeature(app_home_store__WEBPACK_IMPORTED_MODULE_9__["effects"].slice()),
                 _environments_environment__WEBPACK_IMPORTED_MODULE_16__["environment"].production ? [] : _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_13__["StoreDevtoolsModule"].instrument(),
             ],
-            entryComponents: [app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_20__["IndicateComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_24__["LoginComponent"]],
-            providers: [_services_home_service__WEBPACK_IMPORTED_MODULE_21__["HomeService"], _services_token_service__WEBPACK_IMPORTED_MODULE_22__["TokenService"]],
+            entryComponents: [app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_20__["IndicateComponent"], app_login_login_component__WEBPACK_IMPORTED_MODULE_25__["LoginComponent"]],
+            providers: [_services_home_service__WEBPACK_IMPORTED_MODULE_21__["HomeService"], _services_login_service__WEBPACK_IMPORTED_MODULE_22__["LoginService"], _services_token_service__WEBPACK_IMPORTED_MODULE_23__["TokenService"]],
             bootstrap: [app_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]]
         })
     ], AppModule);
@@ -1110,7 +1112,7 @@ var IndicateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-container\">\n  <div class=\"social-login margin-bottom-2\">\n    <button class=\"btn btn-facebook margin-bottom-2\"><img src=\"assets/img/facebook.png\" height=\"25px\"> <span>Entrar com o Facebook</span></button>\n  </div>\n  <div class=\"manual-login\">\n    <mat-tab-group class=\"tab-login\" animationDuration=\"1500ms\" [selectedIndex]=\"tabActive\">\n      <mat-tab label=\"Login\">\n        <ng-container *ngIf=\"!isForgetPassword\">\n          <form novalidate [formGroup]=\"formSignIn\" (submit)=\"signIn()\">\n            <div class=\"flex-row col-md-12 col-sm-12\">\n              <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n                <mat-label>E-mail</mat-label>\n                <input matInput autocomplete=\"off\" formControlName='email'\n                  placeholder=\"email@email.com.br\">\n                <mat-icon matPrefix>email</mat-icon>\n              </mat-form-field>\n            </div>\n            <div class=\"flex-column col-md-12 col-sm-12\">\n              <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n                <mat-label>Senha</mat-label>\n                <input matInput type=\"password\" formControlName='password'>\n                <mat-icon matPrefix>lock</mat-icon>\n              </mat-form-field>\n              <div class=\"forget-password\">\n                <span (click)=\"setForgetPassword()\">Esqueceu sua senha?</span>\n              </div>\n            </div>\n            <div class=\"flex-row col-md-12 col-sm-12 margin-top-1\">\n              <button mat-button cdkFocusInitial class=\"btn-default col-md-12 col-sm-12\" type=\"submit\">Entrar</button>\n            </div>\n          </form>\n        </ng-container>\n\n        <ng-container *ngIf=\"isForgetPassword\">\n          <form novalidate [formGroup]=\"formForgetPassword\" (submit)=\"forgetPassword()\">\n            <div class=\"flex-row col-md-12 col-sm-12\">\n              <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n                <mat-label>E-mail</mat-label>\n                <input matInput autocomplete=\"off\" formControlName='email'\n                  placeholder=\"email@email.com.br\">\n                <mat-icon matPrefix>email</mat-icon>\n              </mat-form-field>\n            </div>\n            <div class=\"flex-column align-items-center col-md-12 col-sm-12 margin-top-1\">\n              <button mat-button cdkFocusInitial class=\"btn-default col-md-12 col-sm-12\" type=\"submit\">Enviar e-mail</button>\n              <button mat-button class=\"col-md-5 margin-top-1\" (click)=\"setForgetPassword()\">Voltar</button>\n            </div>\n          </form>\n        </ng-container>\n      </mat-tab>\n      <mat-tab label=\"Cadastrar\">\n        <form novalidate [formGroup]=\"formRegister\" (submit)=\"register()\">\n          <div class=\"flex-row col-md-12 col-sm-12\">\n            <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n              <mat-label>Nome</mat-label>\n              <input matInput autocomplete=\"off\" formControlName='name'>\n              <mat-icon matPrefix>perm_identity</mat-icon>\n            </mat-form-field>\n          </div>\n          <div class=\"flex-row col-md-12 col-sm-12\">\n            <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n              <mat-label>E-mail</mat-label>\n              <input matInput autocomplete=\"off\" formControlName='email'\n                placeholder=\"email@email.com.br\">\n              <mat-icon matPrefix>email</mat-icon>\n            </mat-form-field>\n          </div>\n          <div class=\"flex-column col-md-12 col-sm-12\">\n            <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n              <mat-label>Senha</mat-label>\n              <input matInput type=\"password\" formControlName='password'>\n              <mat-icon matPrefix>lock</mat-icon>\n            </mat-form-field>\n          </div>\n          <div class=\"flex-row col-md-12 col-sm-12 margin-top-1\">\n            <button mat-button cdkFocusInitial class=\"btn-default col-md-12 col-sm-12\" type=\"submit\">Cadastrar</button>\n          </div>\n        </form>\n      </mat-tab>\n    </mat-tab-group>\n  </div>\n</div>\n"
+module.exports = "<div class=\"login-container\">\n  <div class=\"social-login margin-bottom-2\">\n    <button class=\"btn btn-facebook margin-bottom-2\" (click)=\"loginFacebook()\"><img src=\"assets/img/facebook.png\" height=\"25px\"> <span>Entrar com o Facebook</span></button>\n  </div>\n  <div class=\"manual-login\">\n    <mat-tab-group class=\"tab-login\" animationDuration=\"1500ms\" [selectedIndex]=\"tabActive\">\n      <mat-tab label=\"Login\">\n        <ng-container *ngIf=\"!isForgetPassword\">\n          <form novalidate [formGroup]=\"formSignIn\" (submit)=\"signIn()\">\n            <div class=\"flex-row col-md-12 col-sm-12\">\n              <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n                <mat-label>E-mail</mat-label>\n                <input matInput autocomplete=\"off\" formControlName='email'\n                  placeholder=\"email@email.com.br\">\n                <mat-icon matPrefix>email</mat-icon>\n              </mat-form-field>\n            </div>\n            <div class=\"flex-column col-md-12 col-sm-12\">\n              <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n                <mat-label>Senha</mat-label>\n                <input matInput type=\"password\" formControlName='password'>\n                <mat-icon matPrefix>lock</mat-icon>\n              </mat-form-field>\n              <div class=\"forget-password\">\n                <span (click)=\"setForgetPassword()\">Esqueceu sua senha?</span>\n              </div>\n            </div>\n            <div class=\"flex-row col-md-12 col-sm-12 margin-top-1\">\n              <button mat-button cdkFocusInitial class=\"btn-default col-md-12 col-sm-12\" type=\"submit\">Entrar</button>\n            </div>\n          </form>\n        </ng-container>\n\n        <ng-container *ngIf=\"isForgetPassword\">\n          <form novalidate [formGroup]=\"formForgetPassword\" (submit)=\"forgetPassword()\">\n            <div class=\"flex-row col-md-12 col-sm-12\">\n              <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n                <mat-label>E-mail</mat-label>\n                <input matInput autocomplete=\"off\" formControlName='email'\n                  placeholder=\"email@email.com.br\">\n                <mat-icon matPrefix>email</mat-icon>\n              </mat-form-field>\n            </div>\n            <div class=\"flex-column align-items-center col-md-12 col-sm-12 margin-top-1\">\n              <button mat-button cdkFocusInitial class=\"btn-default col-md-12 col-sm-12\" type=\"submit\">Enviar e-mail</button>\n              <button mat-button class=\"col-md-5 margin-top-1\" (click)=\"setForgetPassword()\">Voltar</button>\n            </div>\n          </form>\n        </ng-container>\n      </mat-tab>\n      <mat-tab label=\"Cadastrar\">\n        <form novalidate [formGroup]=\"formRegister\" (submit)=\"register()\">\n          <div class=\"flex-row col-md-12 col-sm-12\">\n            <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n              <mat-label>Nome</mat-label>\n              <input matInput autocomplete=\"off\" formControlName='name'>\n              <mat-icon matPrefix>perm_identity</mat-icon>\n            </mat-form-field>\n          </div>\n          <div class=\"flex-row col-md-12 col-sm-12\">\n            <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n              <mat-label>E-mail</mat-label>\n              <input matInput autocomplete=\"off\" formControlName='email'\n                placeholder=\"email@email.com.br\">\n              <mat-icon matPrefix>email</mat-icon>\n            </mat-form-field>\n          </div>\n          <div class=\"flex-column col-md-12 col-sm-12\">\n            <mat-form-field appearance=\"outline\" class=\"col-md-12 col-sm-12 dialog-input-prefix\">\n              <mat-label>Senha</mat-label>\n              <input matInput type=\"password\" formControlName='password'>\n              <mat-icon matPrefix>lock</mat-icon>\n            </mat-form-field>\n          </div>\n          <div class=\"flex-row col-md-12 col-sm-12 margin-top-1\">\n            <button mat-button cdkFocusInitial class=\"btn-default col-md-12 col-sm-12\" type=\"submit\">Cadastrar</button>\n          </div>\n        </form>\n      </mat-tab>\n    </mat-tab-group>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1140,8 +1142,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _constants_ratings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @constants/ratings */ "./src/app/core/constants/ratings.ts");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _services_login_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @services/login.service */ "./src/app/services/login.service.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -1149,12 +1153,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(fb, dialogRef, data) {
+    function LoginComponent(loginService, fb, dialogRef, data) {
+        this.loginService = loginService;
         this.fb = fb;
         this.dialogRef = dialogRef;
         this.data = data;
         this.ratingEnum = _constants_ratings__WEBPACK_IMPORTED_MODULE_4__["ratings"];
-        this.ratingArray = lodash__WEBPACK_IMPORTED_MODULE_5__["keys"](_constants_ratings__WEBPACK_IMPORTED_MODULE_4__["ratings"]);
+        this.ratingArray = lodash__WEBPACK_IMPORTED_MODULE_6__["keys"](_constants_ratings__WEBPACK_IMPORTED_MODULE_4__["ratings"]);
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.tabActive = this.data.tab;
@@ -1170,9 +1175,44 @@ var LoginComponent = /** @class */ (function () {
         this.formForgetPassword = this.fb.group({
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '2074647832674974',
+                cookie: true,
+                xfbml: true,
+                version: 'v3.10'
+            });
+            FB.AppEvents.logPageView();
+        };
+        (function (d, s, id) {
+            var fjs;
+            var js;
+            js = d.getElementsByTagName(s)[0];
+            fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'facebook-jssdk');
     };
     LoginComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
+    };
+    LoginComponent.prototype.loginFacebook = function () {
+        var _this = this;
+        FB.login(function (response) {
+            if (response.authResponse) {
+                _this.loginService.login(response.authResponse.accessToken).subscribe(function (r) {
+                    _this.dialogRef.close();
+                });
+            }
+            else {
+                console.log('User login failed');
+            }
+        });
     };
     LoginComponent.prototype.signIn = function () {
         if (this.formSignIn.valid) {
@@ -1198,8 +1238,9 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_login_service__WEBPACK_IMPORTED_MODULE_5__["LoginService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"], Object])
     ], LoginComponent);
     return LoginComponent;
@@ -1339,6 +1380,44 @@ var HomeService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/services/login.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/login.service.ts ***!
+  \*******************************************/
+/*! exports provided: LoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+// import { baseLocal } from 'app/constants';
+var LoginService = /** @class */ (function () {
+    function LoginService(http) {
+        this.http = http;
+    }
+    LoginService.prototype.login = function (tokenFace) {
+        return this.http.post('https://api.assisteai.com.br/auth/login/facebook', { token: tokenFace });
+    };
+    LoginService.prototype.logout = function (params) {
+        return this.http.post('https://api.assisteai.com.br/auth/login/facebook', params);
+    };
+    LoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], LoginService);
+    return LoginService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/token.service.ts":
 /*!*******************************************!*\
   !*** ./src/app/services/token.service.ts ***!
@@ -1362,8 +1441,8 @@ var TokenService = /** @class */ (function () {
     function TokenService() {
     }
     TokenService.prototype.hasToken = function () {
-        return true;
-        // return !!this.getToken();
+        // return true;
+        return !!this.getToken();
     };
     TokenService.prototype.setToken = function (headers) {
         var token = headers.headers.get('x-ecams-token');
