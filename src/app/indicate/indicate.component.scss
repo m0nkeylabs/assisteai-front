@@ -6,3 +6,15 @@
   padding-bottom: 20px;
   border-bottom: 1px solid $darkest-gray-border
 }
+
+@media (max-width: 480px) {
+  .container {
+    .flex-row {
+      flex-direction: column;
+
+      mat-form-field {
+        margin-right: 0 !important;
+      }
+    }
+  }
+}

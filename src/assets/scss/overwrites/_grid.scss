@@ -1,3 +1,4 @@
+
 .col-md-1 { width: $width-1; }
 .col-md-2 { width: $width-2; }
 .col-md-3 { width: $width-3; }
@@ -10,3 +11,22 @@
 .col-md-10 { width: $width-10; }
 .col-md-11 { width: $width-11; }
 .col-md-12 { width: $width-12; }
+
+@media (max-width: 480px) {
+  .col-sm-1 { width: $width-1; }
+  .col-sm-2 { width: $width-2; }
+  .col-sm-3 { width: $width-3; }
+  .col-sm-4 { width: $width-4; }
+  .col-sm-5 { width: $width-5; }
+  .col-sm-6 { width: $width-6; }
+  .col-sm-7 { width: $width-7; }
+  .col-sm-8 { width: $width-8; }
+  .col-sm-9 { width: $width-9; }
+  .col-sm-10 { width: $width-10; }
+  .col-sm-11 { width: $width-11; }
+  .col-sm-12 { width: $width-12; }
+}
+
+
+
+
