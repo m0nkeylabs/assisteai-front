@@ -57,3 +57,10 @@
     font-size: 25px
   }
 }
+
+@media (max-width: 850px) {
+  .scroll-btn.active {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
