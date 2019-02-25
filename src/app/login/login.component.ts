@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ratings } from '@constants/ratings';
 
-import { LoginService } from '@services/login.service';
+import { Store, select } from '@ngrx/store';
+import { Observable, empty } from 'rxjs';
 
+import * as fromStore from 'app/login/store';
 import * as _ from 'lodash';
 
 declare var window: any;
@@ -17,6 +19,9 @@ declare var FB: any;
 })
 export class LoginComponent implements OnInit {
 
+  loadingLogin$: Observable<any>;
+  login$: Observable<any>;
+
   formSignIn: FormGroup;
   formRegister: FormGroup;
   formForgetPassword: FormGroup;
@@ -28,10 +33,13 @@ export class LoginComponent implements OnInit {
   tabActive: string;
 
   constructor(
-    private loginService: LoginService,
+    private store: Store<fromStore.LoginState>,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data) {
+      this.login$ = this.store.pipe(select(fromStore.getLogin));
+      this.loadingLogin$ = this.store.pipe(select(fromStore.getLoginLoading));
+    }
 
   ngOnInit() {
     this.tabActive = this.data.tab;
@@ -49,6 +57,12 @@ export class LoginComponent implements OnInit {
 
     this.formForgetPassword = this.fb.group({
       email: ['', Validators.required]
+    });
+
+    this.login$.subscribe(result => {
+      if (result) {
+        this.dialogRef.close();
+      }
     });
 
     window.fbAsyncInit = () => {
@@ -80,9 +94,11 @@ export class LoginComponent implements OnInit {
   loginFacebook() {
     FB.login((response) => {
       if (response.authResponse) {
-        this.loginService.login(response.authResponse.accessToken).subscribe(r => {
-          this.dialogRef.close();
-        });
+        const paramsLogin = {
+          type: 'facebook',
+          token: response.authResponse.accessToken
+        };
+        this.store.dispatch(new fromStore.Login(paramsLogin));
       } else {
         console.log('User login failed');
       }

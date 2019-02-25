@@ -3,6 +3,11 @@ import { TokenService } from '@servicestoken.service';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from 'app/login/login.component';
 
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import * as fromStore from 'app/login/store';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,9 +15,14 @@ import { LoginComponent } from 'app/login/login.component';
 })
 export class HeaderComponent implements OnInit {
   isLogged: boolean;
+  login$: Observable<any>;
+
   constructor(
+    private store: Store<fromStore.LoginState>,
     public dialog: MatDialog,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService) {
+      this.login$ = this.store.pipe(select(fromStore.getLogin));
+    }
 
   ngOnInit() {
     this.isLogged = this.tokenService.hasToken();
@@ -30,6 +40,10 @@ export class HeaderComponent implements OnInit {
         result = result;
       }
     });
+  }
+
+  logout() {
+    this.tokenService.removeStorage();
   }
 
 }

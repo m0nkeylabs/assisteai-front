@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
 
 const TOKEN_KEY = 'authToken';
-const USER_KEY = 'user';
-const ROLE_KEY = 'role';
+const EXPIRATION_DATE = 'expirationDate';
+const AUTH_KEY = 'authType';
 
 @Injectable()
 export class TokenService {
@@ -11,45 +10,40 @@ export class TokenService {
     constructor() {}
 
     hasToken() {
-      // return true;
       return !!this.getToken();
     }
 
-    setToken(headers) {
-        const token = headers.headers.get('x-ecams-token');
-        const user = headers.headers.get('x-ecams-user');
-        const role = headers.headers.get('x-ecams-role');
-
-        sessionStorage.setItem(TOKEN_KEY, token);
-        sessionStorage.setItem(ROLE_KEY, role);
-        this.setUSer(user);
+    setToken(data) {
+      localStorage.setItem(TOKEN_KEY, data.access_token);
+      this.setAuthType(data.token_type);
+      this.setExpirationDate(data.expires_in);
     }
 
     getToken() {
-        return sessionStorage.getItem(TOKEN_KEY);
+      return localStorage.getItem(TOKEN_KEY);
     }
 
-    setUSer(user) {
-        sessionStorage.setItem(USER_KEY, user);
+    setAuthType(authType) {
+      localStorage.setItem(AUTH_KEY,  authType);
+    }
+    getAuthType() {
+      return localStorage.getItem(AUTH_KEY);
     }
 
-    getUser() {
-        return sessionStorage.getItem(USER_KEY);
+    setExpirationDate(expiration) {
+      const today = new Date();
+      const expirationDate = new Date(today.setSeconds(expiration));
+      localStorage.setItem(EXPIRATION_DATE,  String(expirationDate));
     }
 
-    isAdmin() {
-        return sessionStorage.getItem(ROLE_KEY) && sessionStorage.getItem(ROLE_KEY) === 'true';
+    validationExpirationDate() {
+      const now = new Date();
+      const expirationDate = new Date(localStorage.getItem(EXPIRATION_DATE));
+      return expirationDate > now ? true : false;
     }
 
-    removeToken() {
-        sessionStorage.removeItem(TOKEN_KEY);
-        sessionStorage.removeItem(USER_KEY);
-        sessionStorage.removeItem(ROLE_KEY);
-    }
-
-    getHeader() {
-        return new HttpHeaders(this.hasToken() ? {
-            'x-ecams-token': this.getToken()
-        } : {});
+    removeStorage() {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(EXPIRATION_DATE);
     }
 }

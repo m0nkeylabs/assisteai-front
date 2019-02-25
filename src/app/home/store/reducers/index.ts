@@ -1,5 +1,5 @@
 import { createFeatureSelector } from '@ngrx/store';
-import * as fromRoot from 'app/sotre.config';
+import * as fromRoot from 'app/store.config';
 import * as fromHomeList from 'app/home/store/reducers/home-reducer';
 
 

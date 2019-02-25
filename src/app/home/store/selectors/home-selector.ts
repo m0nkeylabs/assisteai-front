@@ -27,7 +27,7 @@ export const getHomeListLoading = createSelector(
 
 export const getHomeListLoaded = createSelector(
   getHomeListState,
-  fromHomeList.getLoading
+  fromHomeList.getLoaded
 );
 
 export const getHomeListPagination = createSelector(

@@ -8,11 +8,13 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(tokenFace: string): Observable<any> {
-    return this.http.post<any>('https://api.assisteai.com.br/auth/login/facebook', { token: tokenFace });
+  sendLogin(data: any): Observable<any> {
+    if (data.type === 'facebook') {
+      return this.http.post<any>('https://api.assisteai.com.br/auth/login/facebook', { token: data.token });
+    }
   }
 
-  logout(params): Observable<any> {
-    return this.http.post<any>('https://api.assisteai.com.br/auth/login/facebook', params);
+  sendLogout(): Observable<any> {
+    return this.http.get<any>('https://api.assisteai.com.br/auth/logout');
   }
 }
