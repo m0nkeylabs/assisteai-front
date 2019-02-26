@@ -1,3 +1,5 @@
+import { Logout } from './../../login/store/actions/login-action';
+import { getProfile } from './../../profile/store/reducers/profile-reducer';
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '@servicestoken.service';
 import { MatDialog } from '@angular/material';
@@ -6,7 +8,8 @@ import { LoginComponent } from 'app/login/login.component';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromStore from 'app/login/store';
+import * as fromStore from 'app/profile/store';
+import * as fromLoginStore from 'app/login/store';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +18,14 @@ import * as fromStore from 'app/login/store';
 })
 export class HeaderComponent implements OnInit {
   isLogged: boolean;
-  login$: Observable<any>;
+  userLogged$: Observable<any>;
 
   constructor(
-    private store: Store<fromStore.LoginState>,
+    private store: Store<fromStore.ProfileState>,
+    private storeLogin: Store<fromLoginStore.LoginState>,
     public dialog: MatDialog,
     private tokenService: TokenService) {
-      this.login$ = this.store.pipe(select(fromStore.getLogin));
+      this.userLogged$ = this.store.pipe(select(fromStore.getProfile));
     }
 
   ngOnInit() {
@@ -43,7 +47,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.tokenService.removeStorage();
+    this.storeLogin.dispatch(new fromLoginStore.Logout());
   }
 
 }

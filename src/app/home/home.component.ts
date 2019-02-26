@@ -16,6 +16,7 @@ import { IndicateComponent } from 'app/indicate/indicate.component';
 import { throttle } from '@shared/decorators/throttle';
 
 import * as fromStore from 'app/home/store';
+import * as fromProfileStore from 'app/profile/store';
 import * as _ from 'lodash';
 import { Pagination } from '@models/pagination';
 import { MoviesList } from '@models/movies-list';
@@ -56,6 +57,8 @@ export class HomeComponent implements OnInit {
   pagination$: Observable<Pagination>;
   moviesList$: Observable<Array<MoviesList>>;
   moviesList: Array<MoviesList>;
+  userLogged$: Observable<any>;
+  isLogged: boolean;
 
   floatLabel = 'always';
   filterOpened: boolean;
@@ -78,10 +81,12 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.HomeListState>,
+    private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService,
     public dialog: MatDialog) {
     this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
-    this.pagination$ = store.pipe(select(fromStore.getHomeListPagination));
+    this.pagination$ = this.store.pipe(select(fromStore.getHomeListPagination));
+    this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
   }
 
   ngOnInit() {
@@ -111,6 +116,10 @@ export class HomeComponent implements OnInit {
         this.filters.lastPage = result.lastPage;
       }
     });
+
+    this.userLogged$.subscribe(result => {
+      this.isLogged = result ? true : false;
+    });
   }
 
   setExibition(exibition) {
@@ -127,7 +136,7 @@ export class HomeComponent implements OnInit {
   }
 
   openDialog(urlIndication?): void {
-    if (this.tokenService.hasToken()) {
+    if (this.isLogged) {
       const dialogRef = this.dialog.open(IndicateComponent, {
         width: '90%',
         maxWidth: '700px',

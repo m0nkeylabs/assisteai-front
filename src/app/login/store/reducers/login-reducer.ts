@@ -20,7 +20,8 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: fromActions.LoginPage): State {
     switch (action.type) {
         case fromActions.LOGIN:
-        case fromActions.LOGOUT: {
+        case fromActions.LOGOUT:
+        case fromActions.VERIFY_TOKEN: {
             return {
                 ...state,
                 loading: true

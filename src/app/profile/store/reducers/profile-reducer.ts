@@ -35,7 +35,8 @@ export function reducer(state = initialState, action: fromActions.Profile): Stat
             };
         }
 
-        case fromActions.LOAD_PROFILE_FAIL: {
+        case fromActions.LOAD_PROFILE_FAIL:
+        case fromActions.CLEAR_PROFILE: {
             return {
                 ...state,
                 loading: false,

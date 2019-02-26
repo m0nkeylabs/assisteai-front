@@ -14,7 +14,7 @@ import { ProfileService } from '@services/profile.service';
 export class ProfileEffects {
 
   @Effect()
-  login$: Observable<Action> = this.actions$.pipe(
+  loadProfile$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.LOAD_PROFILE),
     switchMap((params: fromActions.LoadProfile) =>
       this.service.getProfile().pipe(
@@ -25,7 +25,7 @@ export class ProfileEffects {
   );
 
   @Effect({ dispatch: false })
-  loginFail$: Observable<Action> = this.actions$.pipe(
+  loadProfileFail$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.LOAD_PROFILE_FAIL),
     tap((action: fromActions.LoadProfileFail) => {
       this.toastr.error('<i class="material-icons">error</i> Erro ao carregar seus dados.', '', {enableHtml: true});

@@ -4,10 +4,10 @@
       <img src="assets/img/header-logo.png">
     </div>
     <div class="header-settings">
-      <div class="profile-image" *ngIf="(login$ | async)" (click)='logout()'>
+      <div class="profile-image" *ngIf="(userLogged$ | async)" (click)='logout()'>
         <img src="assets/img/user.jpg">
       </div>
-      <div class="signIn-container" *ngIf="!(login$ | async)">
+      <div class="signIn-container" *ngIf="!(userLogged$ | async)">
         <span (click)="openDialog(0)">Entrar</span> ou <span (click)="openDialog(1)">Cadastrar</span>
       </div>
     </div>

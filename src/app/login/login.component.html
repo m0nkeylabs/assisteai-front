@@ -1,4 +1,4 @@
-<div class="login-container" *ngIf="!(loadingLogin$ | async)">
+<div class="login-container" *ngIf="!(userLoading$ | async) && !(loginLoading$ | async)">
   <div class="social-login margin-bottom-2">
     <button class="btn btn-facebook margin-bottom-2" (click)="loginFacebook()"><img src="assets/img/facebook.png" height="25px"> <span>Entrar com o Facebook</span></button>
   </div>
@@ -80,4 +80,4 @@
     </mat-tab-group>
   </div>
 </div>
-<app-loading *ngIf="(loadingLogin$ | async)"></app-loading>
+<app-loading *ngIf="(userLoading$ | async) || (loginLoading$ | async)"></app-loading>

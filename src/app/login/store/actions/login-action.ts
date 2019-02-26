@@ -8,6 +8,10 @@ export const LOGOUT           = '[Logout] Logout';
 export const LOGOUT_SUCCESS   = '[Logout] Logout Success';
 export const LOGOUT_FAIL      = '[Logout] Logout Fail';
 
+export const VERIFY_TOKEN           = '[Token] Verify Token';
+export const VERIFY_TOKEN_SUCCESS   = '[Token] Verify Token Success';
+export const VERIFY_TOKEN_FAIL      = '[Token] Verify Token Fail';
+
 export class Login implements Action {
     readonly type = LOGIN;
 
@@ -44,6 +48,24 @@ export class LogoutFail implements Action {
   constructor(public payload: any) { }
 }
 
+export class VerifyToken implements Action {
+    readonly type = VERIFY_TOKEN;
+
+    constructor() { }
+}
+
+export class VerifyTokenSuccess implements Action {
+    readonly type = VERIFY_TOKEN_SUCCESS;
+
+    constructor(public response: any) { }
+}
+
+export class VerifyTokenFail implements Action {
+    readonly type = VERIFY_TOKEN_FAIL;
+
+    constructor(public payload: any) { }
+}
+
 export type LoginPage =
     | Login
     | LoginSuccess
@@ -51,5 +73,9 @@ export type LoginPage =
 
     | Logout
     | LogoutSuccess
-    | LogoutFail;
+    | LogoutFail
+
+    | VerifyToken
+    | VerifyTokenSuccess
+    | VerifyTokenFail;
 

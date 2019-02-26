@@ -6,12 +6,14 @@ import { Observable, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { LoginService } from '@services/login.service';
+import { TokenService } from '@services/token.service';
+import { ProfileService } from '@services/profile.service';
 
 import { Store, select } from '@ngrx/store';
 
 import * as fromProfile from 'app/profile/store';
+import * as fromLogin from 'app/login/store';
 import * as fromActions from 'app/login/store/actions';
-import { TokenService } from '@servicestoken.service';
 
 
 
@@ -70,12 +72,43 @@ export class LoginEffects {
     ofType(fromActions.LOGOUT_SUCCESS),
     tap((action: fromActions.LogoutSuccess) => {
       this.tokenService.removeStorage();
+      this.store.dispatch(new fromProfile.ClearProfile());
+      this.toastr.success('<i class="material-icons">done</i> Logout realizado com sucesso.', '', {enableHtml: true});
+    })
+  );
+
+  @Effect()
+  verifyToken$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.VERIFY_TOKEN),
+    switchMap((params: fromActions.VerifyToken) =>
+      this.service.refreshToken().pipe(
+        map((response: any) => new fromActions.VerifyTokenSuccess(response)),
+        catchError(error => of(new fromActions.VerifyTokenFail(error)))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  verifyTokenFail$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.VERIFY_TOKEN_FAIL),
+    tap((action: fromActions.VerifyTokenFail) => {
+      this.loginStore.dispatch(new fromLogin.Logout());
+      this.toastr.error('<i class="material-icons">error</i> Sessão encerrada. Realize o login novamente.', '', {enableHtml: true});
+    })
+  );
+
+  @Effect({ dispatch: false })
+  verifyTokenSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.VERIFY_TOKEN_SUCCESS),
+    tap((action: fromActions.VerifyTokenSuccess) => {
+      this.tokenService.setToken(action.response);
     })
   );
 
   constructor(
     private actions$: Actions,
     private store: Store<fromProfile.ProfileState>,
+    private loginStore: Store<fromLogin.LoginState>,
     private service: LoginService,
     private tokenService: TokenService,
     private toastr: ToastrService) { }

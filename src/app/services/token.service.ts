@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'authToken';
@@ -21,6 +22,16 @@ export class TokenService {
 
     getToken() {
       return localStorage.getItem(TOKEN_KEY);
+    }
+
+    getHeader() {
+      const typeAuth = this.getAuthType();
+      const token = this.getToken();
+      const header = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: typeAuth + ' ' + token
+      });
+      return header;
     }
 
     setAuthType(authType) {

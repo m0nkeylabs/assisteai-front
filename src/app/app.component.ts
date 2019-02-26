@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '@servicestoken.service';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import * as fromStore from 'app/login/store';
 import * as fromProfileStore from 'app/profile/store';
@@ -15,15 +14,23 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.LoginState>,
-    private storeProfile: Store<fromProfileStore.ProfileState>,
+    private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService) {}
 
   ngOnInit() {
+    this.validateToken();
+  }
+
+  validateToken() {
     const tokenStore = this.tokenService.getToken();
     const validation = this.tokenService.validationExpirationDate();
     if (tokenStore) {
-      validation ? this.storeProfile.dispatch(new fromProfileStore.LoadProfile()) :
-                   console.log('Tentar refresh token');
+      validation ? this.profileStore.dispatch(new fromProfileStore.LoadProfile()) : this.refreshToken();
     }
+  }
+
+  refreshToken() {
+    this.store.dispatch(new fromStore.VerifyToken());
+    this.validateToken();
   }
 }
