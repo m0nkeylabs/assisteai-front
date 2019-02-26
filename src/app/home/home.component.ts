@@ -18,6 +18,7 @@ import { throttle } from '@shared/decorators/throttle';
 import * as fromStore from 'app/home/store';
 import * as fromProfileStore from 'app/profile/store';
 import * as _ from 'lodash';
+import * as utilsFunctions from '@shared/utils';
 import { Pagination } from '@models/pagination';
 import { MoviesList } from '@models/movies-list';
 import { FilterHome } from '@models/filter-home';
@@ -52,7 +53,7 @@ import { FilterHome } from '@models/filter-home';
   ]
 })
 export class HomeComponent implements OnInit {
-
+  utils = utilsFunctions;
   loading$: Observable<boolean>;
   pagination$: Observable<Pagination>;
   moviesList$: Observable<Array<MoviesList>>;
@@ -197,53 +198,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.updateList();
-  }
-
-  getClassPoster(averageRating) {
-    let ratingClass: string;
-    switch (averageRating) {
-      case 'STAY_AWAY':
-        ratingClass = 'rating-1';
-        break;
-      case 'VERY_BAD':
-        ratingClass = 'rating-2';
-        break;
-      case 'BAD':
-        ratingClass = 'rating-3';
-        break;
-      case 'COOL':
-        ratingClass = 'rating-4';
-        break;
-      case 'GOOD':
-        ratingClass = 'rating-5';
-        break;
-      case 'VERY_GOOD':
-        ratingClass = 'rating-6';
-        break;
-      case 'UNMISSABLE':
-        ratingClass = 'rating-7';
-        break;
-      default:
-        break;
-    }
-
-    return ratingClass;
-  }
-
-  getClassType(type) {
-    let typeClass: string;
-    switch (type) {
-      case 'MOVIE':
-        typeClass = 'type-movie';
-        break;
-      case 'SERIE':
-        typeClass = 'type-serie';
-        break;
-      default:
-        break;
-    }
-
-    return typeClass;
   }
 
   scollTop() {

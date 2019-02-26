@@ -7,12 +7,12 @@ import { ToastrService } from 'ngx-toastr';
 
 import { LoginService } from '@services/login.service';
 import { TokenService } from '@services/token.service';
-import { ProfileService } from '@services/profile.service';
 
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import * as fromProfile from 'app/profile/store';
-import * as fromLogin from 'app/login/store';
+import * as fromLoginActions from 'app/login/store/actions';
+import * as fromLoginReducer from 'app/login/store/reducers';
 import * as fromActions from 'app/login/store/actions';
 
 
@@ -92,7 +92,7 @@ export class LoginEffects {
   verifyTokenFail$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.VERIFY_TOKEN_FAIL),
     tap((action: fromActions.VerifyTokenFail) => {
-      this.loginStore.dispatch(new fromLogin.Logout());
+      this.loginStore.dispatch(new fromLoginActions.Logout());
       this.toastr.error('<i class="material-icons">error</i> Sessão encerrada. Realize o login novamente.', '', {enableHtml: true});
     })
   );
@@ -108,7 +108,7 @@ export class LoginEffects {
   constructor(
     private actions$: Actions,
     private store: Store<fromProfile.ProfileState>,
-    private loginStore: Store<fromLogin.LoginState>,
+    private loginStore: Store<fromLoginReducer.LoginState>,
     private service: LoginService,
     private tokenService: TokenService,
     private toastr: ToastrService) { }

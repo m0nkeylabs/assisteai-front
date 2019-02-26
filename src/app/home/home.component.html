@@ -41,21 +41,21 @@
   </section>
 
   <section class="cards-container flex-row flex-wrap" [@listStagger]='moviesList?.length'>
-    <div class="card {{getClassPoster(movie.average_rating)}}" *ngFor="let movie of moviesList">
+    <div class="card {{utils.getClassPoster(movie.average_rating)}}" *ngFor="let movie of moviesList">
       <div class="poster-container">
         <div class="img-poster" [ngStyle]="{'background-image': 'url(' + movie.poster_path + ')'}"></div>
         <div class="overlay">
           <div class="poster-detail flex-column">
             <h3 class="poster-title">{{movie.original_title}}</h3>
 
-            <span class="poster-chip {{getClassType(movie.category)}}">{{typeEnum[movie.category]}}</span>
+            <span class="poster-chip {{utils.getClassType(movie.category)}}">{{typeEnum[movie.category]}}</span>
 
             <div class="rating-container flex-column">
               <span>Avaliação Média</span>
-              <span class="poster-chip {{getClassPoster(movie.average_rating)}}">{{rantingEnum[movie.average_rating]}}</span>
+              <span class="poster-chip {{utils.getClassPoster(movie.average_rating)}}">{{rantingEnum[movie.average_rating]}}</span>
 
               <span>Última avaliação</span>
-              <span class="poster-chip {{getClassPoster(movie.last_rating)}}">{{rantingEnum[movie.last_rating]}}</span>
+              <span class="poster-chip {{utils.getClassPoster(movie.last_rating)}}">{{rantingEnum[movie.last_rating]}}</span>
             </div>
 
             <div class="poster-actions flex-row">
