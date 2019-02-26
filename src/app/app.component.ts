@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     private tokenService: TokenService) {
       this.loadingLogin$ = this.store.pipe(select(fromStore.getLoginLoading));
       this.loadingProfile$ = this.profileStore.pipe(select(fromProfileStore.getLoading));
-      this.loading = false;
+      this.loading = true;
       this.validateToken();
     }
 
