@@ -12,6 +12,7 @@ import * as fromProfileStore from 'app/profile/store';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  loadingLogin$: Observable<any>;
   loadingProfile$: Observable<any>;
   loading: boolean;
 
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     private store: Store<fromStore.LoginState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService) {
+      this.loadingLogin$ = this.store.pipe(select(fromStore.getLoginLoading));
       this.loadingProfile$ = this.profileStore.pipe(select(fromProfileStore.getLoading));
       this.loading = false;
       this.validateToken();

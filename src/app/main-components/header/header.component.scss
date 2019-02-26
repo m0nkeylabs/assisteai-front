@@ -45,7 +45,8 @@ header {
         position: relative;
         overflow: hidden;
         text-align: center;
-        border: 3px solid #005DD6;
+        border-width: 3px;
+        border-style: solid;
 
         img {
           height: 100%;

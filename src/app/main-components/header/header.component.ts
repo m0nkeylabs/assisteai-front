@@ -17,20 +17,16 @@ import * as fromLoginStore from 'app/login/store';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isLogged: boolean;
   userLogged$: Observable<any>;
 
   constructor(
     private store: Store<fromStore.ProfileState>,
     private storeLogin: Store<fromLoginStore.LoginState>,
-    public dialog: MatDialog,
-    private tokenService: TokenService) {
+    public dialog: MatDialog) {
       this.userLogged$ = this.store.pipe(select(fromStore.getProfile));
     }
 
-  ngOnInit() {
-    this.isLogged = this.tokenService.hasToken();
-  }
+  ngOnInit() { }
 
   openDialog(tabActive): void {
     const dialogRef = this.dialog.open(LoginComponent, {

@@ -19,8 +19,6 @@ declare var FB: any;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginLoading$: Observable<any>;
-  userLoading$: Observable<any>;
   userLogged$: Observable<any>;
 
   formSignIn: FormGroup;
@@ -38,11 +36,7 @@ export class LoginComponent implements OnInit {
     private loginStore: Store<fromLoginStore.LoginState>,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {
-      this.userLogged$ = this.store.pipe(select(fromStore.getProfile));
-      this.userLoading$ = this.store.pipe(select(fromStore.getLoading));
-      this.loginLoading$ = this.loginStore.pipe(select(fromLoginStore.getLoginLoading));
-    }
+    @Inject(MAT_DIALOG_DATA) public data) {}
 
   ngOnInit() {
     this.tabActive = this.data.tab;
@@ -60,12 +54,6 @@ export class LoginComponent implements OnInit {
 
     this.formForgetPassword = this.fb.group({
       email: ['', Validators.required]
-    });
-
-    this.userLogged$.subscribe(result => {
-      if (result) {
-        this.dialogRef.close();
-      }
     });
 
     window.fbAsyncInit = () => {
@@ -102,6 +90,7 @@ export class LoginComponent implements OnInit {
           token: response.authResponse.accessToken
         };
         this.loginStore.dispatch(new fromLoginStore.Login(paramsLogin));
+        this.dialogRef.close();
       } else {
         console.log('User login failed');
       }

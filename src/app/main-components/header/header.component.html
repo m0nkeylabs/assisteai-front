@@ -4,7 +4,7 @@
       <img src="assets/img/header-logo.png">
     </div>
     <div class="header-settings">
-      <div class="profile-image" *ngIf="(userLogged$ | async)" (click)='logout()'>
+      <div class="profile-image bd-{{(userLogged$ | async).theme}}" *ngIf="(userLogged$ | async)" (click)='logout()'>
         <img src="assets/img/user.jpg">
       </div>
       <div class="signIn-container" *ngIf="!(userLogged$ | async)">
