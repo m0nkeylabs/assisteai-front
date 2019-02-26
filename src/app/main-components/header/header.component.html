@@ -5,7 +5,7 @@
     </div>
     <div class="header-settings">
       <div class="profile-image bd-{{(userLogged$ | async).theme}}" *ngIf="(userLogged$ | async)" (click)='logout()'>
-        <img src="assets/img/user.jpg">
+        <img src="{{(userLogged$ | async).avatar}}">
       </div>
       <div class="signIn-container" *ngIf="!(userLogged$ | async)">
         <span (click)="openDialog(0)">Entrar</span> ou <span (click)="openDialog(1)">Cadastrar</span>
