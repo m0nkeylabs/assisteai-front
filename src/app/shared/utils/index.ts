@@ -29,18 +29,18 @@ export function  getClassPoster(averageRating: string) {
   return ratingClass;
 }
 
-export function getClassType(type) {
-  let typeClass: string;
-  switch (type) {
+export function getClassCategory(category) {
+  let categoryClass: string;
+  switch (category) {
     case 'MOVIE':
-      typeClass = 'type-movie';
+      categoryClass = 'category-movie';
       break;
     case 'SERIE':
-      typeClass = 'type-serie';
+      categoryClass = 'category-serie';
       break;
     default:
       break;
   }
 
-  return typeClass;
+  return categoryClass;
 }

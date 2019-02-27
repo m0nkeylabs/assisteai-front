@@ -1,19 +1,18 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 import { MatDialog } from '@angular/material';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { TokenService } from '@services/token.service';
 
 import { ratings } from '@constants/ratings';
-import { types } from '@constants/types';
+import { categories } from '@constants/categories';
 
 import { LoginComponent } from 'app/login/login.component';
 import { IndicateComponent } from 'app/indicate/indicate.component';
-import { throttle } from '@shared/decorators/throttle';
+import { debounce } from 'lodash-decorators';
 
 import * as fromStore from 'app/home/store';
 import * as fromProfileStore from 'app/profile/store';
@@ -22,6 +21,7 @@ import * as utilsFunctions from '@shared/utils';
 import { Pagination } from '@models/pagination';
 import { MoviesList } from '@models/movies-list';
 import { FilterHome } from '@models/filter-home';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -66,8 +66,8 @@ export class HomeComponent implements OnInit {
   scollTopActive: boolean;
   isLoaded: boolean;
 
-  typeEnum = types;
-  typeArray = _.keys(types);
+  categoryEnum = categories;
+  categoryArray = _.keys(categories);
   rantingEnum = ratings;
   ratingArray = _.keys(ratings);
 
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
     search: '',
     exibition: 'all',
     ratings: ['UNMISSABLE', 'VERY_GOOD', 'GOOD', 'COOL', 'BAD', 'VERY_BAD', 'STAY_AWAY'],
-    types: ['MOVIE', 'SERIE'],
+    categories: ['MOVIE', 'SERIE'],
     currentPage: 1,
     lastPage: null
   };
@@ -83,7 +83,6 @@ export class HomeComponent implements OnInit {
   constructor(
     private store: Store<fromStore.HomeListState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
-    private tokenService: TokenService,
     public dialog: MatDialog) {
     this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
     this.pagination$ = this.store.pipe(select(fromStore.getHomeListPagination));
@@ -132,8 +131,8 @@ export class HomeComponent implements OnInit {
     return _.includes(this.filters.ratings, rating);
   }
 
-  isTypeActive(type) {
-    return _.includes(this.filters.types, type);
+  isCategoryActive(category) {
+    return _.includes(this.filters.categories, category);
   }
 
   openDialog(urlIndication?): void {
@@ -167,9 +166,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  @throttle(800)
+  @debounce(800)
   updateList() {
-    console.log('buscou');
+    this.store.dispatch(new fromStore.UpdateHomeList(this.filters));
   }
 
   updateRatingFilter(tag) {
@@ -186,15 +185,15 @@ export class HomeComponent implements OnInit {
     this.updateList();
   }
 
-  updateTypeFilter(tag) {
-    if (_.includes(this.filters.types, tag)) {
-      if (this.filters.types.length > 1) {
-        this.filters.types = _.remove(this.filters.types, (n) => {
+  updateCategoryFilter(tag) {
+    if (_.includes(this.filters.categories, tag)) {
+      if (this.filters.categories.length > 1) {
+        this.filters.categories = _.remove(this.filters.categories, (n) => {
           return n !== tag;
         });
       }
     } else {
-      this.filters.types.push(tag);
+      this.filters.categories.push(tag);
     }
 
     this.updateList();

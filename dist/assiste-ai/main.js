@@ -288,6 +288,25 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/constants/categories.ts":
+/*!**********************************************!*\
+  !*** ./src/app/core/constants/categories.ts ***!
+  \**********************************************/
+/*! exports provided: categories */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categories", function() { return categories; });
+var categories;
+(function (categories) {
+    categories["MOVIE"] = "Filme";
+    categories["SERIE"] = "S\u00E9rie";
+})(categories || (categories = {}));
+
+
+/***/ }),
+
 /***/ "./src/app/core/constants/ratings.ts":
 /*!*******************************************!*\
   !*** ./src/app/core/constants/ratings.ts ***!
@@ -308,25 +327,6 @@ var ratings;
     ratings["VERY_BAD"] = "Muito Ruim";
     ratings["STAY_AWAY"] = "Fique Longe";
 })(ratings || (ratings = {}));
-
-
-/***/ }),
-
-/***/ "./src/app/core/constants/types.ts":
-/*!*****************************************!*\
-  !*** ./src/app/core/constants/types.ts ***!
-  \*****************************************/
-/*! exports provided: types */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "types", function() { return types; });
-var types;
-(function (types) {
-    types["MOVIE"] = "Filme";
-    types["SERIE"] = "S\u00E9rie";
-})(types || (types = {}));
 
 
 /***/ }),
@@ -367,7 +367,7 @@ var Pagination = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<main class=\"main\">\n  <section class=\"filter-container flex-column\">\n    <div class=\"flex-row filter-icons col-md-12\">\n      <mat-form-field appearance=\"outline\" class=\"col-md-3 col-sm-12 margin-right-2\">\n        <mat-label>Busca</mat-label>\n        <input matInput autocomplete=\"off\" (keyup)=\"updateList()\">\n        <mat-icon matPrefix>search</mat-icon>\n      </mat-form-field>\n      <div class=\"flex-row col-md-9 col-sm-12 filters\">\n        <div class=\"icon-filters-container flex-row col-md-6\">\n          <mat-icon class=\"icon margin-right-1\" matTooltip=\"Todos\" [ngClass]=\"{'active': filters.exibition === 'all'}\" (click)=\"setExibition('all')\">public</mat-icon>\n          <mat-icon class=\"icon margin-right-1\" matTooltip=\"Seguindo\" [ngClass]=\"{'active': filters.exibition === 'group'}\" (click)=\"setExibition('group')\">group</mat-icon>\n          <span class=\"divider margin-right-1\"></span>\n          <mat-icon class=\"icon filter-icon\" matTooltip=\"Filtro\" [ngClass]=\"{'active': filterOpened}\" (click)=\"filterOpened = !filterOpened\">filter_list</mat-icon>\n        </div>\n        <button mat-button class=\"btn-default\"  matTooltip=\"Indicar\" (click)=\"openDialog()\">\n            <mat-icon class=\"icon filter-icon\">playlist_add</mat-icon>\n        </button>\n      </div>\n    </div>\n\n    <div class=\"margin-top-2\" *ngIf=\"filterOpened\">\n      <div class=\"flex-row filter-options\">\n        <div class=\"form-group margin-right-2\">\n            <mat-chip-list>\n              <mat-chip *ngFor=\"let rating of ratingArray\" class=\"chip-default {{rating}}\" [ngClass]=\"{'active': isRatingActive(rating)}\" (click)='updateRatingFilter(rating)'>\n                {{rantingEnum[rating]}}\n              </mat-chip>\n            </mat-chip-list>\n        </div>\n        <span class=\"divider margin-right-2\"></span>\n        <div class=\"form-group\">\n            <mat-chip-list>\n              <mat-chip *ngFor=\"let type of typeArray\" class=\"chip-default {{type}}\" [ngClass]=\"{'active': isTypeActive(type)}\" (click)='updateTypeFilter(type)'>\n                {{typeEnum[type]}}\n              </mat-chip>\n            </mat-chip-list>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"cards-container flex-row flex-wrap\" [@listStagger]='moviesList?.length'>\n    <div class=\"card {{utils.getClassPoster(movie.average_rating)}}\" *ngFor=\"let movie of moviesList\">\n      <div class=\"poster-container\">\n        <div class=\"img-poster\" [ngStyle]=\"{'background-image': 'url(' + movie.poster_path + ')'}\"></div>\n        <div class=\"overlay\">\n          <div class=\"poster-detail flex-column\">\n            <h3 class=\"poster-title\">{{movie.original_title}}</h3>\n\n            <span class=\"poster-chip {{utils.getClassType(movie.category)}}\">{{typeEnum[movie.category]}}</span>\n\n            <div class=\"rating-container flex-column\">\n              <span>Avaliação Média</span>\n              <span class=\"poster-chip {{utils.getClassPoster(movie.average_rating)}}\">{{rantingEnum[movie.average_rating]}}</span>\n\n              <span>Última avaliação</span>\n              <span class=\"poster-chip {{utils.getClassPoster(movie.last_rating)}}\">{{rantingEnum[movie.last_rating]}}</span>\n            </div>\n\n            <div class=\"poster-actions flex-row\">\n                <a [routerLink]=\"\" matTooltip=\"Assistir depois\" class=\"watch-later\"><mat-icon>access_time</mat-icon></a>\n                <a [routerLink]=\"\" (click)=\"openDialog(movie.urlIndication)\" matTooltip=\"Indicar {{typeEnum[movie.type]}}\" class=\"indicate-now\"><mat-icon>playlist_add</mat-icon></a>\n                <a href=\"#\" matTooltip=\"Mais informações\" class=\"more-details\"><mat-icon>arrow_forward</mat-icon></a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <app-loading [hidden]=\"isLoaded\"></app-loading>\n    <button class=\"scroll-btn\" [ngClass]=\"{'active': scollTopActive}\" (click)=\"scollTop()\"><mat-icon>arrow_upward</mat-icon></button>\n  </section>\n</main>\n"
+module.exports = "<main class=\"main\">\n  <section class=\"filter-container flex-column\">\n    <div class=\"flex-row filter-icons col-md-12\">\n      <mat-form-field appearance=\"outline\" class=\"col-md-3 col-sm-12 margin-right-2\">\n        <mat-label>Busca</mat-label>\n        <input matInput autocomplete=\"off\" (keyup)=\"updateList()\">\n        <mat-icon matPrefix>search</mat-icon>\n      </mat-form-field>\n      <div class=\"flex-row col-md-9 col-sm-12 filters\">\n        <div class=\"icon-filters-container flex-row col-md-6\">\n          <mat-icon class=\"icon margin-right-1\" matTooltip=\"Todos\" [ngClass]=\"{'active': filters.exibition === 'all'}\" (click)=\"setExibition('all')\">public</mat-icon>\n          <mat-icon class=\"icon margin-right-1\" matTooltip=\"Seguindo\" [ngClass]=\"{'active': filters.exibition === 'group'}\" (click)=\"setExibition('group')\">group</mat-icon>\n          <span class=\"divider margin-right-1\"></span>\n          <mat-icon class=\"icon filter-icon\" matTooltip=\"Filtro\" [ngClass]=\"{'active': filterOpened}\" (click)=\"filterOpened = !filterOpened\">filter_list</mat-icon>\n        </div>\n        <button mat-button class=\"btn-default\"  matTooltip=\"Indicar\" (click)=\"openDialog()\">\n            <mat-icon class=\"icon filter-icon\">playlist_add</mat-icon>\n        </button>\n      </div>\n    </div>\n\n    <div class=\"margin-top-2\" *ngIf=\"filterOpened\">\n      <div class=\"flex-row filter-options\">\n        <div class=\"form-group margin-right-2\">\n            <mat-chip-list>\n              <mat-chip *ngFor=\"let rating of ratingArray\" class=\"chip-default {{rating}}\" [ngClass]=\"{'active': isRatingActive(rating)}\" (click)='updateRatingFilter(rating)'>\n                {{rantingEnum[rating]}}\n              </mat-chip>\n            </mat-chip-list>\n        </div>\n        <span class=\"divider margin-right-2\"></span>\n        <div class=\"form-group\">\n            <mat-chip-list>\n              <mat-chip *ngFor=\"let category of categoryArray\" class=\"chip-default {{category}}\" [ngClass]=\"{'active': isCategoryActive(category)}\" (click)='updateCategoryFilter(category)'>\n                {{categoryEnum[category]}}\n              </mat-chip>\n            </mat-chip-list>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"cards-container flex-row flex-wrap\" [@listStagger]='moviesList?.length'>\n    <div class=\"card {{utils.getClassPoster(movie.average_rating)}}\" *ngFor=\"let movie of moviesList\">\n      <div class=\"poster-container\">\n        <div class=\"img-poster\" [ngStyle]=\"{'background-image': 'url(' + movie.poster_path + ')'}\"></div>\n        <div class=\"overlay\">\n          <div class=\"poster-detail flex-column\">\n            <h3 class=\"poster-title\">{{movie.original_title}}</h3>\n\n            <span class=\"poster-chip {{utils.getClassCategory(movie.category)}}\">{{categoryEnum[movie.category]}}</span>\n\n            <div class=\"rating-container flex-column\">\n              <span>Avaliação Média</span>\n              <span class=\"poster-chip {{utils.getClassPoster(movie.average_rating)}}\">{{rantingEnum[movie.average_rating]}}</span>\n\n              <span>Última avaliação</span>\n              <span class=\"poster-chip {{utils.getClassPoster(movie.last_rating)}}\">{{rantingEnum[movie.last_rating]}}</span>\n            </div>\n\n            <div class=\"poster-actions flex-row\">\n                <a [routerLink]=\"\" matTooltip=\"Assistir depois\" class=\"watch-later\"><mat-icon>access_time</mat-icon></a>\n                <a [routerLink]=\"\" (click)=\"openDialog(movie.urlIndication)\" matTooltip=\"Indicar {{categoryEnum[movie.category]}}\" class=\"indicate-now\"><mat-icon>playlist_add</mat-icon></a>\n                <a href=\"#\" matTooltip=\"Mais informações\" class=\"more-details\"><mat-icon>arrow_forward</mat-icon></a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <app-loading [hidden]=\"isLoaded\"></app-loading>\n    <button class=\"scroll-btn\" [ngClass]=\"{'active': scollTopActive}\" (click)=\"scollTop()\"><mat-icon>arrow_upward</mat-icon></button>\n  </section>\n</main>\n"
 
 /***/ }),
 
@@ -397,18 +397,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @services/token.service */ "./src/app/services/token.service.ts");
-/* harmony import */ var _constants_ratings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @constants/ratings */ "./src/app/core/constants/ratings.ts");
-/* harmony import */ var _constants_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @constants/types */ "./src/app/core/constants/types.ts");
-/* harmony import */ var app_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! app/login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! app/indicate/indicate.component */ "./src/app/indicate/indicate.component.ts");
-/* harmony import */ var _shared_decorators_throttle__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @shared/decorators/throttle */ "./src/app/shared/decorators/throttle.ts");
-/* harmony import */ var app_home_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! app/home/store */ "./src/app/home/store/index.ts");
-/* harmony import */ var app_profile_store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! app/profile/store */ "./src/app/profile/store/index.ts");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _shared_utils__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @shared/utils */ "./src/app/shared/utils/index.ts");
-
+/* harmony import */ var _constants_ratings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @constants/ratings */ "./src/app/core/constants/ratings.ts");
+/* harmony import */ var _constants_categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @constants/categories */ "./src/app/core/constants/categories.ts");
+/* harmony import */ var app_login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! app/login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! app/indicate/indicate.component */ "./src/app/indicate/indicate.component.ts");
+/* harmony import */ var lodash_decorators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lodash-decorators */ "./node_modules/lodash-decorators/index.js");
+/* harmony import */ var lodash_decorators__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(lodash_decorators__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var app_home_store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! app/home/store */ "./src/app/home/store/index.ts");
+/* harmony import */ var app_profile_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! app/profile/store */ "./src/app/profile/store/index.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _shared_utils__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @shared/utils */ "./src/app/shared/utils/index.ts");
 
 
 
@@ -424,32 +423,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(store, profileStore, tokenService, dialog) {
+    function HomeComponent(store, profileStore, dialog) {
         this.store = store;
         this.profileStore = profileStore;
-        this.tokenService = tokenService;
         this.dialog = dialog;
-        this.utils = _shared_utils__WEBPACK_IMPORTED_MODULE_14__;
+        this.utils = _shared_utils__WEBPACK_IMPORTED_MODULE_13__;
         this.floatLabel = 'always';
-        this.typeEnum = _constants_types__WEBPACK_IMPORTED_MODULE_7__["types"];
-        this.typeArray = lodash__WEBPACK_IMPORTED_MODULE_13__["keys"](_constants_types__WEBPACK_IMPORTED_MODULE_7__["types"]);
-        this.rantingEnum = _constants_ratings__WEBPACK_IMPORTED_MODULE_6__["ratings"];
-        this.ratingArray = lodash__WEBPACK_IMPORTED_MODULE_13__["keys"](_constants_ratings__WEBPACK_IMPORTED_MODULE_6__["ratings"]);
+        this.categoryEnum = _constants_categories__WEBPACK_IMPORTED_MODULE_6__["categories"];
+        this.categoryArray = lodash__WEBPACK_IMPORTED_MODULE_12__["keys"](_constants_categories__WEBPACK_IMPORTED_MODULE_6__["categories"]);
+        this.rantingEnum = _constants_ratings__WEBPACK_IMPORTED_MODULE_5__["ratings"];
+        this.ratingArray = lodash__WEBPACK_IMPORTED_MODULE_12__["keys"](_constants_ratings__WEBPACK_IMPORTED_MODULE_5__["ratings"]);
         this.filters = {
             search: '',
             exibition: 'all',
             ratings: ['UNMISSABLE', 'VERY_GOOD', 'GOOD', 'COOL', 'BAD', 'VERY_BAD', 'STAY_AWAY'],
-            types: ['MOVIE', 'SERIE'],
+            categories: ['MOVIE', 'SERIE'],
             currentPage: 1,
             lastPage: null
         };
-        this.moviesList$ = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])(app_home_store__WEBPACK_IMPORTED_MODULE_11__["getHomeListResponse"]));
-        this.pagination$ = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])(app_home_store__WEBPACK_IMPORTED_MODULE_11__["getHomeListPagination"]));
-        this.userLogged$ = this.profileStore.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])(app_profile_store__WEBPACK_IMPORTED_MODULE_12__["getProfile"]));
+        this.moviesList$ = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])(app_home_store__WEBPACK_IMPORTED_MODULE_10__["getHomeListResponse"]));
+        this.pagination$ = this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])(app_home_store__WEBPACK_IMPORTED_MODULE_10__["getHomeListPagination"]));
+        this.userLogged$ = this.profileStore.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["select"])(app_profile_store__WEBPACK_IMPORTED_MODULE_11__["getProfile"]));
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_11__["LoadHomeList"](this.filters));
+        this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_10__["LoadHomeList"](this.filters));
         this.moviesList$.subscribe(function (result) {
             if (result.length) {
                 var totalLoaded_1 = 0;
@@ -481,15 +479,15 @@ var HomeComponent = /** @class */ (function () {
         this.updateList();
     };
     HomeComponent.prototype.isRatingActive = function (rating) {
-        return lodash__WEBPACK_IMPORTED_MODULE_13__["includes"](this.filters.ratings, rating);
+        return lodash__WEBPACK_IMPORTED_MODULE_12__["includes"](this.filters.ratings, rating);
     };
-    HomeComponent.prototype.isTypeActive = function (type) {
-        return lodash__WEBPACK_IMPORTED_MODULE_13__["includes"](this.filters.types, type);
+    HomeComponent.prototype.isCategoryActive = function (category) {
+        return lodash__WEBPACK_IMPORTED_MODULE_12__["includes"](this.filters.categories, category);
     };
     HomeComponent.prototype.openDialog = function (urlIndication) {
         var _this = this;
         if (this.isLogged) {
-            var dialogRef = this.dialog.open(app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_9__["IndicateComponent"], {
+            var dialogRef = this.dialog.open(app_indicate_indicate_component__WEBPACK_IMPORTED_MODULE_8__["IndicateComponent"], {
                 width: '90%',
                 maxWidth: '700px',
                 data: { url: urlIndication }
@@ -498,13 +496,13 @@ var HomeComponent = /** @class */ (function () {
                 if (result) {
                     _this.filters.currentPage = 1;
                     _this.filters.lastPage = null;
-                    _this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_11__["UpdateHomeList"](_this.filters));
+                    _this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_10__["UpdateHomeList"](_this.filters));
                     window.scroll(0, 0);
                 }
             });
         }
         else {
-            var dialogRef = this.dialog.open(app_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"], {
+            var dialogRef = this.dialog.open(app_login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"], {
                 width: '90%',
                 maxWidth: '400px',
                 data: { tab: 0 }
@@ -517,12 +515,12 @@ var HomeComponent = /** @class */ (function () {
         }
     };
     HomeComponent.prototype.updateList = function () {
-        console.log('buscou');
+        this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_10__["UpdateHomeList"](this.filters));
     };
     HomeComponent.prototype.updateRatingFilter = function (tag) {
-        if (lodash__WEBPACK_IMPORTED_MODULE_13__["includes"](this.filters.ratings, tag)) {
+        if (lodash__WEBPACK_IMPORTED_MODULE_12__["includes"](this.filters.ratings, tag)) {
             if (this.filters.ratings.length > 1) {
-                this.filters.ratings = lodash__WEBPACK_IMPORTED_MODULE_13__["remove"](this.filters.ratings, function (n) {
+                this.filters.ratings = lodash__WEBPACK_IMPORTED_MODULE_12__["remove"](this.filters.ratings, function (n) {
                     return n !== tag;
                 });
             }
@@ -532,16 +530,16 @@ var HomeComponent = /** @class */ (function () {
         }
         this.updateList();
     };
-    HomeComponent.prototype.updateTypeFilter = function (tag) {
-        if (lodash__WEBPACK_IMPORTED_MODULE_13__["includes"](this.filters.types, tag)) {
-            if (this.filters.types.length > 1) {
-                this.filters.types = lodash__WEBPACK_IMPORTED_MODULE_13__["remove"](this.filters.types, function (n) {
+    HomeComponent.prototype.updateCategoryFilter = function (tag) {
+        if (lodash__WEBPACK_IMPORTED_MODULE_12__["includes"](this.filters.categories, tag)) {
+            if (this.filters.categories.length > 1) {
+                this.filters.categories = lodash__WEBPACK_IMPORTED_MODULE_12__["remove"](this.filters.categories, function (n) {
                     return n !== tag;
                 });
             }
         }
         else {
-            this.filters.types.push(tag);
+            this.filters.categories.push(tag);
         }
         this.updateList();
     };
@@ -559,11 +557,11 @@ var HomeComponent = /** @class */ (function () {
             && this.isLoaded) {
             this.isLoaded = false;
             this.filters.currentPage = this.filters.currentPage + 1;
-            this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_11__["LoadHomeList"](this.filters));
+            this.store.dispatch(new app_home_store__WEBPACK_IMPORTED_MODULE_10__["LoadHomeList"](this.filters));
         }
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_shared_decorators_throttle__WEBPACK_IMPORTED_MODULE_10__["throttle"])(800),
+        Object(lodash_decorators__WEBPACK_IMPORTED_MODULE_9__["debounce"])(800),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", []),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
@@ -595,7 +593,6 @@ var HomeComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"],
             _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"],
-            _services_token_service__WEBPACK_IMPORTED_MODULE_5__["TokenService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
     ], HomeComponent);
     return HomeComponent;
@@ -2474,7 +2471,9 @@ var HomeService = /** @class */ (function () {
         this.http = http;
     }
     HomeService.prototype.getAllMoviesAndSeries = function (filters) {
-        return this.http.get('https://api.assisteai.com.br/movies?page=' + filters.currentPage);
+        var search = filters.search ? '&q=filters.search' : '';
+        var filter = '&filter=' + btoa(JSON.stringify({ ratings: filters.ratings, categories: filters.categories }));
+        return this.http.get('https://api.assisteai.com.br/movies?page=' + filters.currentPage + filter + search);
     };
     HomeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -2721,52 +2720,17 @@ var LoadingComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/shared/decorators/throttle.ts":
-/*!***********************************************!*\
-  !*** ./src/app/shared/decorators/throttle.ts ***!
-  \***********************************************/
-/*! exports provided: throttle */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
-function throttle(ms) {
-    var _this = this;
-    if (ms === void 0) { ms = 400; }
-    // This decorator prevent to make several requests to backend
-    return function (target, property, descriptor) {
-        var method = descriptor.value;
-        var timer = 0;
-        descriptor.value = function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            if (event) {
-                event.preventDefault();
-            }
-            clearInterval(timer);
-            timer = setTimeout(function () { return method.apply(_this, args); }, ms);
-        };
-        return descriptor;
-    };
-}
-
-
-/***/ }),
-
 /***/ "./src/app/shared/utils/index.ts":
 /*!***************************************!*\
   !*** ./src/app/shared/utils/index.ts ***!
   \***************************************/
-/*! exports provided: getClassPoster, getClassType */
+/*! exports provided: getClassPoster, getClassCategory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClassPoster", function() { return getClassPoster; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClassType", function() { return getClassType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClassCategory", function() { return getClassCategory; });
 function getClassPoster(averageRating) {
     var ratingClass;
     switch (averageRating) {
@@ -2796,19 +2760,19 @@ function getClassPoster(averageRating) {
     }
     return ratingClass;
 }
-function getClassType(type) {
-    var typeClass;
-    switch (type) {
+function getClassCategory(category) {
+    var categoryClass;
+    switch (category) {
         case 'MOVIE':
-            typeClass = 'type-movie';
+            categoryClass = 'category-movie';
             break;
         case 'SERIE':
-            typeClass = 'type-serie';
+            categoryClass = 'category-serie';
             break;
         default:
             break;
     }
-    return typeClass;
+    return categoryClass;
 }
 
 
