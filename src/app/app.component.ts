@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ChangeDetectorRef, DoCheck } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { TokenService } from '@servicestoken.service';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -11,10 +11,8 @@ import * as fromProfileStore from 'app/profile/store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit {
   loadingLogin$: Observable<any>;
-  loadingLogin: boolean;
-  oldLoadingLogin: boolean;
   loadingToken$: Observable<any>;
   loadedToken$: Observable<any>;
   loadingProfile$: Observable<any>;
@@ -32,18 +30,13 @@ export class AppComponent implements OnInit, DoCheck {
     }
 
   ngOnInit() {
-    this.loadingLogin$.subscribe(result => {
-      this.loadingLogin = result;
+    this.loadingLogin$.subscribe(() => {
+      setTimeout(() => {
+        this.changeDetectorRef.detectChanges();
+      }, 200);
     });
   }
 
-
-  ngDoCheck() {
-    if (this.loadingLogin !== this.oldLoadingLogin) {
-      this.oldLoadingLogin = this.loadingLogin;
-      this.changeDetectorRef.detectChanges();
-    }
-  }
 
   validateToken() {
     const tokenStore = this.tokenService.getToken();

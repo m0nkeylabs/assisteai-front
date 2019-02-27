@@ -70,7 +70,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n{{(loadingProfile$ | async) + ' - ' + (loadingLogin$ | async) + ' - ' + (loadingToken$ | async)}}\n\n<app-header></app-header>\n<router-outlet></router-outlet>\n\n<app-loading class=\"global-loading\"\n*ngIf=\"(loadingProfile$ | async) || (loadingLogin$ | async) || (loadingToken$ | async)\"></app-loading>\n\n"
+module.exports = "<app-header></app-header>\n<router-outlet></router-outlet>\n\n<app-loading class=\"global-loading\"\n*ngIf=\"(loadingProfile$ | async) || (loadingLogin$ | async) || (loadingToken$ | async)\"></app-loading>\n\n"
 
 /***/ }),
 
@@ -121,15 +121,11 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.loadingLogin$.subscribe(function (result) {
-            _this.loadingLogin = result;
+        this.loadingLogin$.subscribe(function () {
+            setTimeout(function () {
+                _this.changeDetectorRef.detectChanges();
+            }, 200);
         });
-    };
-    AppComponent.prototype.ngDoCheck = function () {
-        if (this.loadingLogin !== this.oldLoadingLogin) {
-            this.oldLoadingLogin = this.loadingLogin;
-            this.changeDetectorRef.detectChanges();
-        }
     };
     AppComponent.prototype.validateToken = function () {
         var tokenStore = this.tokenService.getToken();
