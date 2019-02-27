@@ -31,6 +31,7 @@ export class TokenService {
         'Content-Type': 'application/json',
         Authorization: typeAuth + ' ' + token
       });
+
       return header;
     }
 

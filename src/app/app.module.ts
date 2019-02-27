@@ -82,7 +82,7 @@ import { LoginComponent } from 'app/login/login.component';
 
     StoreModule.forRoot(rootReducer, { metaReducers }),
     StoreModule.forFeature('homeList', fromHomeStore.reducers),
-    StoreModule.forFeature('loginPage', fromLoginStore.reducers),
+    StoreModule.forFeature('AuthPage', fromLoginStore.reducers),
     StoreModule.forFeature('profile', fromProfileStore.reducers),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([...fromHomeStore.effects, ...fromLoginStore.effects, ...fromProfileStore.effects]),

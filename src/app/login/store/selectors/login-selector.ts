@@ -6,7 +6,7 @@ import * as fromLogin from 'app/login/store/reducers/login-reducer';
 
 export const getLoginState = createSelector(
     fromFeature.getState,
-    (state: fromFeature.LoginState) => state.loginPage
+    (state: fromFeature.AuthState) => state.loginPage
 );
 
 export const {
@@ -28,14 +28,4 @@ export const getLoginLoading = createSelector(
 export const getLoginLoaded = createSelector(
   getLoginState,
   fromLogin.getLoaded
-);
-
-export const getTokenLoading = createSelector(
-  getLoginState,
-  fromLogin.getTokenLoading
-);
-
-export const getTokenLoaded = createSelector(
-  getLoginState,
-  fromLogin.getTokenLoaded
 );

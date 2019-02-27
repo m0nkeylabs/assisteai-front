@@ -32,8 +32,7 @@ export class LoginComponent implements OnInit {
   tabActive: string;
 
   constructor(
-    private store: Store<fromStore.ProfileState>,
-    private loginStore: Store<fromLoginStore.LoginState>,
+    private loginStore: Store<fromLoginStore.AuthState>,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {}

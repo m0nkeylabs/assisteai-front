@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef, DoCheck } from '@angular/core';
 import { TokenService } from '@servicestoken.service';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -11,42 +11,59 @@ import * as fromProfileStore from 'app/profile/store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   loadingLogin$: Observable<any>;
+  loadingLogin: boolean;
+  oldLoadingLogin: boolean;
   loadingToken$: Observable<any>;
+  loadedToken$: Observable<any>;
   loadingProfile$: Observable<any>;
-  loading: boolean;
 
   constructor(
-    private store: Store<fromStore.LoginState>,
+    private changeDetectorRef: ChangeDetectorRef,
+    private store: Store<fromStore.AuthState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService) {
       this.loadingLogin$ = this.store.pipe(select(fromStore.getLoginLoading));
       this.loadingToken$ = this.store.pipe(select(fromStore.getTokenLoading));
+      this.loadedToken$ = this.store.pipe(select(fromStore.getTokenLoaded));
       this.loadingProfile$ = this.profileStore.pipe(select(fromProfileStore.getLoading));
-      this.loading = true;
       this.validateToken();
     }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadingLogin$.subscribe(result => {
+      this.loadingLogin = result;
+    });
+  }
+
+
+  ngDoCheck() {
+    if (this.loadingLogin !== this.oldLoadingLogin) {
+      this.oldLoadingLogin = this.loadingLogin;
+      this.changeDetectorRef.detectChanges();
+    }
+  }
 
   validateToken() {
     const tokenStore = this.tokenService.getToken();
     const validation = this.tokenService.validationExpirationDate();
     if (tokenStore) {
       validation ? this.loadProfile() : this.refreshToken();
-    } else {
-      this.loading = false;
     }
   }
 
   loadProfile() {
     this.profileStore.dispatch(new fromProfileStore.LoadProfile());
-    this.loading = false;
   }
 
   refreshToken() {
-    this.store.dispatch(new fromStore.VerifyToken());
-    this.validateToken();
+    this.loadedToken$.subscribe(result => {
+      if (result) {
+        this.store.dispatch(new fromStore.VerifyToken());
+        this.validateToken();
+      }
+    });
+
   }
 }

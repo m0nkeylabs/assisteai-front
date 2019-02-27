@@ -11,8 +11,6 @@ import { TokenService } from '@services/token.service';
 import { Store } from '@ngrx/store';
 
 import * as fromProfile from 'app/profile/store';
-import * as fromLoginActions from 'app/login/store/actions';
-import * as fromLoginReducer from 'app/login/store/reducers';
 import * as fromActions from 'app/login/store/actions';
 
 
@@ -50,7 +48,7 @@ export class LoginEffects {
   @Effect()
   logout$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.LOGOUT),
-    switchMap((params: fromActions.Login) =>
+    switchMap((params: fromActions.Logout) =>
       this.service.sendLogout().pipe(
         map((response: any) => new fromActions.LogoutSuccess(response)),
         catchError(error => of(new fromActions.LogoutFail(error)))
@@ -61,7 +59,7 @@ export class LoginEffects {
   @Effect({ dispatch: false })
   logoutFail$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.LOGOUT_FAIL),
-    tap((action: fromActions.LogoutFail) => {
+    tap(() => {
       this.toastr.error('<i class="material-icons">error</i> Erro ao sair. Tente novamente mais tarde.', '', {enableHtml: true});
     })
   );
@@ -69,45 +67,16 @@ export class LoginEffects {
   @Effect({ dispatch: false })
   logoutSuccess$: Observable<Action> = this.actions$.pipe(
     ofType(fromActions.LOGOUT_SUCCESS),
-    tap((action: fromActions.LogoutSuccess) => {
+    tap(() => {
       this.tokenService.removeStorage();
       this.store.dispatch(new fromProfile.ClearProfile());
       this.toastr.success('<i class="material-icons">done</i> Logout realizado com sucesso.', '', {enableHtml: true});
     })
   );
 
-  @Effect()
-  verifyToken$: Observable<Action> = this.actions$.pipe(
-    ofType(fromActions.VERIFY_TOKEN),
-    switchMap((params: fromActions.VerifyToken) =>
-      this.service.refreshToken().pipe(
-        map((response: any) => new fromActions.VerifyTokenSuccess(response)),
-        catchError(error => of(new fromActions.VerifyTokenFail(error)))
-      )
-    )
-  );
-
-  @Effect({ dispatch: false })
-  verifyTokenFail$: Observable<Action> = this.actions$.pipe(
-    ofType(fromActions.VERIFY_TOKEN_FAIL),
-    tap((action: fromActions.VerifyTokenFail) => {
-      this.loginStore.dispatch(new fromLoginActions.Logout());
-      this.toastr.error('<i class="material-icons">error</i> Sessão encerrada. Realize o login novamente.', '', {enableHtml: true});
-    })
-  );
-
-  @Effect({ dispatch: false })
-  verifyTokenSuccess$: Observable<Action> = this.actions$.pipe(
-    ofType(fromActions.VERIFY_TOKEN_SUCCESS),
-    tap((action: fromActions.VerifyTokenSuccess) => {
-      this.tokenService.setToken(action.response);
-    })
-  );
-
   constructor(
     private actions$: Actions,
     private store: Store<fromProfile.ProfileState>,
-    private loginStore: Store<fromLoginReducer.LoginState>,
     private service: LoginService,
     private tokenService: TokenService,
     private toastr: ToastrService) { }

@@ -5,8 +5,6 @@ export interface State extends EntityState<any> {
     loading: boolean;
     loaded: boolean;
     login: any;
-    loadingToken: boolean;
-    loadedToken: boolean;
 }
 
 export const adapter: EntityAdapter<any> = createEntityAdapter<any>({
@@ -16,9 +14,7 @@ export const adapter: EntityAdapter<any> = createEntityAdapter<any>({
 export const initialState: State = adapter.getInitialState({
     loading: false,
     loaded: false,
-    login: null,
-    loadingToken: false,
-    loadedToken: false
+    login: null
 });
 
 export function reducer(state = initialState, action: fromActions.LoginPage): State {
@@ -49,22 +45,6 @@ export function reducer(state = initialState, action: fromActions.LoginPage): St
         };
       }
 
-      case fromActions.VERIFY_TOKEN: {
-        return {
-            ...state,
-            loadingToken: true
-        };
-      }
-
-      case fromActions.VERIFY_TOKEN_FAIL:
-      case fromActions.VERIFY_TOKEN_SUCCESS: {
-        return {
-            ...state,
-            loadingToken: false,
-            loadedToken: true,
-        };
-      }
-
       case fromActions.LOGIN_FAIL:
       case fromActions.LOGOUT_FAIL: {
         return {
@@ -82,5 +62,3 @@ export function reducer(state = initialState, action: fromActions.LoginPage): St
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
 export const getLoginData = (state: State) => state.login;
-export const getTokenLoading = (state: State) => state.loadingToken;
-export const getTokenLoaded = (state: State) => state.loadedToken;

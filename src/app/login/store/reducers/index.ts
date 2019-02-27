@@ -1,20 +1,23 @@
 import { createFeatureSelector } from '@ngrx/store';
 import * as fromRoot from 'app/store.config';
 import * as fromLogin from 'app/login/store/reducers/login-reducer';
+import * as fromToken from 'app/login/store/reducers/token-reducer';
 
 
 export interface State extends fromRoot.State {
-  loginPage: LoginState;
+  authPage: AuthState;
 }
 
-export interface LoginState {
+export interface AuthState {
   loginPage: fromLogin.State;
+  token: fromToken.State;
 }
 
 export const reducers = {
-  loginPage: fromLogin.reducer
+  loginPage: fromLogin.reducer,
+  token: fromToken.reducer
 };
 
-export const getState = createFeatureSelector<LoginState>('loginPage');
+export const getState = createFeatureSelector<AuthState>('AuthPage');
 
 

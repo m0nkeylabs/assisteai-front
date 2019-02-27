@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.ProfileState>,
-    private storeLogin: Store<fromLoginStore.LoginState>,
+    private storeLogin: Store<fromLoginStore.AuthState>,
     public dialog: MatDialog) {
       this.userLogged$ = this.store.pipe(select(fromStore.getProfile));
     }

@@ -22,6 +22,7 @@ export class LoginService {
 
   refreshToken() {
     const token = this.tokenService.getHeader();
+    console.log(token);
     return this.http.get<any>('https://api.assisteai.com.br/auth/refresh', { headers: token });
   }
 }
