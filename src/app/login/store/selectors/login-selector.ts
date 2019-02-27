@@ -29,3 +29,13 @@ export const getLoginLoaded = createSelector(
   getLoginState,
   fromLogin.getLoaded
 );
+
+export const getTokenLoading = createSelector(
+  getLoginState,
+  fromLogin.getTokenLoading
+);
+
+export const getTokenLoaded = createSelector(
+  getLoginState,
+  fromLogin.getTokenLoaded
+);

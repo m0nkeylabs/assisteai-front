@@ -16,7 +16,6 @@ import * as fromLoginReducer from 'app/login/store/reducers';
 import * as fromActions from 'app/login/store/actions';
 
 
-
 @Injectable()
 export class LoginEffects {
 

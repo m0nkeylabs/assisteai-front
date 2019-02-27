@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { TokenService } from '@servicestoken.service';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import * as fromProfileStore from 'app/profile/store';
 })
 export class AppComponent implements OnInit {
   loadingLogin$: Observable<any>;
+  loadingToken$: Observable<any>;
   loadingProfile$: Observable<any>;
   loading: boolean;
 
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
     private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService) {
       this.loadingLogin$ = this.store.pipe(select(fromStore.getLoginLoading));
+      this.loadingToken$ = this.store.pipe(select(fromStore.getTokenLoading));
       this.loadingProfile$ = this.profileStore.pipe(select(fromProfileStore.getLoading));
       this.loading = true;
       this.validateToken();
