@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Profile } from '@models/profile';
 
 export const LOAD_PROFILE            = '[Profile] Load Profile';
 export const LOAD_PROFILE_SUCCESS    = '[Profile] Load Profile Success';
@@ -15,7 +16,7 @@ export class LoadProfile implements Action {
 export class LoadProfileSuccess implements Action {
     readonly type = LOAD_PROFILE_SUCCESS;
 
-    constructor(public response: any) { }
+    constructor(public response: Profile) { }
 }
 
 export class LoadProfileFail implements Action {
@@ -31,7 +32,7 @@ export class ClearProfile implements Action {
 }
 
 
-export type Profile =
+export type ProfileStore =
     | LoadProfile
     | LoadProfileSuccess
     | LoadProfileFail

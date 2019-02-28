@@ -1,10 +1,11 @@
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 import * as fromActions from 'app/profile/store/actions';
+import { Profile } from '@models/profile';
 
 export interface State extends EntityState<any> {
     loading: boolean;
     loaded: boolean;
-    profile: any;
+    profile: Profile;
 }
 
 export const adapter: EntityAdapter<any> = createEntityAdapter<any>({
@@ -17,7 +18,7 @@ export const initialState: State = adapter.getInitialState({
     profile: null
 });
 
-export function reducer(state = initialState, action: fromActions.Profile): State {
+export function reducer(state = initialState, action: fromActions.ProfileStore): State {
     switch (action.type) {
         case fromActions.LOAD_PROFILE: {
             return {

@@ -12,9 +12,9 @@ import * as fromProfileStore from 'app/profile/store';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  loadingLogin$: Observable<any>;
-  loadingToken$: Observable<any>;
-  loadedToken$: Observable<any>;
+  loadingLogin$: Observable<boolean>;
+  loadingToken$: Observable<boolean>;
+  loadedToken$: Observable<boolean>;
   loadingProfile$: Observable<any>;
 
   constructor(

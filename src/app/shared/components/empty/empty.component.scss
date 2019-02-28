@@ -1,0 +1,24 @@
+.empty-msg {
+  font-size: 17px;
+  margin: 50px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .loading {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+
+    .loading-bar {
+      display: inline-block;
+      position: relative;
+      width: 8px;
+      height: 70px;
+      margin: 0 5px;
+    }
+  }
+}

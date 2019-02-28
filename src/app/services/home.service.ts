@@ -12,7 +12,7 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getAllMoviesAndSeries(filters: FilterHome): Observable<Paginable<MoviesList>> {
-    const search = filters.search ? '&q=filters.search' : '';
+    const search = filters.search ? '&q=' + filters.search : '';
     const filter = '&filter=' + btoa(JSON.stringify({ ratings: filters.ratings, categories: filters.categories }));
 
     return this.http.get<Paginable<MoviesList>>('https://api.assisteai.com.br/movies?page=' + filters.currentPage + filter + search);

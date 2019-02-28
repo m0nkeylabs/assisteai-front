@@ -43,7 +43,7 @@ import { LoginService } from '@services/login.service';
 import { ProfileService } from '@services/profile.service';
 import { TokenService } from '@services/token.service';
 
-import { LoadingComponent } from '@shared/components';
+import { LoadingComponent, EmptyComponent} from '@shared/components';
 import { LoginComponent } from 'app/login/login.component';
 
 @NgModule({
@@ -53,6 +53,7 @@ import { LoginComponent } from 'app/login/login.component';
     HomeComponent,
     IndicateComponent,
     LoadingComponent,
+    EmptyComponent,
     LoginComponent
   ],
   imports: [

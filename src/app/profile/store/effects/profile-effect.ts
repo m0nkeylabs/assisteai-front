@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import * as fromActions from 'app/profile/store/actions';
 import { ProfileService } from '@services/profile.service';
+import { Profile } from '@models/profile';
 
 
 
@@ -18,7 +19,7 @@ export class ProfileEffects {
     ofType(fromActions.LOAD_PROFILE),
     switchMap((params: fromActions.LoadProfile) =>
       this.service.getProfile().pipe(
-        map((response: any) => new fromActions.LoadProfileSuccess(response)),
+        map((response: Profile) => new fromActions.LoadProfileSuccess(response)),
         catchError(error => of(new fromActions.LoadProfileFail(error)))
       )
     )

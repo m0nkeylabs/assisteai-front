@@ -21,7 +21,7 @@ import * as utilsFunctions from '@shared/utils';
 import { Pagination } from '@models/pagination';
 import { MoviesList } from '@models/movies-list';
 import { FilterHome } from '@models/filter-home';
-import { debounceTime } from 'rxjs/operators';
+import { Profile } from '@models//profile';
 
 
 @Component({
@@ -58,8 +58,10 @@ export class HomeComponent implements OnInit {
   pagination$: Observable<Pagination>;
   moviesList$: Observable<Array<MoviesList>>;
   moviesList: Array<MoviesList>;
-  userLogged$: Observable<any>;
+  userLogged$: Observable<Profile>;
   isLogged: boolean;
+
+  msg = 'Nenhuma indicação encontrada';
 
   floatLabel = 'always';
   filterOpened: boolean;
@@ -107,6 +109,8 @@ export class HomeComponent implements OnInit {
 
           objImg.src = r.poster_path;
         });
+      } else {
+        this.isLoaded = true;
       }
     });
 
@@ -168,6 +172,9 @@ export class HomeComponent implements OnInit {
 
   @debounce(800)
   updateList() {
+    this.isLoaded = false;
+    this.moviesList = [];
+    this.filters.currentPage = 1;
     this.store.dispatch(new fromStore.UpdateHomeList(this.filters));
   }
 
