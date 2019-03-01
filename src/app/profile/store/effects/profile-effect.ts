@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { Action } from '@ngrx/store';

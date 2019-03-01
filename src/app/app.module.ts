@@ -28,9 +28,9 @@ import {
   ToastNoAnimationModule,
 } from 'ngx-toastr';
 
-import { CustomSerializer, metaReducers, rootReducer } from './store.config';
+import { CustomSerializer, reducers, metaReducers } from 'app/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreModule, MetaReducer } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 
@@ -83,7 +83,7 @@ import { LoginComponent } from 'app/login/login.component';
       preventDuplicates: false
     }),
 
-    StoreModule.forRoot(rootReducer, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreModule.forFeature('homeList', fromHomeStore.reducers),
     StoreModule.forFeature('AuthPage', fromLoginStore.reducers),
     StoreModule.forFeature('profile', fromProfileStore.reducers),

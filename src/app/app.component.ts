@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TokenService } from '@servicestoken.service';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -16,9 +16,7 @@ export class AppComponent implements OnInit {
   loadingToken$: Observable<boolean>;
   loadedToken$: Observable<boolean>;
   loadingProfile$: Observable<any>;
-
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
     private store: Store<fromStore.AuthState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService) {
@@ -29,14 +27,7 @@ export class AppComponent implements OnInit {
       this.validateToken();
     }
 
-  ngOnInit() {
-    this.loadingLogin$.subscribe(() => {
-      setTimeout(() => {
-        this.changeDetectorRef.detectChanges();
-      }, 200);
-    });
-  }
-
+  ngOnInit() { }
 
   validateToken() {
     const tokenStore = this.tokenService.getToken();

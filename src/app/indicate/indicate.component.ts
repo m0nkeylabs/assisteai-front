@@ -53,7 +53,7 @@ export class IndicateComponent implements OnInit, OnDestroy {
   }
 
   onNoClick(): void {
-    this.dialogRef.close(false);
+    this.dialogRef.close();
   }
 
   saveIndication() {

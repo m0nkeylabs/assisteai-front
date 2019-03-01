@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 import { MatDialog } from '@angular/material';
@@ -22,6 +22,7 @@ import { Pagination } from '@models/pagination';
 import { MoviesList } from '@models/movies-list';
 import { FilterHome } from '@models/filter-home';
 import { Profile } from '@models//profile';
+import { detectChanges } from '@angular/core/src/render3';
 
 
 @Component({
@@ -83,6 +84,7 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private store: Store<fromStore.HomeListState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     public dialog: MatDialog) {
@@ -149,11 +151,13 @@ export class HomeComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
+          console.log('aaa');
           this.filters.currentPage = 1;
           this.filters.lastPage = null;
           this.store.dispatch(new fromStore.UpdateHomeList(this.filters));
           window.scroll(0, 0);
         }
+        this.detectChanges();
       });
     } else {
       const dialogRef = this.dialog.open(LoginComponent, {
@@ -161,7 +165,16 @@ export class HomeComponent implements OnInit {
         maxWidth: '400px',
         data: {tab: 0}
       });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.detectChanges();
+      });
     }
+  }
+
+  @debounce(800)
+  detectChanges() {
+    this.changeDetectorRef.detectChanges();
   }
 
   @debounce(800)

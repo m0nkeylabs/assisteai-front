@@ -60,7 +60,7 @@
 
             <div class="poster-actions flex-row">
                 <a [routerLink]="" matTooltip="Assistir depois" class="watch-later"><mat-icon>access_time</mat-icon></a>
-                <a [routerLink]="" (click)="openDialog(movie.urlIndication)" matTooltip="Indicar {{categoryEnum[movie.category]}}" class="indicate-now"><mat-icon>playlist_add</mat-icon></a>
+                <a [routerLink]="" (click)="openDialog(movie.imdb_link)" matTooltip="Indicar {{categoryEnum[movie.category]}}" class="indicate-now"><mat-icon>playlist_add</mat-icon></a>
                 <a href="#" matTooltip="Mais informações" class="more-details"><mat-icon>arrow_forward</mat-icon></a>
             </div>
           </div>

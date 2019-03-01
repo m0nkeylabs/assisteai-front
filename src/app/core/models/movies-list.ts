@@ -6,6 +6,7 @@ export class MoviesList {
   category: string;
   comment: string;
   description: string;
+  imdb_link: string;
   genre: string;
   last_rating: string;
   movie_id: number;
