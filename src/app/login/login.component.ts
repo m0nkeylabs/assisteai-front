@@ -6,7 +6,6 @@ import { ratings } from '@constants/ratings';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromStore from 'app/profile/store';
 import * as fromLoginStore from 'app/login/store';
 import * as _ from 'lodash';
 

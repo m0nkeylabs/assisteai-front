@@ -161,12 +161,6 @@ export class HomeComponent implements OnInit {
         maxWidth: '400px',
         data: {tab: 0}
       });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.updateList();
-        }
-      });
     }
   }
 

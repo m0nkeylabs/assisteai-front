@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import * as fromHomeStore from 'app/home/store';
 import * as fromLoginStore from 'app/login/store';
 import * as fromProfileStore from 'app/profile/store';
+import * as fromIndicateStore from 'app/indicate/store';
 
 import {
   MatIconModule,
@@ -42,6 +43,7 @@ import { HomeService } from '@services/home.service';
 import { LoginService } from '@services/login.service';
 import { ProfileService } from '@services/profile.service';
 import { TokenService } from '@services/token.service';
+import { IndicateService } from '@servicesindicate.service';
 
 import { LoadingComponent, EmptyComponent} from '@shared/components';
 import { LoginComponent } from 'app/login/login.component';
@@ -85,12 +87,18 @@ import { LoginComponent } from 'app/login/login.component';
     StoreModule.forFeature('homeList', fromHomeStore.reducers),
     StoreModule.forFeature('AuthPage', fromLoginStore.reducers),
     StoreModule.forFeature('profile', fromProfileStore.reducers),
+    StoreModule.forFeature('indicate', fromIndicateStore.reducers),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([...fromHomeStore.effects, ...fromLoginStore.effects, ...fromProfileStore.effects]),
+    EffectsModule.forFeature([
+      ...fromHomeStore.effects,
+      ...fromLoginStore.effects,
+      ...fromProfileStore.effects,
+      ...fromIndicateStore.effects
+    ]),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   entryComponents: [IndicateComponent, LoginComponent],
-  providers: [HomeService, LoginService, ProfileService, TokenService],
+  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
