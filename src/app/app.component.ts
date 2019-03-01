@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import * as fromStore from 'app/login/store';
 import * as fromProfileStore from 'app/profile/store';
+import { debounce } from 'lodash-decorators';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,14 @@ export class AppComponent implements OnInit {
   loadingToken$: Observable<boolean>;
   loadedToken$: Observable<boolean>;
   loadingProfile$: Observable<any>;
+
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private store: Store<fromStore.AuthState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     private tokenService: TokenService) {
+      setInterval(() => { this.changeDetectorRef.detectChanges(); }, 1000);
+
       this.loadingLogin$ = this.store.pipe(select(fromStore.getLoginLoading));
       this.loadingToken$ = this.store.pipe(select(fromStore.getTokenLoading));
       this.loadedToken$ = this.store.pipe(select(fromStore.getTokenLoaded));
@@ -28,6 +33,11 @@ export class AppComponent implements OnInit {
     }
 
   ngOnInit() { }
+
+  @debounce(800)
+  detectChanges() {
+    this.changeDetectorRef.detectChanges();
+  }
 
   validateToken() {
     const tokenStore = this.tokenService.getToken();

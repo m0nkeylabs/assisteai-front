@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from 'app/login/login.component';
 
@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 
 import * as fromStore from 'app/profile/store';
 import * as fromLoginStore from 'app/login/store';
-import { debounce } from 'lodash-decorators';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +17,6 @@ export class HeaderComponent implements OnInit {
   userLogged$: Observable<any>;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
     private store: Store<fromStore.ProfileState>,
     private storeLogin: Store<fromLoginStore.AuthState>,
     public dialog: MatDialog) {
@@ -38,13 +36,7 @@ export class HeaderComponent implements OnInit {
       if (result) {
         result = result;
       }
-      this.detectChanges();
     });
-  }
-
-  @debounce(700)
-  detectChanges() {
-    this.changeDetectorRef.detectChanges();
   }
 
   logout() {
