@@ -6,6 +6,8 @@ export const INDICATE_SAVE           = '[Indicate] Indicate Save';
 export const INDICATE_SAVE_SUCCESS   = '[Indicate] Indicate Save Success';
 export const INDICATE_SAVE_FAIL      = '[Indicate] Indicate Save Fail';
 
+export const INDICATE_CLEAR          = '[Indicate] Indicate Clear';
+
 export class IndicateSave implements Action {
     readonly type = INDICATE_SAVE;
 
@@ -24,8 +26,16 @@ export class IndicateSaveFail implements Action {
     constructor(public payload: any) { }
 }
 
+export class IndicateClear implements Action {
+    readonly type = INDICATE_CLEAR;
+
+    constructor() { }
+}
+
 export type IndicateStore =
     | IndicateSave
     | IndicateSaveSuccess
-    | IndicateSaveFail;
+    | IndicateSaveFail
+
+    | IndicateClear;
 

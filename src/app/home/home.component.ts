@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 import { MatDialog } from '@angular/material';
@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
   utils = utilsFunctions;
   loading$: Observable<boolean>;
   pagination$: Observable<Pagination>;
+  moviesLoaded$: Observable<boolean>;
   moviesList$: Observable<Array<MoviesList>>;
   moviesList: Array<MoviesList>;
   userLogged$: Observable<Profile>;
@@ -86,6 +87,7 @@ export class HomeComponent implements OnInit {
     private profileStore: Store<fromProfileStore.ProfileState>,
     public dialog: MatDialog) {
     this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
+    this.moviesLoaded$ = this.store.pipe(select(fromStore.getHomeListLoaded));
     this.pagination$ = this.store.pipe(select(fromStore.getHomeListPagination));
     this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
   }
@@ -94,7 +96,8 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadHomeList(this.filters));
 
     this.moviesList$.subscribe(result => {
-      if (result.length) {
+      if (result.length > 0) {
+        this.isLoaded = false;
         let totalLoaded = 0;
         result.map((r) => {
           const objImg = new Image();
@@ -148,10 +151,11 @@ export class HomeComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
+          this.isLoaded = false;
+          this.moviesList = [];
           this.filters.currentPage = 1;
           this.filters.lastPage = null;
           this.store.dispatch(new fromStore.UpdateHomeList(this.filters));
-          window.scroll(0, 0);
         }
       });
     } else {
@@ -201,11 +205,8 @@ export class HomeComponent implements OnInit {
   }
 
   scollTop() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    const header = document.getElementById('header');
+    header.scrollIntoView();
   }
 
   @HostListener('document:scroll', ['$event'])

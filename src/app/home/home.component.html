@@ -67,8 +67,8 @@
         </div>
       </div>
     </div>
-    <app-loading [hidden]="isLoaded"></app-loading>
+    <app-loading [hidden]="isLoaded && (moviesLoaded$ | async)"></app-loading>
     <button class="scroll-btn" [ngClass]="{'active': scollTopActive}" (click)="scollTop()"><mat-icon>arrow_upward</mat-icon></button>
   </section>
-  <app-empty *ngIf="moviesList && !moviesList.length && isLoaded" [msg]="msg"></app-empty>
+  <app-empty *ngIf="moviesList && !moviesList.length && isLoaded && (moviesLoaded$ | async)" [msg]="msg"></app-empty>
 </main>

@@ -7,6 +7,7 @@ body {
   background-color: $background;
   color: $font-default;
   font-size: $size-default;
+  scroll-behavior: smooth;
 
   .main {
     margin: 30px auto;

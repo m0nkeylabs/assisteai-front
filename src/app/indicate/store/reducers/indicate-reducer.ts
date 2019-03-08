@@ -41,6 +41,15 @@ export function reducer(state = initialState, action: fromActions.IndicateStore)
                 indicate: null
             };
         }
+
+        case fromActions.INDICATE_CLEAR: {
+            return {
+                ...state,
+                loading: false,
+                loaded: false,
+                indicate: null,
+            };
+        }
         default: {
             return state;
         }

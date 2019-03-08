@@ -23,11 +23,11 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(state = initialState, action: fromActions.HomeList): State {
     switch (action.type) {
-        case fromActions.LOAD_HOME_LIST:
-        case fromActions.UPDATE_HOME_LIST: {
+        case fromActions.LOAD_HOME_LIST: {
             return {
                 ...state,
-                loading: true
+                loading: true,
+                loaded: false
             };
         }
 
@@ -38,6 +38,16 @@ export function reducer(state = initialState, action: fromActions.HomeList): Sta
                 loaded: true,
                 homeList: [...state.homeList, ...action.response.data],
                 pagination: new Pagination(action.response)
+            };
+        }
+
+        case fromActions.UPDATE_HOME_LIST: {
+            return {
+                ...state,
+                loading: true,
+                loaded: false,
+                homeList: [],
+                pagination: null
             };
         }
 
@@ -56,6 +66,7 @@ export function reducer(state = initialState, action: fromActions.HomeList): Sta
             return {
                 ...state,
                 loading: false,
+                loaded: false,
                 homeList: [],
                 pagination: null
             };

@@ -47,6 +47,7 @@ export class IndicateComponent implements OnInit, OnDestroy {
     this.indicateLoadedSub = this.indicateLoaded$.subscribe(result => {
       if (result) {
         this.toastr.success('<i class="material-icons">done</i>Indicação realizada com sucesso!', '', { enableHtml: true });
+        this.store.dispatch(new fromStore.IndicateClear());
         this.dialogRef.close(true);
       }
     });
