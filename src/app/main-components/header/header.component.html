@@ -1,7 +1,7 @@
 <header>
   <div class="header">
     <div class="header-logo">
-      <object class="img-logo" data="assets/img/logo.svg" type="image/svg+xml"></object>
+      <embed src="assets/img/logo.svg">
     </div>
     <div class="header-settings">
       <div class="profile-image bd-{{(userLogged$ | async).theme}}" *ngIf="(userLogged$ | async)" (click)='logout()'>
