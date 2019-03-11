@@ -20,7 +20,8 @@ import {
   MatDialogModule,
   MatSelectModule,
   MatTooltipModule,
-  MatTabsModule
+  MatTabsModule,
+  MatMenuModule
 } from '@angular/material';
 
 import {
@@ -76,6 +77,7 @@ import { LoginComponent } from 'app/login/login.component';
     MatDialogModule,
     MatSelectModule,
     MatTabsModule,
+    MatMenuModule,
 
     ToastNoAnimationModule,
     ToastrModule.forRoot({

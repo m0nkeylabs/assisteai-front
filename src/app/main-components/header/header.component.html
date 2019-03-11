@@ -4,9 +4,16 @@
       <img src="assets/img/logo.svg" />
     </div>
     <div class="header-settings">
-      <div class="profile-image bd-{{(userLogged$ | async).theme}}" *ngIf="(userLogged$ | async)" (click)='logout()'>
-        <img src="{{(userLogged$ | async).avatar}}">
-      </div>
+      <ng-container *ngIf="(userLogged$ | async)">
+        <div class="profile-image bd-{{(userLogged$ | async).theme}}" [matMenuTriggerFor]="menuPerfil">
+          <img src="{{(userLogged$ | async).avatar}}">
+        </div>
+        <mat-menu #menuPerfil="matMenu" xPosition="before">
+          <button mat-menu-item>Meu Perfil</button>
+          <button mat-menu-item (click)='logout()'>Sair</button>
+        </mat-menu>
+      </ng-container>
+
       <div class="signIn-container" *ngIf="!(userLogged$ | async)">
         <span (click)="openDialog(0)">Entrar</span> ou <span (click)="openDialog(1)">Cadastrar</span>
       </div>

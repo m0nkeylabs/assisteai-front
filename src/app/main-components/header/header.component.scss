@@ -14,7 +14,7 @@ header {
     margin: 0 auto;
     width: 90%;
 
-    img, embed {
+    img {
       height: 29px;
     }
 
@@ -47,6 +47,7 @@ header {
         text-align: center;
         border-width: 3px;
         border-style: solid;
+        cursor: pointer;
 
         img {
           height: 100%;
