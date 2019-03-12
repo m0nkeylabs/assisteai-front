@@ -1,0 +1,70 @@
+@import 'assets/scss/variables.scss';
+
+.sidenav-overlay {
+  position: fixed;
+  z-index: 98;
+  width: 0;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+
+    &.active { width: 100%; }
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: $darkest-gray-border;
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  &.active { width: 300px; }
+
+  .container {
+    padding: 25px;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid $darkest-gray;
+      color: $lighter-gray;
+
+      h2 { margin: 0; }
+
+      .closebtn {
+        border: 0;
+        background: none;
+        color: $lighter-gray;
+        cursor: pointer;
+        outline: none;
+
+        &.color-YELLOW:hover { color: $logo-yellow; }
+        &.color-GREEN :hover{ color: $logo-green; }
+        &.color-PINK:hover { color: $logo-pink; }
+        &.color-RED:hover { color: $logo-red; }
+        &.color-BLUE:hover { color: $logo-blue; }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+
+      button { padding: 0 16px; }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .sidenav {
+    &.active { width: 100%; }
+  }
+}

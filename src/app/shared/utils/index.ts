@@ -44,3 +44,40 @@ export function getClassCategory(category) {
 
   return categoryClass;
 }
+
+export function  getClassCheckbox(option: string) {
+  let ratingClass: string;
+  switch (option) {
+    case 'STAY_AWAY':
+      ratingClass = 'checkbox-1';
+      break;
+    case 'VERY_BAD':
+      ratingClass = 'checkbox-2';
+      break;
+    case 'BAD':
+      ratingClass = 'checkbox-3';
+      break;
+    case 'COOL':
+      ratingClass = 'checkbox-4';
+      break;
+    case 'GOOD':
+      ratingClass = 'checkbox-5';
+      break;
+    case 'VERY_GOOD':
+      ratingClass = 'checkbox-6';
+      break;
+    case 'UNMISSABLE':
+      ratingClass = 'checkbox-7';
+      break;
+    case 'MOVIE':
+      ratingClass = 'checkbox-movie';
+      break;
+    case 'SERIE':
+      ratingClass = 'checkbox-serie';
+      break;
+    default:
+      break;
+  }
+
+  return ratingClass;
+}

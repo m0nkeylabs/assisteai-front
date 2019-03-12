@@ -47,12 +47,30 @@ input:-webkit-autofill {
   box-shadow: 0 0 0px 1000px $darkest-gray-border inset;
 }
 
-.panel-dark {
-  background: $gray;
-  .mat-option {
-    color: $darkest-gray;
+.cdk-overlay-pane {
+  transform: inherit !important;
+  overflow: hidden; // BUG Resize
 
-    &.mat-selected:not(.mat-option-disabled) { color: $darkest-gray-border; font-weight: 700; }
+  .panel-dark {
+    background: $gray;
+    min-width: 100% !important;
+
+    .mat-option {
+      color: $darkest-gray;
+
+      &.mat-selected:not(.mat-option-disabled) { color: $darkest-gray-border; font-weight: 700; }
+
+      &.checkbox-1 .mat-pseudo-checkbox-checked { background: $rating-1 }
+      &.checkbox-2 .mat-pseudo-checkbox-checked { background: $rating-2 }
+      &.checkbox-3 .mat-pseudo-checkbox-checked { background: $rating-3 }
+      &.checkbox-4 .mat-pseudo-checkbox-checked { background: $rating-4 }
+      &.checkbox-5 .mat-pseudo-checkbox-checked { background: $rating-5 }
+      &.checkbox-6 .mat-pseudo-checkbox-checked { background: $rating-6 }
+      &.checkbox-7 .mat-pseudo-checkbox-checked { background: $rating-7 }
+
+      &.checkbox-serie .mat-pseudo-checkbox-checked { background: $color-serie }
+      &.checkbox-movie .mat-pseudo-checkbox-checked { background: $color-movie }
+    }
   }
 }
 

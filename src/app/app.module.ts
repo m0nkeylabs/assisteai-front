@@ -46,7 +46,7 @@ import { ProfileService } from '@services/profile.service';
 import { TokenService } from '@services/token.service';
 import { IndicateService } from '@servicesindicate.service';
 
-import { LoadingComponent, EmptyComponent} from '@shared/components';
+import { LoadingComponent, EmptyComponent, SidenavComponent} from '@shared/components';
 import { LoginComponent } from 'app/login/login.component';
 
 @NgModule({
@@ -57,7 +57,8 @@ import { LoginComponent } from 'app/login/login.component';
     IndicateComponent,
     LoadingComponent,
     EmptyComponent,
-    LoginComponent
+    LoginComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,

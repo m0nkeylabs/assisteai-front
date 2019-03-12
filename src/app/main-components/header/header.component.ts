@@ -4,9 +4,11 @@ import { LoginComponent } from 'app/login/login.component';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Profile } from '@models/profile';
 
 import * as fromStore from 'app/profile/store';
 import * as fromLoginStore from 'app/login/store';
+
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,7 @@ import * as fromLoginStore from 'app/login/store';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  userLogged$: Observable<any>;
+  userLogged$: Observable<Profile>;
 
   constructor(
     private store: Store<fromStore.ProfileState>,

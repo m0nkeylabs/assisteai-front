@@ -1,0 +1,10 @@
+<div class="sidenav-overlay" (click)="closeNav()" [ngClass]="{'active': isOpen}"></div>
+<div class="sidenav" [ngClass]="{'active': isOpen}">
+  <div class="container">
+    <div class="header">
+      <h2>Filtros</h2>
+      <button class="closebtn color-{{(userLogged$ | async)?.theme}}" (click)="closeNav()"><mat-icon>close</mat-icon></button>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

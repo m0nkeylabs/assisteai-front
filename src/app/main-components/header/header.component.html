@@ -5,12 +5,15 @@
     </div>
     <div class="header-settings">
       <ng-container *ngIf="(userLogged$ | async)">
+        <span class="title-user">{{(userLogged$ | async).name}}</span>
         <div class="profile-image bd-{{(userLogged$ | async).theme}}" [matMenuTriggerFor]="menuPerfil">
           <img src="{{(userLogged$ | async).avatar}}">
         </div>
         <mat-menu #menuPerfil="matMenu" xPosition="before">
-          <button mat-menu-item>Meu Perfil</button>
-          <button mat-menu-item (click)='logout()'>Sair</button>
+          <button mat-menu-item><mat-icon>person_outline</mat-icon> Perfil</button>
+          <button mat-menu-item><mat-icon>access_time</mat-icon> Asssitir depois</button>
+          <button mat-menu-item><mat-icon>list</mat-icon> Minhas indicações</button>
+          <button mat-menu-item (click)='logout()'><mat-icon>close</mat-icon> Sair</button>
         </mat-menu>
       </ng-container>
 

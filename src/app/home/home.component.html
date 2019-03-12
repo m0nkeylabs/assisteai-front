@@ -1,26 +1,26 @@
 <main class="main">
-  <section class="filter-container flex-column">
-    <div class="flex-row filter-icons col-md-12">
-      <mat-form-field appearance="outline" class="col-md-3 col-sm-12 margin-right-2">
-        <mat-label>Busca</mat-label>
-        <input matInput autocomplete="off" (keyup)="updateList()" [(ngModel)]="filters.search">
-        <mat-icon matPrefix>search</mat-icon>
-      </mat-form-field>
-      <div class="flex-row col-md-9 col-sm-12 filters">
-        <div class="icon-filters-container flex-row col-md-6">
-          <mat-icon class="icon margin-right-1" matTooltip="Todos" [ngClass]="{'active': filters.exibition === 'all'}" (click)="setExibition('all')">public</mat-icon>
-          <mat-icon class="icon margin-right-1" matTooltip="Seguindo" [ngClass]="{'active': filters.exibition === 'group'}" (click)="setExibition('group')">group</mat-icon>
-          <span class="divider margin-right-1"></span>
-          <mat-icon class="icon filter-icon" matTooltip="Filtro" [ngClass]="{'active': filterOpened}" (click)="filterOpened = !filterOpened">filter_list</mat-icon>
-        </div>
-        <button mat-button class="btn-default"  matTooltip="Indicar" (click)="openDialog()">
-            <mat-icon class="icon filter-icon">playlist_add</mat-icon>
-        </button>
-      </div>
-    </div>
+  <app-sidenav [(isOpen)]='filterOpened'>
+      <form novalidate [formGroup]="formFilter" (submit)="setFilter()">
+        <mat-form-field appearance="outline" class="col-md-12 col-sm-12 margin-bottom-1">
+          <mat-label>Avaliações</mat-label>
+          <mat-select multiple panelClass="panel-dark" formControlName="ratings">
+            <mat-option *ngFor="let rating of ratingArray" [value]="rating" [ngClass]="utils.getClassCheckbox(rating)">{{rantingEnum[rating]}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-12 col-sm-12 margin-bottom-1">
+          <mat-label>Categorias</mat-label>
+          <mat-select multiple panelClass="panel-dark" formControlName="categories" style="min-width: 100% !important">
+            <mat-option *ngFor="let category of categoryArray" (click)="tosslePerOne()" [value]="category" [ngClass]="utils.getClassCheckbox(category)">{{categoryEnum[category]}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <div class="margin-top-2" *ngIf="filterOpened">
-      <div class="flex-row filter-options">
+        <div class="button-container">
+          <button mat-button class="col-md-6" (click)="filterOpened = false" type="button">Cancelar</button>
+          <button mat-button cdkFocusInitial class="btn-default col-md-6 margin-left-1" type="submit">Filtrar</button>
+        </div>
+      </form>
+
+      <!-- <div class="flex-row filter-options">
         <div class="form-group margin-right-2">
             <mat-chip-list>
               <mat-chip *ngFor="let rating of ratingArray" class="chip-default {{rating}}" [ngClass]="{'active': isRatingActive(rating)}" (click)='updateRatingFilter(rating)'>
@@ -36,6 +36,26 @@
               </mat-chip>
             </mat-chip-list>
         </div>
+      </div> -->
+  </app-sidenav>
+
+  <section class="filter-container flex-column">
+    <div class="flex-row filter-icons col-md-12">
+      <mat-form-field appearance="outline" class="col-md-3 col-sm-12 margin-right-2">
+        <mat-label>Busca</mat-label>
+        <input matInput autocomplete="off" (ngModelChange)="updateList()" [(ngModel)]="filters.search">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+      <div class="flex-row col-md-9 col-sm-12 filters">
+        <div class="icon-filters-container flex-row col-md-6">
+          <mat-icon class="icon margin-right-1" matTooltip="Todos" [ngClass]="{'active': filters.exibition === 'all'}" (click)="setExibition('all')">public</mat-icon>
+          <mat-icon class="icon margin-right-1" matTooltip="Seguindo" [ngClass]="{'active': filters.exibition === 'group'}" (click)="setExibition('group')">group</mat-icon>
+          <span class="divider margin-right-1"></span>
+          <mat-icon class="icon filter-icon" matTooltip="Filtro" [ngClass]="{'active': filterOpened}" (click)="openNav()">filter_list</mat-icon>
+        </div>
+        <button mat-button class="btn-default"  matTooltip="Indicar" (click)="openDialog()">
+            <mat-icon class="icon filter-icon">playlist_add</mat-icon>
+        </button>
       </div>
     </div>
   </section>

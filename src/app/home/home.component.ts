@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatOption } from '@angular/material';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -51,6 +52,7 @@ import { Profile } from '@models//profile';
     ])
   ]
 })
+
 export class HomeComponent implements OnInit {
   utils = utilsFunctions;
   loading$: Observable<boolean>;
@@ -73,6 +75,10 @@ export class HomeComponent implements OnInit {
   rantingEnum = ratings;
   ratingArray = _.keys(ratings);
 
+  ratings: Array<string>;
+  categories: Array<string>;
+
+  formFilter: FormGroup;
   filters: FilterHome = {
     search: '',
     exibition: 'all',
@@ -83,6 +89,7 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private fb: FormBuilder,
     private store: Store<fromStore.HomeListState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     public dialog: MatDialog) {
@@ -90,6 +97,9 @@ export class HomeComponent implements OnInit {
     this.moviesLoaded$ = this.store.pipe(select(fromStore.getHomeListLoaded));
     this.pagination$ = this.store.pipe(select(fromStore.getHomeListPagination));
     this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
+
+    this.ratings = this.filters.ratings;
+    this.categories = this.filters.categories;
   }
 
   ngOnInit() {
@@ -125,6 +135,10 @@ export class HomeComponent implements OnInit {
 
     this.userLogged$.subscribe(result => {
       this.isLogged = result ? true : false;
+    });
+    this.formFilter = this.fb.group({
+      ratings: [this.ratings],
+      categories: [this.categories]
     });
   }
 
@@ -176,6 +190,13 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(new fromStore.UpdateHomeList(this.filters));
   }
 
+  setFilter() {
+    this.filterOpened = false;
+    this.filters.ratings = this.formFilter.controls.ratings.value;
+    this.filters.categories = this.formFilter.controls.categories.value;
+    this.updateList();
+  }
+
   updateRatingFilter(tag) {
     if (_.includes(this.filters.ratings, tag)) {
       if (this.filters.ratings.length > 1) {
@@ -205,8 +226,8 @@ export class HomeComponent implements OnInit {
   }
 
   scollTop() {
-    const header = document.getElementById('header');
-    header.scrollIntoView();
+    const body = document.getElementById('body');
+    body.scrollIntoView();
   }
 
   @HostListener('document:scroll', ['$event'])
@@ -221,4 +242,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  openNav() {
+    this.filterOpened = true;
+  }
 }

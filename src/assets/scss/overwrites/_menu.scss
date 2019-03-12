@@ -9,7 +9,20 @@
     padding: 13px 16px;
 
     &:hover:not([disabled]) {
+      color: $white;
       background: rgba(0,0,0,.2);
+    }
+
+    &:hover:not([disabled]) .mat-icon {
+      color: $white;
+    }
+
+    .mat-icon {
+      margin-right: 10px;
+      color: $lighter-gray;
+      font-size: 20px;
+      height: auto;
+      width: auto;
     }
   }
 }
