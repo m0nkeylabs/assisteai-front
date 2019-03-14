@@ -9,12 +9,6 @@ export const getProfileState = createSelector(
     (state: fromFeature.ProfileState) => state.profile
 );
 
-export const {
-    selectIds: getLoginIds,
-    selectEntities: getLoginEntities,
-    selectAll: getAllLogin,
-} = fromProfile.adapter.getSelectors(getProfileState);
-
 export const getProfile = createSelector(
   getProfileState,
   fromProfile.getProfile

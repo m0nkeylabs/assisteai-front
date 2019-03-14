@@ -15,11 +15,6 @@ export const {
     selectAll: getAllHomeList,
 } = fromHomeList.adapter.getSelectors(getHomeListState);
 
-export const getHomeListResponse = createSelector(
-  getHomeListState,
-  fromHomeList.getHomeList
-);
-
 export const getHomeListLoading = createSelector(
   getHomeListState,
   fromHomeList.getLoading

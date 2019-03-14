@@ -8,6 +8,7 @@ import { Profile } from '@models/profile';
 
 import * as fromStore from 'app/profile/store';
 import * as fromLoginStore from 'app/login/store';
+import * as fromProfileStore from 'app/profile/store';
 
 
 @Component({
@@ -17,15 +18,23 @@ import * as fromLoginStore from 'app/login/store';
 })
 export class HeaderComponent implements OnInit {
   userLogged$: Observable<Profile>;
+  triedLogin: boolean;
 
   constructor(
     private store: Store<fromStore.ProfileState>,
+    private profileStore: Store<fromProfileStore.ProfileState>,
     private storeLogin: Store<fromLoginStore.AuthState>,
     public dialog: MatDialog) {
       this.userLogged$ = this.store.pipe(select(fromStore.getProfile));
     }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.userLogged$.subscribe(result => {
+      if (result && this.triedLogin) {
+        this.profileStore.dispatch(new fromProfileStore.LoadAllWatchLater());
+      }
+    });
+  }
 
   openDialog(tabActive): void {
     const dialogRef = this.dialog.open(LoginComponent, {
@@ -35,9 +44,7 @@ export class HeaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        result = result;
-      }
+      this.triedLogin = result;
     });
   }
 

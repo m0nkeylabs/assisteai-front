@@ -10,6 +10,7 @@ import { TokenService } from '@services/token.service';
 
 import { Store } from '@ngrx/store';
 
+import * as fromHome from 'app/home/store';
 import * as fromProfile from 'app/profile/store';
 import * as fromActions from 'app/login/store/actions';
 
@@ -70,6 +71,14 @@ export class LoginEffects {
     tap(() => {
       this.tokenService.removeStorage();
       this.store.dispatch(new fromProfile.ClearProfile());
+      this.storeHome.dispatch(new fromHome.UpdateHomeList({
+        search: '',
+        exibition: 'all',
+        ratings: ['UNMISSABLE', 'VERY_GOOD', 'GOOD', 'COOL', 'BAD', 'VERY_BAD', 'STAY_AWAY'],
+        categories: ['MOVIE', 'SERIE'],
+        currentPage: 1,
+        lastPage: null
+      }));
       this.toastr.success('<i class="material-icons">done</i> Logout realizado com sucesso.', '', {enableHtml: true});
     })
   );
@@ -77,6 +86,7 @@ export class LoginEffects {
   constructor(
     private actions$: Actions,
     private store: Store<fromProfile.ProfileState>,
+    private storeHome: Store<fromHome.HomeListState>,
     private service: LoginService,
     private tokenService: TokenService,
     private toastr: ToastrService) { }

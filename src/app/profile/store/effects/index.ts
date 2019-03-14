@@ -1,7 +1,7 @@
-export * from './profile-effect';
-
 import { ProfileEffects } from './profile-effect';
+import { WatchLaterEffects } from './watch-later-effect';
 
-export const effects: Array<any> = [ProfileEffects];
+export const effects: Array<any> = [ProfileEffects, WatchLaterEffects];
 
 export * from './profile-effect';
+export * from './watch-later-effect';

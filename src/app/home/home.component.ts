@@ -1,11 +1,11 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 import { MatDialog, MatOption } from '@angular/material';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 
 import { ratings } from '@constants/ratings';
@@ -53,9 +53,11 @@ import { Profile } from '@models//profile';
   ]
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   utils = utilsFunctions;
   loading$: Observable<boolean>;
+  wathLaterLoading$: Observable<boolean>;
+  wathLaterLoading: boolean;
   pagination$: Observable<Pagination>;
   moviesLoaded$: Observable<boolean>;
   moviesList$: Observable<Array<MoviesList>>;
@@ -63,12 +65,19 @@ export class HomeComponent implements OnInit {
   userLogged$: Observable<Profile>;
   isLogged: boolean;
 
+  moviesListSub: Subscription;
+  paginationSub: Subscription;
+  userLogged: Subscription;
+  wathLaterLoadingSub: Subscription;
+
   msg = 'Nenhuma indicação encontrada';
 
   floatLabel = 'always';
   filterOpened: boolean;
   scollTopActive: boolean;
   isLoaded: boolean;
+  triedLogin: boolean;
+  movieWatchLaterIdActive: number;
 
   categoryEnum = categories;
   categoryArray = _.keys(categories);
@@ -93,19 +102,21 @@ export class HomeComponent implements OnInit {
     private store: Store<fromStore.HomeListState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     public dialog: MatDialog) {
-    this.moviesList$ = this.store.pipe(select(fromStore.getHomeListResponse));
+    this.moviesList$ = this.store.pipe(select(fromStore.getAllHomeList));
     this.moviesLoaded$ = this.store.pipe(select(fromStore.getHomeListLoaded));
     this.pagination$ = this.store.pipe(select(fromStore.getHomeListPagination));
     this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
+    this.wathLaterLoading$ = this.profileStore.pipe(select(fromProfileStore.getWatchLaterLoading));
 
     this.ratings = this.filters.ratings;
     this.categories = this.filters.categories;
+    this.movieWatchLaterIdActive = null;
   }
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadHomeList(this.filters));
 
-    this.moviesList$.subscribe(result => {
+    this.moviesListSub = this.moviesList$.subscribe(result => {
       if (result.length > 0) {
         this.isLoaded = false;
         let totalLoaded = 0;
@@ -126,20 +137,37 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.pagination$.subscribe(result => {
+    this.paginationSub = this.pagination$.subscribe(result => {
       if (result) {
         this.filters.currentPage = result.currentPage;
         this.filters.lastPage = result.lastPage;
       }
     });
 
-    this.userLogged$.subscribe(result => {
+    this.userLogged = this.userLogged$.subscribe(result => {
       this.isLogged = result ? true : false;
+      if (result && this.triedLogin) {
+        this.profileStore.dispatch(new fromProfileStore.LoadAllWatchLater());
+      }
     });
+
+    this.wathLaterLoadingSub = this.wathLaterLoading$.subscribe(result => {
+      if (!result) {
+        this.movieWatchLaterIdActive = null;
+      }
+    });
+
     this.formFilter = this.fb.group({
       ratings: [this.ratings],
       categories: [this.categories]
     });
+  }
+
+  ngOnDestroy() {
+    this.moviesListSub.unsubscribe();
+    this.paginationSub.unsubscribe();
+    this.userLogged.unsubscribe();
+    this.wathLaterLoadingSub.unsubscribe();
   }
 
   setExibition(exibition) {
@@ -173,11 +201,7 @@ export class HomeComponent implements OnInit {
         }
       });
     } else {
-      const dialogRef = this.dialog.open(LoginComponent, {
-        width: '90%',
-        maxWidth: '400px',
-        data: {tab: 0}
-      });
+      this.openLoginModal();
     }
   }
 
@@ -223,6 +247,28 @@ export class HomeComponent implements OnInit {
     }
 
     this.updateList();
+  }
+
+  setWatchLater(movieId: number, isActive: boolean) {
+    this.movieWatchLaterIdActive = movieId;
+    if (this.isLogged) {
+
+      this.profileStore.dispatch(new fromProfileStore.UpdateWatchLater(movieId, isActive));
+    } else {
+      this.openLoginModal();
+    }
+  }
+
+  openLoginModal() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '90%',
+      maxWidth: '400px',
+      data: {tab: 0}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.triedLogin = result;
+    });
   }
 
   scollTop() {

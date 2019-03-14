@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
           token: response.authResponse.accessToken
         };
         this.loginStore.dispatch(new fromLoginStore.Login(paramsLogin));
-        this.dialogRef.close();
+        this.dialogRef.close(true);
       } else {
         console.log('User login failed');
       }

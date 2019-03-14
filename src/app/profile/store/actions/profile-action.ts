@@ -31,7 +31,6 @@ export class ClearProfile implements Action {
     constructor() { }
 }
 
-
 export type ProfileStore =
     | LoadProfile
     | LoadProfileSuccess

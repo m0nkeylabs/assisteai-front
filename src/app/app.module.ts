@@ -46,6 +46,8 @@ import { ProfileService } from '@services/profile.service';
 import { TokenService } from '@services/token.service';
 import { IndicateService } from '@servicesindicate.service';
 
+import { WatchLaterService } from '@services/watch-later.service';
+
 import { LoadingComponent, EmptyComponent, SidenavComponent} from '@shared/components';
 import { LoginComponent } from 'app/login/login.component';
 
@@ -101,7 +103,7 @@ import { LoginComponent } from 'app/login/login.component';
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   entryComponents: [IndicateComponent, LoginComponent],
-  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService],
+  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService, WatchLaterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
