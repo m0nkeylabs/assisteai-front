@@ -50,6 +50,8 @@ import { WatchLaterService } from '@services/watch-later.service';
 
 import { LoadingComponent, EmptyComponent, SidenavComponent} from '@shared/components';
 import { LoginComponent } from 'app/login/login.component';
+import { ProfileDetailComponent } from './profile/detail/profile-detail.component';
+import { AuthGuard } from 'app/guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { LoginComponent } from 'app/login/login.component';
     LoadingComponent,
     EmptyComponent,
     LoginComponent,
-    SidenavComponent
+    SidenavComponent,
+    ProfileDetailComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +106,7 @@ import { LoginComponent } from 'app/login/login.component';
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   entryComponents: [IndicateComponent, LoginComponent],
-  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService, WatchLaterService],
+  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService, WatchLaterService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

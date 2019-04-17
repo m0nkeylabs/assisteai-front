@@ -3,6 +3,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { LoginService } from '@services/login.service';
@@ -79,6 +80,7 @@ export class LoginEffects {
         currentPage: 1,
         lastPage: null
       }));
+      this.router.navigate(['']);
       this.toastr.success('<i class="material-icons">done</i> Logout realizado com sucesso.', '', {enableHtml: true});
     })
   );
@@ -89,5 +91,6 @@ export class LoginEffects {
     private storeHome: Store<fromHome.HomeListState>,
     private service: LoginService,
     private tokenService: TokenService,
+    private router: Router,
     private toastr: ToastrService) { }
 }

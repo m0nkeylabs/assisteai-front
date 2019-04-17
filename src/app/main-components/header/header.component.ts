@@ -6,7 +6,6 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Profile } from '@models/profile';
 
-import * as fromStore from 'app/profile/store';
 import * as fromLoginStore from 'app/login/store';
 import * as fromProfileStore from 'app/profile/store';
 
@@ -21,11 +20,10 @@ export class HeaderComponent implements OnInit {
   triedLogin: boolean;
 
   constructor(
-    private store: Store<fromStore.ProfileState>,
     private profileStore: Store<fromProfileStore.ProfileState>,
     private storeLogin: Store<fromLoginStore.AuthState>,
     public dialog: MatDialog) {
-      this.userLogged$ = this.store.pipe(select(fromStore.getProfile));
+      this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
     }
 
   ngOnInit() {
