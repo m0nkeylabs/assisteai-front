@@ -1,213 +1,209 @@
 @import 'assets/scss/variables.scss';
 
-.main {
-  .filter-container {
-    position: relative;
-    margin-bottom: 10px;
+.filter-container {
+  position: relative;
+  margin-bottom: 10px;
 
-    .filter-icons {
+  .filter-icons {
+    align-items: center;
+
+    .filters {
       align-items: center;
+      justify-content: space-between;
 
-      .filters {
+      .icon-filters-container {
         align-items: center;
-        justify-content: space-between;
 
-        .icon-filters-container {
-          align-items: center;
+        .icon {
+          &:hover, &.active { color: $logo-blue; }
 
-          .icon {
-            &:hover, &.active { color: $logo-blue; }
+          &.filter-icon {
+            &:hover {
+              color: $white;
+            }
 
-            &.filter-icon {
-              &:hover {
-                color: $white;
-              }
-
-              &.active {
-                color: $white;
-              }
+            &.active {
+              color: $white;
             }
           }
-        }
-      }
-    }
-
-    .filter-options {
-      .chip-default {
-        &.active {
-          color: $white;
-
-          &.UNMISSABLE { background: $rating-7 }
-          &.VERY_GOOD { background: $rating-6 }
-          &.GOOD { background: $rating-5 }
-          &.COOL { background: $rating-4 }
-          &.BAD { background: $rating-3 }
-          &.VERY_BAD { background: $rating-2 }
-          &.STAY_AWAY { background: $rating-1 }
-
-          &.MOVIE{ background: $color-movie }
-          &.SERIE { background: $color-serie }
         }
       }
     }
   }
-  .cards-container {
-    width: calc(100% + 30px);
-    margin: 0 -15px;
 
-    .card {
+  .filter-options {
+    .chip-default {
+      &.active {
+        color: $white;
+
+        &.UNMISSABLE { background: $rating-7 }
+        &.VERY_GOOD { background: $rating-6 }
+        &.GOOD { background: $rating-5 }
+        &.COOL { background: $rating-4 }
+        &.BAD { background: $rating-3 }
+        &.VERY_BAD { background: $rating-2 }
+        &.STAY_AWAY { background: $rating-1 }
+
+        &.MOVIE{ background: $color-movie }
+        &.SERIE { background: $color-serie }
+      }
+    }
+  }
+}
+.cards-container {
+  width: calc(100% + 30px);
+  margin: 0 -15px;
+
+  .card {
+    position: relative;
+    box-sizing: border-box;
+    margin: 15px;
+    padding: 5px;
+    border-radius: $radius-default;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
+
+    .poster-container {
       position: relative;
-      box-sizing: border-box;
-      margin: 15px;
-      padding: 5px;
+      overflow: hidden;
       border-radius: $radius-default;
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
-      -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
-      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
 
-      .poster-container {
-        position: relative;
-        overflow: hidden;
+      transition: all .4s ease;
+      background-position: center;
+      background-size: cover;
+      height: 0;
+      padding-bottom: 150%;
+
+      &:hover {
+        .img-poster {
+          transform: scale(1.1, 1.1);
+          -ms-transform: scale(1.1, 1.1);
+          -webkit-transform: scale(1.1, 1.1);
+        }
+      }
+
+      .overlay {
+        position: absolute;
+        z-index: 1;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         border-radius: $radius-default;
+        color: #ffffff;
+        text-decoration: none;
+        transition: opacity .4s ease;
+        opacity: 0;
+        background: rgba(0,0,0,0.80);
+        backface-visibility: hidden;
+        display: flex;
+        align-items: center;
 
+        &:hover {
+          opacity: 1;
+        }
+
+        .poster-detail {
+          align-items: center;
+          justify-content: space-between;
+          padding: 15px;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+
+          .poster-title {
+            text-align: center;
+          }
+
+          .poster-chip {
+            padding: 3px 6px;
+            border-radius: $radius-default;
+          }
+
+          .rating-container {
+            text-align: center;
+
+            .poster-chip {
+              display: block;
+              margin-top: 5px;
+
+              &:nth-child(2) {
+                margin-bottom: 15px;
+              }
+
+            }
+          }
+
+          .poster-actions {
+            justify-content: space-around;
+            width: 100%;
+
+            a, button {
+              border: 0;
+              padding: 0;
+              background: none;
+              color: $white;
+              cursor: pointer;
+              outline: none;
+
+              &:hover {
+                &.watch-later { color: $logo-pink; }
+                &.indicate-now { color: $logo-green; }
+                &.more-details{ color: $logo-blue; }
+              }
+            }
+
+            button {
+              &.active {
+                &.watch-later { color: $logo-pink; }
+              }
+            }
+          }
+        }
+      }
+
+      .img-poster {
         transition: all .4s ease;
         background-position: center;
         background-size: cover;
-        height: 0;
         padding-bottom: 150%;
-
-        &:hover {
-          .img-poster {
-            transform: scale(1.1, 1.1);
-            -ms-transform: scale(1.1, 1.1);
-            -webkit-transform: scale(1.1, 1.1);
-          }
-        }
-
-        .overlay {
-          position: absolute;
-          z-index: 1;
-          top:0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border-radius: $radius-default;
-          color: #ffffff;
-          text-decoration: none;
-          transition: opacity .4s ease;
-          opacity: 0;
-          background: rgba(0,0,0,0.80);
-          backface-visibility: hidden;
-          display: flex;
-          align-items: center;
-
-          &:hover {
-            opacity: 1;
-          }
-
-          .poster-detail {
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-
-            .poster-title {
-              text-align: center;
-            }
-
-            .poster-chip {
-              padding: 3px 6px;
-              border-radius: $radius-default;
-            }
-
-            .rating-container {
-              text-align: center;
-
-              .poster-chip {
-                display: block;
-                margin-top: 5px;
-
-                &:nth-child(2) {
-                  margin-bottom: 15px;
-                }
-
-              }
-            }
-
-            .poster-actions {
-              justify-content: space-around;
-              width: 100%;
-
-              a, button {
-                border: 0;
-                padding: 0;
-                background: none;
-                color: $white;
-                cursor: pointer;
-                outline: none;
-
-                &:hover {
-                  &.watch-later { color: $logo-pink; }
-                  &.indicate-now { color: $logo-green; }
-                  &.more-details{ color: $logo-blue; }
-                }
-              }
-
-              button {
-                &.active {
-                  &.watch-later { color: $logo-pink; }
-                }
-              }
-            }
-          }
-        }
-
-        .img-poster {
-          transition: all .4s ease;
-          background-position: center;
-          background-size: cover;
-          padding-bottom: 150%;
-          width: 100.5%;
-          backface-visibility: hidden;
-        }
+        width: 100.5%;
+        backface-visibility: hidden;
       }
     }
   }
 }
 
 @media (max-width: 480px) {
-  .main {
-    .filter-icons {
-      flex-direction: column;
+  .filter-icons {
+    flex-direction: column;
 
-      mat-form-field {
-        margin-right: 0 !important;
-        margin-bottom: 10px;
-      }
+    mat-form-field {
+      margin-right: 0 !important;
+      margin-bottom: 10px;
     }
+  }
 
-    .cards-container {
-      width: calc(100% + 14px);
-      margin: 0 -7px;
+  .cards-container {
+    width: calc(100% + 14px);
+    margin: 0 -7px;
 
-      .card {
-        margin: 7px;
-        flex: 1 0 $width-2-columns;
-        max-width: calc(#{$width-2-columns} - 14px);
+    .card {
+      margin: 7px;
+      flex: 1 0 $width-2-columns;
+      max-width: calc(#{$width-2-columns} - 14px);
 
-        .poster-container {
+      .poster-container {
+        padding-bottom: 180% !important;
+
+        .img-poster {
           padding-bottom: 180% !important;
-
-          .img-poster {
-            padding-bottom: 180% !important;
-          }
         }
+      }
 
-        .poster-title, .poster-chip, .rating-container {
-          font-size: 12px;
-        }
+      .poster-title, .poster-chip, .rating-container {
+        font-size: 12px;
       }
     }
   }

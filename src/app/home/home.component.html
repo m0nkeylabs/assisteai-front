@@ -19,24 +19,6 @@
           <button mat-button cdkFocusInitial class="btn-default col-md-6 margin-left-1" type="submit">Filtrar</button>
         </div>
       </form>
-
-      <!-- <div class="flex-row filter-options">
-        <div class="form-group margin-right-2">
-            <mat-chip-list>
-              <mat-chip *ngFor="let rating of ratingArray" class="chip-default {{rating}}" [ngClass]="{'active': isRatingActive(rating)}" (click)='updateRatingFilter(rating)'>
-                {{rantingEnum[rating]}}
-              </mat-chip>
-            </mat-chip-list>
-        </div>
-        <span class="divider margin-right-2"></span>
-        <div class="form-group">
-            <mat-chip-list>
-              <mat-chip *ngFor="let category of categoryArray" class="chip-default {{category}}" [ngClass]="{'active': isCategoryActive(category)}" (click)='updateCategoryFilter(category)'>
-                {{categoryEnum[category]}}
-              </mat-chip>
-            </mat-chip-list>
-        </div>
-      </div> -->
   </app-sidenav>
 
   <section class="filter-container flex-column">

@@ -16,6 +16,12 @@ export class ProfileService {
     return this.http.get<any>('https://api.assisteai.com.br/auth/me', {headers: token});
   }
 
+  updateProfile(profile): Observable<any> {
+    const token = this.tokenService.getHeader();
+
+    return this.http.post<any>('https://api.assisteai.com.br/auth/me', {profile}, {headers: token});
+  }
+
   updateWatchLater(movieId: number, isActive: boolean): Observable<any> {
     const token = this.tokenService.getHeader();
 

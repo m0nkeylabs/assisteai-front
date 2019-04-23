@@ -1,0 +1,84 @@
+@import 'assets/scss/variables.scss';
+
+.container-detail {
+  margin: 0 auto;
+  width: 90%;
+  box-sizing: border-box;
+  align-items: center;
+  color: $white;
+
+  .flex-row {
+    align-items: center;
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      border-width: 4px;
+      border-style: solid;
+    }
+
+    .detail {
+      div {
+        label {
+          font-size: 13px;
+
+          &.label-theme {
+            margin-bottom: 5px;
+          }
+        }
+        span {
+          &.title-profile-detail { font-size: 22px; }
+          &.subtitle-profile-detail {font-size: 16px; }
+        }
+
+        .btn-theme {
+          border: 0;
+          width: 70px;
+          color: $white;
+          transition: all .4s ease;
+          outline: none;
+
+          &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    &.container-statistic {
+      justify-content: flex-end;
+
+      .detail-statistic {
+        align-items: center;
+        text-align: center;
+
+        span:first-child {
+          font-size: 25px;
+          font-weight: $bold
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container-detail {
+    .flex-row {
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .detail {
+        align-items: center;
+      }
+
+      &.container-statistic {
+        margin-top: 20px;
+      }
+    }
+  }
+}

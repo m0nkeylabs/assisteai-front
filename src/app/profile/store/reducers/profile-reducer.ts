@@ -20,14 +20,16 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(state = initialState, action: fromActions.ProfileStore): State {
     switch (action.type) {
-        case fromActions.LOAD_PROFILE: {
+        case fromActions.LOAD_PROFILE:
+        case fromActions.UPDATE_PROFILE: {
             return {
                 ...state,
                 loading: true
             };
         }
 
-        case fromActions.LOAD_PROFILE_SUCCESS: {
+        case fromActions.LOAD_PROFILE_SUCCESS:
+        case fromActions.UPDATE_PROFILE_SUCCESS: {
             return {
                 ...state,
                 loading: false,
@@ -44,6 +46,14 @@ export function reducer(state = initialState, action: fromActions.ProfileStore):
                 profile: null,
             };
         }
+
+        case fromActions.UPDATE_PROFILE_FAIL: {
+          return {
+            ...state,
+            loading: false
+          };
+        }
+
         default: {
             return state;
         }

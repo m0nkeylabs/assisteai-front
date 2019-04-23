@@ -33,6 +33,25 @@ export class ProfileEffects {
     })
   );
 
+  @Effect()
+  updateProfile$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.UPDATE_PROFILE),
+    switchMap((params: fromActions.UpdateProfile) =>
+      this.service.updateProfile(params.profile).pipe(
+        map((response: Profile) => new fromActions.UpdateProfileSuccess(response)),
+        catchError(error => of(new fromActions.UpdateProfileFail(error)))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  updateProfileFail$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.UPDATE_PROFILE_FAIL),
+    tap((action: fromActions.UpdateProfileFail) => {
+      this.toastr.error('<i class="material-icons">error</i> Erro ao atualizar seus dados.', '', {enableHtml: true});
+    })
+  );
+
   constructor(
     private actions$: Actions,
     private service: ProfileService,
