@@ -10,6 +10,7 @@ body {
   scroll-behavior: smooth;
 
   .main {
+    position: relative;
     margin: 30px auto;
     width: 90%;
     overflow: hidden;
@@ -39,6 +40,7 @@ body {
   .margin-top-2 { margin-top: 20px; }
 
   .margin-bottom-none { margin-bottom: 0; }
+  .margin-bottom-05 { margin-block-end: 5px; }
   .margin-bottom-1 { margin-bottom: 10px; }
   .margin-bottom-2 { margin-bottom: 20px; }
 
@@ -64,11 +66,11 @@ body {
   .category-movie { background: $color-movie; }
   .category-serie { background: $color-serie; }
 
-  .bg-yellow { background-color: $logo-yellow; }
-  .bg-green { background-color: $logo-green; }
-  .bg-pink { background-color: $logo-pink; }
-  .bg-red { background-color: $logo-red; }
-  .bg-blue { background-color: $logo-blue; }
+  .bg-yellow, .bg-YELLOW { background-color: $logo-yellow; }
+  .bg-green, .bg-GREEN { background-color: $logo-green; }
+  .bg-pink, .bg-PINK { background-color: $logo-pink; }
+  .bg-red, .bg-RED { background-color: $logo-red; }
+  .bg-blue, .bg-BLUE { background-color: $logo-blue; }
 
   .bg-gray { background-color: $logo-gray; }
   .bg-dark-gray { background-color: $logo-dark-gray; }
@@ -78,6 +80,14 @@ body {
   .bd-PINK { border-color: $logo-pink; }
   .bd-RED { border-color: $logo-red; }
   .bd-BLUE { border-color: $logo-blue; }
+
+  .profile-image {
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
 
   app-loading {
     width: 100%; margin: 20px 0;

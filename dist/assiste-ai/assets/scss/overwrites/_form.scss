@@ -58,7 +58,7 @@ input:-webkit-autofill {
     .mat-option {
       color: $darkest-gray;
 
-      &.mat-selected:not(.mat-option-disabled) { color: $darkest-gray-border; font-weight: 700; }
+      &.mat-selected:not(.mat-option-disabled) { color: $darkest-gray-border; font-weight: $bold; }
 
       &.checkbox-1 .mat-pseudo-checkbox-checked { background: $rating-1 }
       &.checkbox-2 .mat-pseudo-checkbox-checked { background: $rating-2 }
