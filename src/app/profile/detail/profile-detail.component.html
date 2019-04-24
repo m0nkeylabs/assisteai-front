@@ -1,5 +1,5 @@
 <section class="{{utils.getClassBgTheme((userLogged$ | async).theme)}}" *ngIf="(userLogged$ | async)">
-  <div class="container-detail padding-2 flex-row flex-wrap">
+  <div class="container-detail padding-2 flex-row flex-wrap padding-left-none padding-right-none">
     <div class="flex-row col-md-6 col-sm-12">
       <div class="profile-image bd-{{(userLogged$ | async).theme}} margin-right-1">
         <img src="{{(userLogged$ | async).avatar}}">

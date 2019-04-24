@@ -55,6 +55,9 @@ body {
   .padding-1 { padding: 10px; }
   .padding-2 { padding: 20px; }
 
+  .padding-left-none { padding-left: 0; }
+  .padding-right-none { padding-right: 0; }
+
   .rating-1 { background: $rating-1 }
   .rating-2 { background: $rating-2 }
   .rating-3 { background: $rating-3 }
