@@ -49,7 +49,7 @@ input:-webkit-autofill {
 
 .cdk-overlay-pane {
   transform: inherit !important;
-  overflow: hidden; // BUG Resize
+  // overflow: hidden; // BUG Resize
 
   .panel-dark {
     background: $gray;
