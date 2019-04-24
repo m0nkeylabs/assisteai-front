@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Profile } from '@models/profile';
 
+import * as utilsFunctions from '@shared/utils';
 import * as fromLoginStore from 'app/login/store';
 import * as fromProfileStore from 'app/profile/store';
 
@@ -16,6 +17,7 @@ import * as fromProfileStore from 'app/profile/store';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  utils = utilsFunctions;
   userLogged$: Observable<Profile>;
   triedLogin: boolean;
 

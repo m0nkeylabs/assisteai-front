@@ -78,6 +78,10 @@
 
       &.container-statistic {
         margin-top: 20px;
+
+        .detail-statistic:nth-child(1), .detail-statistic:nth-child(2) {
+          margin-bottom: 20px;
+        }
       }
     }
   }

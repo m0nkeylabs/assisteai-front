@@ -1,4 +1,4 @@
-<section class="{{setBgContainer((userLogged$ | async).theme)}}" *ngIf="(userLogged$ | async)">
+<section class="{{utils.getClassBgTheme((userLogged$ | async).theme)}}" *ngIf="(userLogged$ | async)">
   <div class="container-detail padding-2 flex-row flex-wrap">
     <div class="flex-row col-md-6 col-sm-12">
       <div class="profile-image bd-{{(userLogged$ | async).theme}} margin-right-1">
@@ -15,19 +15,19 @@
       </div>
     </div>
     <div class="flex-row col-md-6 col-sm-12 container-statistic">
-        <div class="flex-column col-md-3 detail-statistic">
+        <div class="flex-column col-md-6 detail-statistic">
             <span>43</span>
-            <span>Assisti depois</span>
+            <span>Assistir depois</span>
         </div>
-        <div class="flex-column col-md-3 detail-statistic">
+        <div class="flex-column col-md-6 detail-statistic">
             <span>13</span>
             <span>Indicações</span>
         </div>
-        <div class="flex-column col-md-3 detail-statistic">
+        <div class="flex-column col-md-6 detail-statistic">
             <span>123</span>
             <span>Seguindo</span>
         </div>
-        <div class="flex-column col-md-3 detail-statistic">
+        <div class="flex-column col-md-6 detail-statistic">
             <span>552</span>
             <span>Seguidores</span>
         </div>

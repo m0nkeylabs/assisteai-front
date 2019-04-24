@@ -81,3 +81,28 @@ export function  getClassCheckbox(option: string) {
 
   return ratingClass;
 }
+
+export function  getClassBgTheme(theme: string) {
+  let themeClass: string;
+  switch (theme) {
+    case 'YELLOW':
+      themeClass = 'bg-yellow';
+      break;
+    case 'GREEN':
+      themeClass = 'bg-green';
+      break;
+    case 'PINK':
+      themeClass = 'bg-pink';
+      break;
+    case 'RED':
+      themeClass = 'bg-red';
+      break;
+    case 'BLUE':
+      themeClass = 'bg-blue';
+      break;
+    default:
+      break;
+  }
+
+  return themeClass;
+}
