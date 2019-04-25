@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import 'hammerjs';
@@ -10,6 +10,8 @@ import * as fromHomeStore from 'app/home/store';
 import * as fromLoginStore from 'app/login/store';
 import * as fromProfileStore from 'app/profile/store';
 import * as fromIndicateStore from 'app/indicate/store';
+
+import localeBr from '@angular/common/locales/pt';
 
 import {
   MatIconModule,
@@ -52,6 +54,8 @@ import { LoadingComponent, EmptyComponent, SidenavComponent} from '@shared/compo
 import { LoginComponent } from 'app/login/login.component';
 import { ProfileDetailComponent } from './profile/detail/profile-detail.component';
 import { AuthGuard } from 'app/guards/auth-guard.service';
+
+registerLocaleData(localeBr, 'pt');
 
 @NgModule({
   declarations: [
@@ -106,7 +110,8 @@ import { AuthGuard } from 'app/guards/auth-guard.service';
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   entryComponents: [IndicateComponent, LoginComponent],
-  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService, WatchLaterService, AuthGuard],
+  providers: [HomeService, LoginService, IndicateService, ProfileService, TokenService, WatchLaterService, AuthGuard,
+    { provide: LOCALE_ID, useValue: 'pt'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

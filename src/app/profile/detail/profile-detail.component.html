@@ -10,7 +10,7 @@
           <span></span>
         </div>
         <div class="flex-column margin-bottom-05">
-          <span class="subtitle-profile-detail">Membro desde Janeiro 30, 2019</span>
+          <span class="subtitle-profile-detail">Membro desde {{formatDate((userLogged$ | async).created_at | date: 'mediumDate')}}</span>
         </div>
       </div>
     </div>
@@ -24,11 +24,11 @@
             <span>Indicações</span>
         </div>
         <div class="flex-column col-md-6 detail-statistic">
-            <span>123</span>
+            <span>0</span>
             <span>Seguindo</span>
         </div>
         <div class="flex-column col-md-6 detail-statistic">
-            <span>552</span>
+            <span>0</span>
             <span>Seguidores</span>
         </div>
 
@@ -36,5 +36,16 @@
   </div>
 </section>
 <main class="main">
-
+  <mat-tab-group class="tab-login" animationDuration="1500ms" [selectedIndex]="tabActive">
+    <mat-tab label="Perfil">
+    </mat-tab>
+    <mat-tab label="Assistir depois">
+    </mat-tab>
+    <mat-tab label="Indicações">
+    </mat-tab>
+    <mat-tab label="Seguindo">
+    </mat-tab>
+    <mat-tab label="Seguidores">
+    </mat-tab>
+  </mat-tab-group>
 </main>

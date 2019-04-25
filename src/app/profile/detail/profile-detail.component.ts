@@ -26,4 +26,8 @@ export class ProfileDetailComponent implements OnInit {
     profile.theme = theme;
     this.profileStore.dispatch(new fromProfileStore.UpdateProfile(profile));
   }
+
+  formatDate(date) {
+    return date;
+  }
 }
