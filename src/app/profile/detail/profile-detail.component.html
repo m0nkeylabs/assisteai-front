@@ -35,11 +35,98 @@
     </div>
   </div>
 </section>
-<main class="main">
-  <mat-tab-group class="tab-login" animationDuration="1500ms" [selectedIndex]="tabActive">
-    <mat-tab label="Perfil">
+<main class="main" *ngIf="(userLogged$ | async)">
+  <mat-tab-group class="tab-profile" animationDuration="0ms" [selectedIndex]="tabActive"
+    [ngClass]="{'YELLOW': (userLogged$ | async).theme === 'YELLOW',
+                'GREEN': (userLogged$ | async).theme === 'GREEN',
+                'PINK': (userLogged$ | async).theme === 'PINK',
+                'RED': (userLogged$ | async).theme === 'RED',
+                'BLUE': (userLogged$ | async).theme === 'BLUE'}">
+    <mat-tab label="Conta">
+      <div class="flex-row flex-wrap">
+        <div class="col-md-6 col-sm-12 column-left">
+          <section class="flex-column">
+              <h1 class="title-section margin-bottom-none">Acesso e segurança</h1>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Nome</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('name')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Defina como você quer ser identificado</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'name'}"  style="--teste: 200px;">11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111</div>
+              </div>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">E-mail</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('email')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Defina um e-mail para contato caso tenha problemas em sua conta</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'email'}"  style="--teste: 900px;">11111<br />11111</div>
+              </div>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Avatar</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('avatar')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Escolha um avatar que te represente ou utize uma foto sua</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'avatar'}">11111<br />11111</div>
+              </div>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Tema do seu perfil</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('theme')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Escolha uma cor que goste para seu perfil</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'theme'}">11111<br />11111</div>
+              </div>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Alterar senha</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('password')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Defina uma senha para proteger sua conta</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'password'}">11111<br />11111</div>
+              </div>
+          </section>
+        </div>
+        <div class="col-md-6 col-sm-12 column-right">
+          <section class="flex-column margin-bottom-2">
+              <h1 class="title-section margin-bottom-none">Preferências do site</h1>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Idioma</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('language')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Selecione o idioma que deseja usar</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'language'}">11111<br />11111</div>
+              </div>
+          </section>
+          <section class="flex-column">
+              <h1 class="title-section margin-bottom-none">Gerenciamento da conta</h1>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Rede social</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('social')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Desvincule sua rede social de sua conta Assiste ai</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'social'}">11111<br />11111</div>
+              </div>
+              <div class="item flex-column">
+                <div class="flex-row col-md-12 header-icon">
+                  <span class="title-item col-md-11">Encerrar sua conta do Assiste ai</span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('endAccount')">edit</mat-icon></span>
+                </div>
+                <span class="subtitle-item">Encerre sua conta caso deseje</span>
+                <div class="form" [ngClass]="{'active': formOpenned === 'endAccount'}">11111<br />11111</div>
+              </div>
+          </section>
+        </div>
+      </div>
     </mat-tab>
     <mat-tab label="Assistir depois">
+        <h1 class="title-section">Aaa</h1>
+        <h1 class="title-section">Pbbb</h1>
+        <h1 class="title-section">ccc</h1>
     </mat-tab>
     <mat-tab label="Indicações">
     </mat-tab>

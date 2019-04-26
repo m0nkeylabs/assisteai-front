@@ -1,8 +1,5 @@
-.tab-login {
-  .mat-tab-label {
-    width: 50%;
-  }
-}
+.tab-login { .mat-tab-label { width: 50%; } }
+.tab-profile { .mat-tab-label { width: 20%; } }
 
 .mat-tab-group {
   .mat-tab-header {
@@ -31,7 +28,7 @@
         overflow: visible;
       }
 
-      &.mat-tab-body-active { opacity: 1;}
+      &.mat-tab-body-active { opacity: 1; overflow-y: inherit;}
     }
   }
 
@@ -40,4 +37,10 @@
       background-color: $logo-yellow;
     }
   }
+
+  &.YELLOW { &.mat-ink-bar { background-color: $logo-yellow; } }
+  &.GREEN { .mat-ink-bar { background-color: $logo-green; } }
+  &.PINK { .mat-ink-bar { background-color: $logo-pink; } }
+  &.RED { .mat-ink-bar { background-color: $logo-red; } }
+  &.BLUE { .mat-ink-bar { background-color: $logo-blue; } }
 }

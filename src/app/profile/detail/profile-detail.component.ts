@@ -14,6 +14,8 @@ import * as fromProfileStore from 'app/profile/store';
 export class ProfileDetailComponent implements OnInit {
   utils = utilsFunctions;
   userLogged$: Observable<Profile>;
+  tabActive: number;
+  formOpenned: string;
 
   constructor(private profileStore: Store<fromProfileStore.ProfileState>) {
     this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
@@ -29,5 +31,14 @@ export class ProfileDetailComponent implements OnInit {
 
   formatDate(date) {
     return date;
+  }
+
+  getClass(classe) {
+    console.log(classe);
+    return classe;
+  }
+
+  openForm(form) {
+    this.formOpenned = this.formOpenned === form ? '' : form;
   }
 }
