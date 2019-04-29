@@ -53,7 +53,11 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('name')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Defina como você quer ser identificado</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'name'}"  style="--teste: 200px;">11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'name'}" [ngStyle]="{'max-height': heightForms.name}">
+                  <div class="container-name">
+                    11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111
+                  </div>
+                </div>
               </div>
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
@@ -61,7 +65,11 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('email')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Defina um e-mail para contato caso tenha problemas em sua conta</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'email'}"  style="--teste: 900px;">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'email'}" [ngStyle]="{'max-height': heightForms.email}">
+                  <div class="container-email">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
@@ -69,7 +77,11 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('avatar')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Escolha um avatar que te represente ou utize uma foto sua</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'avatar'}">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'avatar'}" [ngStyle]="{'max-height': heightForms.avatar}">
+                  <div class="container-avatar">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
@@ -77,7 +89,11 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('theme')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Escolha uma cor que goste para seu perfil</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'theme'}">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'theme'}" [ngStyle]="{'max-height': heightForms.theme}">
+                  <div class="container-theme">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
@@ -85,7 +101,11 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('password')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Defina uma senha para proteger sua conta</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'password'}">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'password'}" [ngStyle]="{'max-height': heightForms.password}">
+                  <div class="container-password">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
           </section>
         </div>
@@ -98,7 +118,11 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('language')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Selecione o idioma que deseja usar</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'language'}">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'language'}" [ngStyle]="{'max-height': heightForms.language}">
+                  <div class="container-language">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
           </section>
           <section class="flex-column">
@@ -109,15 +133,23 @@
                   <span class="action-item col-md-1"><mat-icon (click)="openForm('social')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Desvincule sua rede social de sua conta Assiste ai</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'social'}">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'social'}" [ngStyle]="{'max-height': heightForms.social}">
+                  <div class="container-social">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Encerrar sua conta do Assiste ai</span>
-                  <span class="action-item col-md-1"><mat-icon (click)="openForm('endAccount')">edit</mat-icon></span>
+                  <span class="action-item col-md-1"><mat-icon (click)="openForm('account')">edit</mat-icon></span>
                 </div>
                 <span class="subtitle-item">Encerre sua conta caso deseje</span>
-                <div class="form" [ngClass]="{'active': formOpenned === 'endAccount'}">11111<br />11111</div>
+                <div class="form" [ngClass]="{'active': formOpenned === 'account'}" [ngStyle]="{'max-height': heightForms.account}">
+                  <div class="container-account">
+                    11111<br />11111
+                  </div>
+                </div>
               </div>
           </section>
         </div>

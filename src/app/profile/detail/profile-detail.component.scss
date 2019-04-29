@@ -120,12 +120,11 @@
       .form {
         opacity: 0;
         max-height: 0px;
-        transition: opacity 1s ease, max-height 1s ease;
+        transition: opacity .8s ease, max-height .8s ease;
         overflow: hidden;
 
         &.active {
           opacity: 1;
-          max-height: var(--teste);
         }
       }
     }
