@@ -35,19 +35,6 @@
           &.title-profile-detail { font-size: 22px; }
           &.subtitle-profile-detail {font-size: 16px; }
         }
-
-        .btn-theme {
-          border: 0;
-          width: 70px;
-          color: $white;
-          transition: all .4s ease;
-          outline: none;
-
-          &:hover {
-            opacity: 0.7;
-            cursor: pointer;
-          }
-        }
       }
     }
 
@@ -125,6 +112,23 @@
 
         &.active {
           opacity: 1;
+        }
+
+        .btn-theme {
+          border: 0;
+          width: 70px;
+          color: $white;
+          transition: all .4s ease;
+          outline: none;
+          margin: 5px;
+
+          &:first-child { margin-left: 0; }
+          &:last-child { margin-right: 0; }
+
+          &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+          }
         }
       }
     }
