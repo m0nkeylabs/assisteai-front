@@ -18,7 +18,7 @@ export class ProfileService {
 
   updateProfile(profile): Observable<any> {
     const token = this.tokenService.getHeader();
-    return this.http.put<any>('https://api.assisteai.com.br/users', {profile}, {headers: token});
+    return this.http.put<any>('https://api.assisteai.com.br/users', profile, {headers: token});
   }
 
   updateWatchLater(movieId: number, isActive: boolean): Observable<any> {

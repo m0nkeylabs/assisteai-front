@@ -38,7 +38,7 @@ export class ProfileEffects {
     ofType(fromActions.UPDATE_PROFILE),
     switchMap((params: fromActions.UpdateProfile) =>
       this.service.updateProfile(params.profile).pipe(
-        map((response: Profile) => new fromActions.UpdateProfileSuccess(response)),
+        map((response: any) => new fromActions.UpdateProfileSuccess(response.user)),
         catchError(error => of(new fromActions.UpdateProfileFail(error)))
       )
     )
