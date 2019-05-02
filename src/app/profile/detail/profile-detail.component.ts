@@ -39,7 +39,7 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userLoggedSub = this.userLogged$.subscribe(r => {
-      this.profile = r;
+      this.profile = _.cloneDeep(r);
     });
   }
 
@@ -61,9 +61,8 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   }
 
   updateTheme(theme) {
-    const newProfile = _.cloneDeep(this.profile);
-    newProfile.theme = theme;
-    this.updateProfile(newProfile);
+    this.profile.theme = theme;
+    this.updateProfile(this.profile);
   }
 
   setHeight(form) {

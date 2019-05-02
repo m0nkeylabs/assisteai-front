@@ -91,8 +91,8 @@
                 <span class="subtitle-item">Escolha uma cor que goste para seu perfil</span>
                 <div class="form" [ngClass]="{'active': formOpenned === 'theme'}" [ngStyle]="{'max-height': heightForms.theme}">
                   <div class="container-theme margin-top-1">
-                    <div class="flex-row col-md-12 flex-wrap">
-                      <button class="btn-theme bg-{{color}}" *ngFor="let color of colorsTheme" (click)='updateTheme(color)'><mat-icon *ngIf="(userLogged$ | async).theme === color">done</mat-icon></button>
+                    <div class="flex-row col-md-12">
+                      <button class="btn-theme bg-{{color}} flex-row" *ngFor="let color of colorsTheme" (click)='updateTheme(color)'><mat-icon *ngIf="(userLogged$ | async).theme === color">done</mat-icon></button>
                     </div>
                   </div>
                 </div>
