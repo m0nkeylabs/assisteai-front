@@ -39,6 +39,14 @@
       }
     }
   }
+
+  &.mat-form-field-invalid  {
+    &.not-label {
+      .mat-form-field-outline-start { border: 1px solid $invalid-color !important; border-right-style: none !important;}
+      .mat-form-field-outline-gap { border: 1px solid $invalid-color !important; border-left-style: none !important; border-right-style: none !important; }
+      .mat-form-field-outline-end { border: 1px solid $invalid-color !important; border-left-style: none !important; }
+    }
+  }
 }
 
 input:-webkit-autofill {

@@ -47,6 +47,7 @@
         <div class="col-md-6 col-sm-12 column-left">
           <section class="flex-column">
               <h1 class="title-section margin-bottom-none">Acesso e segurança</h1>
+              <!-- Name -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Nome</span>
@@ -54,11 +55,17 @@
                 </div>
                 <span class="subtitle-item">Defina como você quer ser identificado</span>
                 <div class="form" [ngClass]="{'active': formOpenned === 'name'}" [ngStyle]="{'max-height': heightForms.name}">
-                  <div class="container-name">
-                    11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111<br />11111
+                  <div class="container-name margin-top-1 padding-h-1">
+                    <form [formGroup]="formName" (submit)="updateName()" class="flex-column">
+                      <mat-form-field appearance="outline" class="col-md-8 col-sm-12 not-label">
+                        <input matInput autocomplete="off" formControlName='name' placeholder="Escreva seu nome">
+                      </mat-form-field>
+                      <button mat-button class="btn-default margin-top-1" type="submit">Atualizar</button>
+                    </form>
                   </div>
                 </div>
               </div>
+              <!-- Email -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">E-mail</span>
@@ -71,6 +78,7 @@
                   </div>
                 </div>
               </div>
+              <!-- Avatar -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Avatar</span>
@@ -83,6 +91,7 @@
                   </div>
                 </div>
               </div>
+              <!-- Theme -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Tema do seu perfil</span>
@@ -91,8 +100,8 @@
                 <span class="subtitle-item">Escolha uma cor que goste para seu perfil</span>
                 <div class="form" [ngClass]="{'active': formOpenned === 'theme'}" [ngStyle]="{'max-height': heightForms.theme}">
                   <div class="container-theme margin-top-1">
-                    <div class="flex-row col-md-12">
-                      <button class="btn-theme bg-{{color}} flex-row" *ngFor="let color of colorsTheme" (click)='updateTheme(color)'><mat-icon *ngIf="(userLogged$ | async).theme === color">done</mat-icon></button>
+                    <div class="flex-row col-md-12 flex-wrap">
+                      <button class="btn-theme bg-{{color}}" *ngFor="let color of colorsTheme" (click)='updateTheme(color)'><mat-icon *ngIf="(userLogged$ | async).theme === color">done</mat-icon></button>
                     </div>
                   </div>
                 </div>
@@ -114,6 +123,7 @@
         <div class="col-md-6 col-sm-12 column-right">
           <section class="flex-column margin-bottom-2">
               <h1 class="title-section margin-bottom-none">Preferências do site</h1>
+              <!-- Lenguage -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Idioma</span>
@@ -129,6 +139,7 @@
           </section>
           <section class="flex-column">
               <h1 class="title-section margin-bottom-none">Gerenciamento da conta</h1>
+              <!-- Social -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Rede social</span>
@@ -141,6 +152,7 @@
                   </div>
                 </div>
               </div>
+              <!-- Close Account -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Encerrar sua conta do Assiste ai</span>

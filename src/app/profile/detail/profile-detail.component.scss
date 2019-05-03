@@ -114,9 +114,12 @@
           opacity: 1;
         }
 
+        form { align-items: flex-start; }
+
         .btn-theme {
           border: 0;
           width: 70px;
+          height: 27px;
           color: $white;
           transition: all .4s ease;
           outline: none;

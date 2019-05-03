@@ -56,8 +56,12 @@ body {
   .padding-1 { padding: 10px; }
   .padding-2 { padding: 20px; }
 
+  .padding-h-1 { padding: 0 10px; }
+  .padding-v-1 { padding: 10px 0; }
+
   .padding-left-none { padding-left: 0; }
   .padding-right-none { padding-right: 0; }
+
 
   .rating-1 { background: $rating-1 }
   .rating-2 { background: $rating-2 }

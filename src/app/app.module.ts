@@ -23,7 +23,8 @@ import {
   MatSelectModule,
   MatTooltipModule,
   MatTabsModule,
-  MatMenuModule
+  MatMenuModule,
+  MatExpansionModule
 } from '@angular/material';
 
 import {
@@ -88,6 +89,7 @@ registerLocaleData(localeBr, 'pt');
     MatSelectModule,
     MatTabsModule,
     MatMenuModule,
+    MatExpansionModule,
 
     ToastNoAnimationModule,
     ToastrModule.forRoot({

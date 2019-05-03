@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Profile } from '@models/profile';
@@ -14,6 +15,9 @@ import * as _ from 'lodash';
 })
 export class ProfileDetailComponent implements OnInit, OnDestroy {
 
+  formName: FormGroup;
+
+  lastForm = '';
   utils = utilsFunctions;
   userLogged$: Observable<Profile>;
   userLoggedSub: Subscription;
@@ -33,18 +37,29 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   };
   colorsTheme = ['YELLOW', 'GREEN', 'PINK', 'RED', 'BLUE'];
 
-  constructor(private profileStore: Store<fromProfileStore.ProfileState>) {
+  constructor(private profileStore: Store<fromProfileStore.ProfileState>, private fb: FormBuilder) {
     this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
   }
 
   ngOnInit() {
     this.userLoggedSub = this.userLogged$.subscribe(r => {
-      this.profile = _.cloneDeep(r);
+      if (r) {
+        this.profile = _.cloneDeep(r);
+        this.setValueForms();
+      }
+    });
+
+    this.formName = this.fb.group({
+      name: ['' , [Validators.required, Validators.minLength(3)]]
     });
   }
 
   ngOnDestroy() {
     this.userLoggedSub.unsubscribe();
+  }
+
+  setValueForms() {
+    this.formName.controls.name.setValue(this.profile.name);
   }
 
   updateProfile(profile) {
@@ -56,7 +71,9 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
   }
 
   openForm(form) {
-    this.setHeight(form);
+    this.heightForms = { name: '0', email: '0', avatar: '0', theme: '0', password: '0', language: '0', social: '0', account: '0' };
+    this.lastForm = form;
+    this.setHeight(form, this.formOpenned);
     this.formOpenned = this.formOpenned === form ? '' : form;
   }
 
@@ -65,44 +82,57 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
     this.updateProfile(this.profile);
   }
 
-  setHeight(form) {
+  updateName() {
+    if (this.formName.valid) {
+      this.profile.name = this.formName.controls.name.value;
+      this.updateProfile(this.profile);
+    }
+  }
+
+  setHeight(form, formOpenned) {
     let height = '';
-    this.heightForms = { name: '0', email: '0', avatar: '0', theme: '0', password: '0', language: '0', social: '0', account: '0' };
     switch (form) {
       case 'name':
         height = (document.getElementsByClassName('container-name')[0].clientHeight + 10) + 'px';
-        this.heightForms.name = this.formOpenned !== 'name' ? height : '0';
+        this.heightForms.name = formOpenned !== 'name' ? height : '0';
         break;
       case 'email':
         height = (document.getElementsByClassName('container-email')[0].clientHeight + 10) + 'px';
-        this.heightForms.email = this.formOpenned !== 'email' ? height : '0';
+        this.heightForms.email = formOpenned !== 'email' ? height : '0';
         break;
       case 'avatar':
         height = (document.getElementsByClassName('container-avatar')[0].clientHeight + 10) + 'px';
-        this.heightForms.avatar = this.formOpenned !== 'avatar' ? height : '0';
+        this.heightForms.avatar = formOpenned !== 'avatar' ? height : '0';
         break;
       case 'theme':
         height = (document.getElementsByClassName('container-theme')[0].clientHeight + 10) + 'px';
-        this.heightForms.theme = this.formOpenned !== 'theme' ? height : '0';
+        this.heightForms.theme = formOpenned !== 'theme' ? height : '0';
         break;
       case 'password':
         height = (document.getElementsByClassName('container-password')[0].clientHeight + 10) + 'px';
-        this.heightForms.password = this.formOpenned !== 'password' ? height : '0';
+        this.heightForms.password = formOpenned !== 'password' ? height : '0';
         break;
       case 'language':
         height = (document.getElementsByClassName('container-language')[0].clientHeight + 10) + 'px';
-        this.heightForms.language = this.formOpenned !== 'language' ? height : '0';
+        this.heightForms.language = formOpenned !== 'language' ? height : '0';
         break;
       case 'social':
         height = (document.getElementsByClassName('container-social')[0].clientHeight + 10) + 'px';
-        this.heightForms.social = this.formOpenned !== 'social' ? height : '0';
+        this.heightForms.social = formOpenned !== 'social' ? height : '0';
         break;
       case 'account':
         height = (document.getElementsByClassName('container-account')[0].clientHeight + 10) + 'px';
-        this.heightForms.account = this.formOpenned !== 'account' ? height : '0';
+        this.heightForms.account = formOpenned !== 'account' ? height : '0';
         break;
       default:
         break;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (this.lastForm) {
+      this.setHeight(this.lastForm, '');
     }
   }
 }
