@@ -86,8 +86,24 @@
                 </div>
                 <span class="subtitle-item">Escolha um avatar que te represente ou utize uma foto sua</span>
                 <div class="form" [ngClass]="{'active': formOpenned === 'avatar'}" [ngStyle]="{'max-height': heightForms.avatar}">
-                  <div class="container-avatar">
-                    11111<br />11111
+                  <div class="container-avatar margin-top-1 padding-h-1">
+                    <form [formGroup]="formAvatar" (submit)="updateAvatar()" class="flex-column" method="post" enctype="multipart/form-data">
+                      <div class="profile-image bd-{{(userLogged$ | async).theme}} margin-right-1" *ngIf="lastAvatar">
+                        <img id="blah" src="{{lastAvatar}}">
+                      </div>
+                      <div class="flex-column col-md-12">
+                        <label class="inputAvatar flex-row col-md-12" for="inputAvatar" *ngIf="!(fileAvatar.files && fileAvatar.files[0])">
+                          <mat-icon class="margin-right-1">cloud_upload</mat-icon> Selecione uma nova imagem
+                        </label>
+                        <label class="inputAvatar flex-row col-md-12" *ngIf="fileAvatar.files && fileAvatar.files[0]">
+                          <mat-icon class="margin-right-1">cloud_upload</mat-icon> {{fileAvatar.files[0].name}} <mat-icon (click)="removeFile()">delete</mat-icon>
+                        </label>
+                        <input type="file" name="file" id="inputAvatar" class="hidden-input" formControlName='avatar' #fileAvatar (change)="readURL(fileAvatar)" />
+                        <div class="container-actions">
+                          <button mat-button class="btn-default" type="submit">Atualizar</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -123,7 +139,7 @@
         <div class="col-md-6 col-sm-12 column-right">
           <section class="flex-column margin-bottom-2">
               <h1 class="title-section margin-bottom-none">Preferências do site</h1>
-              <!-- Lenguage -->
+              <!-- Language -->
               <div class="item flex-column">
                 <div class="flex-row col-md-12 header-icon">
                   <span class="title-item col-md-11">Idioma</span>

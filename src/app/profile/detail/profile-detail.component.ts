@@ -16,6 +16,7 @@ import * as _ from 'lodash';
 export class ProfileDetailComponent implements OnInit, OnDestroy {
 
   formName: FormGroup;
+  formAvatar: FormGroup;
 
   lastForm = '';
   utils = utilsFunctions;
@@ -36,22 +37,27 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
     account: '0'
   };
   colorsTheme = ['YELLOW', 'GREEN', 'PINK', 'RED', 'BLUE'];
+  lastAvatar: any;
 
   constructor(private profileStore: Store<fromProfileStore.ProfileState>, private fb: FormBuilder) {
     this.userLogged$ = this.profileStore.pipe(select(fromProfileStore.getProfile));
   }
 
   ngOnInit() {
+    this.formName = this.fb.group({name: ['' , [Validators.required, Validators.minLength(3)]]});
+    this.formAvatar = this.fb.group({avatar: ['' , [Validators.required]]});
+
     this.userLoggedSub = this.userLogged$.subscribe(r => {
       if (r) {
         this.profile = _.cloneDeep(r);
+        this.lastAvatar = this.profile.avatar;
         this.setValueForms();
       }
     });
 
-    this.formName = this.fb.group({
-      name: ['' , [Validators.required, Validators.minLength(3)]]
-    });
+    setTimeout(() => {
+      this.openForm('avatar');
+    }, 1500);
   }
 
   ngOnDestroy() {
@@ -70,6 +76,21 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
     return date;
   }
 
+  readURL(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.lastAvatar = e.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  removeFile() {
+    this.lastAvatar = this.profile.avatar;
+    this.formAvatar.controls.avatar.setValue('');
+  }
+
   openForm(form) {
     this.heightForms = { name: '0', email: '0', avatar: '0', theme: '0', password: '0', language: '0', social: '0', account: '0' };
     this.lastForm = form;
@@ -86,6 +107,13 @@ export class ProfileDetailComponent implements OnInit, OnDestroy {
     if (this.formName.valid) {
       this.profile.name = this.formName.controls.name.value;
       this.updateProfile(this.profile);
+    }
+  }
+  updateAvatar() {
+    console.log(this.formAvatar.controls.avatar.value);
+    if (this.formAvatar.valid) {
+      // this.profile.name = this.formName.controls.name.value;
+      // this.updateProfile(this.profile);
     }
   }
 
