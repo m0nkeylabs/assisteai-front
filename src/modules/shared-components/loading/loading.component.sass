@@ -1,0 +1,39 @@
+@import '../../../assets/sass/variables.sass'
+
+.loading 
+  position: relative
+  z-index: 5
+  width: 100%
+  text-align: center
+
+  .loading-bar 
+    display: inline-block
+    position: relative
+    width: 8px
+    height: 70px
+    margin: 0 5px
+    animation: lds-assiste-ai 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite
+
+    &:nth-child(1)
+      animation-delay: -0.48s 
+    &:nth-child(2)
+      animation-delay: -0.36s 
+    &:nth-child(3)
+      animation-delay: -0.24s 
+    &:nth-child(4)
+      animation-delay: -0.12s 
+    &:nth-child(5)
+      animation-delay: -0s 
+
+
+@keyframes lds-assiste-ai 
+  0% 
+    transform: scale(0.5)
+  
+  50% 
+    transform: scale(1)
+  
+  100% 
+    transform: scale(0.5)
+  
+

@@ -1,0 +1,4 @@
+{
+    "sassVariablesHelper.route": "assets/sass/variables.sass",
+    "css.completion.triggerPropertyValueCompletion": false
+}

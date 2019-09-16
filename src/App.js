@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom'
+import { withTranslation } from 'react-i18next';
+import './i18n';
+
+import './App.sass';
+import Routes from './core/routes'
+
+import HeaderComponent from './modules/components/header'
+import FullMenuComponent from './modules/components/full-menu'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter> 
+      <HeaderComponent />
+      <FullMenuComponent />
+      <Routes />
+    </BrowserRouter> 
   );
 }
 
-export default App;
+export default withTranslation()(App);

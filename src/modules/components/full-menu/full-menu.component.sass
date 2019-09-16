@@ -1,0 +1,82 @@
+@import '../../../assets/sass/variables.sass'
+
+#overlay-full-menu, #full-menu
+  display: none
+
+@media screen and (max-width: $screen-s)
+  #overlay-full-menu
+    display: block
+    width: 0
+    height: 100%
+    position: fixed
+    z-index: 99
+    top: 0
+    right: 0
+
+    &.active
+      width: 100%
+  
+  #full-menu
+    display: block
+    height: 100%
+    width: 0
+    position: fixed
+    z-index: 99
+    top: 0
+    right: 0
+    background-color: $dark-03
+    overflow-x: hidden
+    transition: 0.6s
+    -webkit-box-shadow: -5px 0px 1px rgba(0, 0, 0, 0.25)
+    -moz-box-shadow: -5px 0px 1px rgba(0, 0, 0, 0.25)
+    box-shadow: -5px 0px 1px rgba(0, 0, 0, 0.25)
+
+    &.active
+      width: 80%
+
+    #header-full-menu 
+      position: fixed
+      display: flex
+      align-items: center
+      padding: 0.812em
+      background-color: $logo-blue
+      border-bottom: 5px solid rgba(0, 0, 0, 0.2)
+      color: white
+      width: 100%
+      font-size: 20px
+
+      svg 
+        color: white
+        font-size: 25px
+        margin: 0 10px
+
+    #full-menu-container
+      display: flex
+      flex-flow: column
+      padding: 70px 15px 15px
+      box-sizing: border-box
+      width: 100%
+      min-width: 280px
+      height: 100%
+      overflow: scroll
+      opacity: 1
+      transition: 0.6s
+
+      .group-links 
+        display: flex
+        flex-flow: column
+        width: 100%
+        color: white
+
+        .title-group 
+          display: block
+          padding: 10px 0
+          margin: 15px 0 10px
+          border-bottom: 2px solid rgba(0, 0, 0, 0.2)
+          font-size: 19px
+          color: $white 
+
+        a
+          margin: 10px 0
+          color: $white
+          text-decoration: none
