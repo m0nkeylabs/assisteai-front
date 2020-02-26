@@ -18,21 +18,13 @@ import * as fromActions from '../actions/login.action';
 export function* fetchLoginSaga(state) {
   try {
     const response = yield call(loginService.makeLogin, state.payload);
+    tokenService.setToken(response);
     yield put(fromActions.loginSuccess(response));
   } catch (error) {
     // yield put(loadPointError());
   }
 }
 
-export function* fetchLoginSuccessSaga(state) {
-  try {
-    yield put(tokenService.setToken(state.response));
-  } catch (error) {
-    // yield put(loadPointError());
-  }
-}
-
-export const indicationsSagas = [
+export const loginSagas = [
   takeLatest(fromActions.LOGIN, fetchLoginSaga),
-  takeLatest(fromActions.LOGIN, fetchLoginSuccessSaga),
 ];

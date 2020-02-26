@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -14,13 +16,14 @@ import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-
 import { withTranslation } from 'react-i18next';
 import i18n from '../../../i18n';
 
+import { login } from '../../../store/actions/login.action';
+
 import './modal.component.sass';
 
-const ModalComponent = (props) => {
+const ModalComponent = ({state, props, login}) => {
   const { onClose, open, typeModal } = props;
   const [value, setValue] = React.useState(typeModal);
   const [values, setValues] = React.useState({
@@ -55,18 +58,12 @@ const ModalComponent = (props) => {
           type: 'facebook',
           token: response.authResponse.accessToken,
         };
-        console.log(paramsLogin);
-        // this.loginStore.dispatch(new fromLoginStore.Login(paramsLogin));
-        // this.dialogRef.close(true);
+        login(paramsLogin);
       } else {
         console.log('User login failed');
       }
     });
   };
-
-  useEffect(() => {
-    setValue(typeModal);
-  }, [typeModal]);
 
   const handleClose = () => {
     onClose();
@@ -87,6 +84,14 @@ const ModalComponent = (props) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    setValue(typeModal);
+
+    if (state.userLogged) {
+      handleClose();
+    }
+  }, [typeModal, state]);
 
   const formSignIn = () => (
     <form className="form" noValidate autoComplete="off">
@@ -219,4 +224,5 @@ const ModalComponent = (props) => {
   );
 };
 
-export default withTranslation()(ModalComponent);
+const mapStateToProps = (state, props) => ({ state: state.login, props });
+export default compose(connect(mapStateToProps, { login })(withTranslation()(ModalComponent)));

@@ -1,10 +1,12 @@
-import { all } from "redux-saga/effects";
+import { all } from 'redux-saga/effects';
 
-import { indicationsSagas } from "./indications.saga";
+import { indicationsSagas } from './indications.saga';
+import { loginSagas } from './login.saga';
 
 
 export default function* rootSaga() {
-    yield all([
-        ...indicationsSagas
-    ]);
+  yield all([
+    ...indicationsSagas,
+    ...loginSagas,
+  ]);
 }
