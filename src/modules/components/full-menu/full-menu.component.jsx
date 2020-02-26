@@ -20,15 +20,15 @@ const FullMenuComponent = ({status, updateMobileMenuActive}) => {
       links: [
         {
           name: 'global.indications',
-          url: '/'
+          url: '/',
         },
         {
           name: 'global.how.it.works',
-          url: '/how-it-works'
+          url: '/how-it-works',
         },
         {
           name: 'global.contact',
-          url: '/contact'
+          url: '/contact',
         }
       ]
     },
@@ -37,12 +37,12 @@ const FullMenuComponent = ({status, updateMobileMenuActive}) => {
       group: 'account',
       links: [
         {
-          name: 'account.create.an.account',
-          url: '/create-a-account'
+          name: 'account.sign.up',
+          url: '/create-a-account',
         },
         {
           name: 'account.sign.in',
-          url: '/sign-in'
+          url: '/sign-in',
         }
       ]
     }

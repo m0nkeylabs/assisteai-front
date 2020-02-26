@@ -1,79 +1,46 @@
 @import '../../../assets/sass/variables.sass'
 
-.modal-overlay
-  position: fixed
-  background: $black
-  opacity: 0
-  width: 0
-  height: 100vh
-  left: 0
-  top: 0
+#modal-dialog
+  .MuiDialog-paper
+    background: $dark-01
+    color: $white
+    padding: $padding-default
 
-  &.active
-    width: 100%
-    opacity: 0.5
+  #appbar-dialog
+    &.MuiAppBar-root
+      box-shadow: none
+      background: none
+      border-bottom: 1px solid rgba(11, 11, 11, .15)
 
-.modal-wrapper
-  position: absolute
-  background: white
-  border: 1px solid #d0cccc
-  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17)
-  transition: all .4s
-  opacity: 0
-  width: 60%
-  top: 100px
-  left: 20%
-  transform: scale(0)
+      .MuiTabs-indicator
+        background: $button-primary
 
-  &.active
-    opacity: 1
-    transform: scale(1)
+  .tab-detail
+    margin-top: $margin-default
 
-  .modal-header
-    background: #263238
-    height: 40px
-    line-height: 40px
-    padding: 5px 20px
-    text-align: right
+    .form
+      display: flex
+      flex-direction: column
 
-    h3
-      color: white
-      float: left
-      margin: 0
-      padding: 0
-    
-    .close-modal-btn
-      color: white
-      cursor: pointer
-      float: right
-      font-size: 30px
-      margin: 0
+      .MuiFormControl-root
+        margin-bottom: $margin-default
+
+        .MuiInputBase-input
+          &::placeholder
+            color: $dark-04
+
+
+  .btn-container
+    padding-bottom: $padding-default
+    border-bottom: 1px solid $dark-00
+    margin-bottom: $margin-half
+
+    #btn-facebook
+      width: 100%
+      background: #4266B2
 
       &:hover
-        color: black
-
-  .modal-body
-    padding: 10px 15px
-    text-align: center
-
-  .modal-footer
-    background: #263238
-    height: 35px
-    padding: 15px
-
-    .btn-cancel, .btn-continue 
-      background: coral
-      border: none
-      color: white
-      cursor: pointer
-      font-weight: bold
-      outline: none
-      padding: 10px
-
-    .btn-cancel
-      background-color: #b71c1c
-      float: left
-
-    .btn-continue
-      background-color: #1b5e20
-      float: right
+        background: #3055a2
+        
+      .MuiSvgIcon-root
+        font-size: 30px

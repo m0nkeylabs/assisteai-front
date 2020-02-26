@@ -1,71 +1,106 @@
-import React from 'react';
-import ChangeLanguageComponent from '../../components/change-language/'
-import { connect } from 'react-redux'
-import { bindActionCreators, compose } from 'redux'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withTranslation } from 'react-i18next';
 
-import { Loading } from '../../shared-components'
+import IconButton from '@material-ui/core/IconButton';
+import { AccessTime, PlaylistAdd, ArrowForward } from '@material-ui/icons';
 
-import { loadIndications } from '../../../store/actions/indications.action'
-import { withTranslation } from 'react-i18next'
-// import i18n from '../../../i18n'
+import ChangeLanguageComponent from '../../components/change-language';
+import i18n from '../../../i18n';
 
-import './home.component.sass'
-const HomeComponent = ({status, loadIndications}) => {
-  // const teste = () => {loadIndications('a')}
-  let indicationsList = []
+import { Loading } from '../../shared-components';
+import { loadIndications } from '../../../store/actions/indications.action';
+import { getClassRating, getClassCategory } from '../../../core/class-indications';
 
-  const getImage = (image) => {
-    return {
-      backgroundImage: 'url(' + image + ')'
+import './home.component.sass';
+
+const HomeComponent = ({ state, loadIndications }) => {
+  const getImage = image => ({
+    backgroundImage: `url(${image})`,
+  });
+
+  const renderEmptyListIndications = () => {
+    if (!state.loadingIndications) {
+      return (
+        <div>
+          Lista vazia
+        </div>
+      );
     }
-  }
-  const renderListIndications = () => {
-    if (!status.loadingIndications) {
-      return status.indicationsList.map((item, index) => {
-        return (
-          <div key={index} className="card rating-6">
-            <div className="poster-container">
-              <div className="img-poster" style={{backgroundImage : 'url(' + item.poster_path + ')'}}></div>
-              <div className="overlay">
-                <div className="poster-detail flex-column">
-                  <h3 className="poster-title">{item.original_title} ({item.year})</h3>
+    return null;
+  };
 
-                  <span className="poster-chip orange">{item.category}</span>
+  const renderListIndications = () => state.indicationsList.map(item => (
+    <div key={`card-${item.id}`} className={`card ${getClassRating(item.average_rating)}`}>
+      <div className="poster-container">
+        <div className="img-poster" style={getImage(item.poster_path)} />
+        <div className="overlay">
+          <div className="poster-detail flex-column">
+            <h3 className="poster-title">{`${item.original_title} (${item.year})`}</h3>
 
-                  <div className="rating-container flex-column">
-                    <span>Avaliação Média</span>
-                    <span className="poster-chip rating-6">{item.average_rating}</span>
+            <span className={`poster-chip ${getClassCategory(item.category)}`}>
+              {i18n.t(`global.${item.category.toLowerCase()}`)}
+            </span>
 
-                    <span>Última avaliação</span>
-                    <span className="poster-chip rating-6">{item.last_rating}</span>
-                  </div>
+            <div className="rating-container flex-column">
+              <span>{i18n.t('global.average.rating')}</span>
+              <span className={`poster-chip ${getClassRating(item.average_rating)}`}>{item.average_rating}</span>
 
-                  <div className="poster-actions flex-row">
-                      <button type="button" className="watch-later">access_time</button>
-                      <button type="button" className="indicate-now">playlist_add</button>
-                      <a href="#32" className="more-details">arrow_forward</a>
-                  </div>
-                </div>
-              </div>
+              <span>{i18n.t('global.last.rating')}</span>
+              <span className={`poster-chip ${getClassRating(item.last_rating)}`}>{item.last_rating}</span>
+            </div>
+
+            <div className="poster-actions flex-row">
+              <IconButton
+                type="button"
+                className={`watch-later ${item.watch_later ? 'active' : 'inactive'}`}
+              >
+                <AccessTime />
+              </IconButton>
+              <IconButton type="button" className="indicate-now"><PlaylistAdd /></IconButton>
+              <a href="#32" className="more-details"><ArrowForward /></a>
             </div>
           </div>
-        )
-      })
-    } else {
-      return (<Loading />)
+        </div>
+      </div>
+    </div>
+  ));
+
+  const isLoading = () => {
+    if (state.loadingIndications) {
+      return (<Loading />);
+    }
+    return '';
+  };
+
+  function handleScroll() {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    if (state.currentPage < state.lastPage) {
+      loadIndications(state.currentPage + 1);
     }
   }
+
+  useEffect(() => {
+    loadIndications(1);
+  }, [loadIndications]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [state]);
+
 
   return (
     <main>
-      <section className="cards-container flex-row flex-wrap">
-        {renderListIndications()}
-      </section>
       <ChangeLanguageComponent />
-    </main>      
+      <section className="cards-container flex-row flex-wrap">
+        {state.indicationsList.length > 0 ? renderListIndications() : renderEmptyListIndications()}
+        {isLoading()}
+      </section>
+    </main>
   );
-}
+};
 
-const mapStateToProps = state => ({status: state.indications})
-const mapDispatchToProps = dispatch => bindActionCreators({ loadIndications }, dispatch(loadIndications()))
-export default compose(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomeComponent)))
+const mapStateToProps = state => ({ state: state.indications });
+export default compose(connect(mapStateToProps, { loadIndications })(withTranslation()(HomeComponent)));

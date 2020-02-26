@@ -1,12 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { loadIndicationsFail, loadIndicationsSuccess } from '../actions/indications.action';
-import { updateSnackbarStatus } from '../actions/main-status.action';
+import tokenService from '../../services/token.service';
+import loginService from '../../services/login.service';
 
-import * as fromActions from '../actions/indications.action';
-
-import indicationsService from '../../services/indications.service';
-import i18n from '../../i18n';
+import * as fromActions from '../actions/login.action';
 
 
 // import { addErrorMessage } from "../actions/message.action";
@@ -18,22 +15,24 @@ import i18n from '../../i18n';
 // import { continueRouteExecutionInProgressSaga, fetchRouteExecutionSaga } from "./route-execution.saga";
 // import { sendSlackMessage } from "../actions/slack-message.action";
 
-export function* fetchIndicationsSaga(state) {
+export function* fetchLoginSaga(state) {
   try {
-    const response = yield call(indicationsService.getAllMoviesAndSeries, state.payload);
-    yield put(loadIndicationsSuccess(response));
+    const response = yield call(loginService.makeLogin, state.payload);
+    yield put(fromActions.loginSuccess(response));
   } catch (error) {
-    const e = {
-      isOpen: true,
-      severity: 'error',
-      message: i18n.t('error.getting.data'),
-    };
+    // yield put(loadPointError());
+  }
+}
 
-    yield put(loadIndicationsFail(error));
-    yield put(updateSnackbarStatus(e));
+export function* fetchLoginSuccessSaga(state) {
+  try {
+    yield put(tokenService.setToken(state.response));
+  } catch (error) {
+    // yield put(loadPointError());
   }
 }
 
 export const indicationsSagas = [
-  takeLatest(fromActions.LOAD_INDICATIONS, fetchIndicationsSaga),
+  takeLatest(fromActions.LOGIN, fetchLoginSaga),
+  takeLatest(fromActions.LOGIN, fetchLoginSuccessSaga),
 ];

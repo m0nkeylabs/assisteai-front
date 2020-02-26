@@ -3,8 +3,21 @@
     "global.how.it.works": "Como funciona",
     "global.contact": "Contato",
     "global.or": "ou",
+    "global.average.rating": "Avaliação Média",
+    "global.last.rating": "Última Avaliação",
+    "global.movie": "Filme",
+    "global.serie": "Série",
+
+    "error.getting.data" : "Erro ao obter os dados",
 
     "account": "Conta",
     "account.sign.in": "Entrar",
-    "account.create.an.account": "Criar conta"
+    "account.sign.up": "Criar conta",
+    "account.signin.with.facebook": "Entrar com o Facebook",
+    "account.form.email": "E-mail",
+    "account.form.email.placeholder": "Insira seu e-mail",
+    "account.form.password": "Senha",
+    "account.form.password.placeholder":"Insira sua senha",
+    "account.form.full.name": "Nome completo",
+    "account.form.full.name.placeholder": "Insira seu nome completo"
 }
