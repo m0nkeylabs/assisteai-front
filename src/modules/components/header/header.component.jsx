@@ -6,6 +6,8 @@ import { withTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+import Avatar from '@material-ui/core/Avatar';
+
 import { updateMobileMenuActive } from '../../../store/actions/main-status.action';
 
 import './header.component.sass';
@@ -15,12 +17,12 @@ import { Modal } from '../../shared-components';
 import i18n from '../../../i18n';
 
 
-const HeaderComponent = ({ status, updateMobileMenuActive }) => {
+const HeaderComponent = ({ status, profile, updateMobileMenuActive }) => {
   const [open, setOpen] = React.useState(false);
   const [typeModal, setTypeModal] = React.useState('signIn');
 
-  const handleClickOpen = (teste) => {
-    setTypeModal(teste);
+  const handleClickOpen = (type) => {
+    setTypeModal(type);
     setOpen(true);
   };
 
@@ -28,6 +30,20 @@ const HeaderComponent = ({ status, updateMobileMenuActive }) => {
     setOpen(false);
   };
   const openMenuMobile = () => updateMobileMenuActive(!status);
+
+  const loginMenu = () => (
+    <div className="auth-menu">
+      <span className="link" onClick={() => handleClickOpen('signIn')}>{i18n.t('account.sign.in')}</span>
+      {i18n.t('global.or')}
+      <span className="link" onClick={() => handleClickOpen('signUp')}>{i18n.t('account.sign.up')}</span>
+    </div>
+  );
+
+  const loggedMenu = () => (
+    <div className="logged-menu">
+      <Avatar alt="User photo" src={profile.avatar} />
+    </div>
+  );
 
   return (
     <header id="header">
@@ -45,11 +61,9 @@ const HeaderComponent = ({ status, updateMobileMenuActive }) => {
               <Link to="/how-it-works">{i18n.t('global.how.it.works')}</Link>
               <Link to="/contact">{i18n.t('global.contact')}</Link>
             </div>
-            <div className="auth-menu">
-              <span className="link" onClick={() => handleClickOpen('signIn')}>{i18n.t('account.sign.in')}</span>
-              {i18n.t('global.or')}
-              <span className="link" onClick={() => handleClickOpen('signUp')}>{i18n.t('account.sign.up')}</span>
-            </div>
+
+            {profile ? loggedMenu() : loginMenu() }
+
           </div>
         </div>
       </nav>
@@ -59,5 +73,5 @@ const HeaderComponent = ({ status, updateMobileMenuActive }) => {
   );
 };
 
-const mapStateToProps = state => ({ status: state.mainStatus.mobileMenuActive });
+const mapStateToProps = state => ({ status: state.mainStatus.mobileMenuActive, profile: state.profile.profile });
 export default compose(connect(mapStateToProps, { updateMobileMenuActive })(withTranslation()(HeaderComponent)));

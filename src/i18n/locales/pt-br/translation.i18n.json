@@ -9,6 +9,7 @@
     "global.serie": "Série",
 
     "error.getting.data" : "Erro ao obter os dados",
+    "error.signing.in" : "Erro ao fazer login",
 
     "account": "Conta",
     "account.sign.in": "Entrar",

@@ -1,30 +1,35 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import i18n from '../../i18n';
 
 import tokenService from '../../services/token.service';
 import loginService from '../../services/login.service';
 
+import { updateSnackbarStatus } from '../actions/main-status.action';
 import * as fromActions from '../actions/login.action';
-
-
-// import { addErrorMessage } from "../actions/message.action";
-// import pointService from "../../services/point.service";
-// import { loadPointSuccess, loadPointError, tryAgainSuccess, tryAgainError } from "../actions/point.action";
-// import { uploadFiles, clearFiles } from "../actions/upload.action";
-// import { uploadListSelector } from "../selectors/upload.selector";
-// import { currentWaypointSelector, startedRouteExecutionSelector } from "../selectors/route-execution.selector";
-// import { continueRouteExecutionInProgressSaga, fetchRouteExecutionSaga } from "./route-execution.saga";
-// import { sendSlackMessage } from "../actions/slack-message.action";
+import * as fromProfileActions from '../actions/profile.action';
 
 export function* fetchLoginSaga(state) {
   try {
-    const response = yield call(loginService.makeLogin, state.payload);
-    tokenService.setToken(response);
+    const response = yield call(loginService.login, state.payload);
     yield put(fromActions.loginSuccess(response));
   } catch (error) {
-    // yield put(loadPointError());
+    const e = {
+      isOpen: true,
+      severity: 'error',
+      message: i18n.t('error.signing.in'),
+    };
+
+    yield put(fromActions.loginFail(error));
+    yield put(updateSnackbarStatus(e));
   }
+}
+
+export function* fetchLoginSuccessSaga(state) {
+  tokenService.setToken(state.payload);
+  yield put(fromProfileActions.loadProfile());
 }
 
 export const loginSagas = [
   takeLatest(fromActions.LOGIN, fetchLoginSaga),
+  takeLatest(fromActions.LOGIN_SUCCESS, fetchLoginSuccessSaga),
 ];

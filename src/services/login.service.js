@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-  makeLogin: (data) => {
+  login: (data) => {
     if (data.type === 'facebook') {
       return axios.post('https://api.assisteai.com.br/auth/login/facebook', { token: data.token })
         .then(resp => resp.data)
