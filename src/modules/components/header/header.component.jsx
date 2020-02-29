@@ -91,19 +91,19 @@ const HeaderComponent = ({
               <MenuList autoFocusItem={openMenu} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                 <MenuItem onClick={handleCloseMenu}>
                   <PersonOutlineIcon />
-                  Meu Perfil
+                  {i18n.t('global.my.profile')}
                 </MenuItem>
                 <MenuItem onClick={handleCloseMenu}>
                   <AccessTimeIcon />
-                  Assistir depois
+                  {i18n.t('global.watch.later')}
                 </MenuItem>
                 <MenuItem onClick={handleCloseMenu}>
                   <ListIcon />
-                  Minhas indicações
+                  {i18n.t('global.my.indications')}
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>
                   <CloseIcon />
-                  Sair
+                  {i18n.t('global.logout')}
                 </MenuItem>
               </MenuList>
             </ClickAwayListener>

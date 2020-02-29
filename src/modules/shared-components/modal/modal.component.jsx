@@ -15,6 +15,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { withTranslation } from 'react-i18next';
 import i18n from '../../../i18n';
@@ -23,7 +24,7 @@ import { login } from '../../../store/actions/login.action';
 
 import './modal.component.sass';
 
-const ModalComponent = ({state, props, login}) => {
+const ModalComponent = ({state, props, login, profileLoading}) => {
   const { onClose, open, typeModal } = props;
   const [value, setValue] = React.useState(typeModal);
   const [values, setValues] = React.useState({
@@ -88,10 +89,10 @@ const ModalComponent = ({state, props, login}) => {
   useEffect(() => {
     setValue(typeModal);
 
-    if (state.userLogged) {
+    if (profileLoading) {
       handleClose();
     }
-  }, [typeModal, state]);
+  }, [typeModal, profileLoading]);
 
   const formSignIn = () => (
     <form className="form" noValidate autoComplete="off">
@@ -198,10 +199,10 @@ const ModalComponent = ({state, props, login}) => {
           color="primary"
           size="medium"
           className="button"
-          startIcon={<FacebookIcon />}
+          startIcon={state.isLoading || state.userLogged ? null : <FacebookIcon />}
           onClick={loginFacebook}
         >
-          {i18n.t('account.signin.with.facebook')}
+          {state.isLoading || state.userLogged ? <CircularProgress /> : i18n.t('account.signin.with.facebook')}
         </Button>
       </div>
       <AppBar id="appbar-dialog" position="static">
@@ -224,5 +225,5 @@ const ModalComponent = ({state, props, login}) => {
   );
 };
 
-const mapStateToProps = (state, props) => ({ state: state.login, props });
+const mapStateToProps = (state, props) => ({ state: state.login, profileLoading: state.profile.isLoading, props });
 export default compose(connect(mapStateToProps, { login })(withTranslation()(ModalComponent)));

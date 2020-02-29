@@ -7,6 +7,10 @@
     "global.last.rating": "Last Rating",
     "global.movie": "Movie",
     "global.serie": "Serie",
+    "global.my.profile": "My profile",
+    "global.watch.later": "Watch later",
+    "global.my.indications": "My indications",
+    "global.logout": "Logout",
 
     "error.getting.data" : "Error getting data",
     "error.signing.in" : "Error signing in",

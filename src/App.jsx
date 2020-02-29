@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Routes from './core/routes';
 import { withTranslation } from 'react-i18next';
 import './i18n';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
+import Routes from './core/routes';
 
 import tokenService from './services/token.service';
 
@@ -17,6 +18,7 @@ import HeaderComponent from './modules/components/header';
 import FullMenuComponent from './modules/components/full-menu';
 
 import './App.sass';
+import { Loading } from './modules/shared-components';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -63,6 +65,7 @@ const App = ({ snack, updateSnackbarStatus, loadProfile }) => {
 
   return (
     <BrowserRouter>
+      <Loading typeClass="global-loading" />
       <HeaderComponent />
       <FullMenuComponent />
       <Routes />
