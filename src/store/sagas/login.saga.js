@@ -29,7 +29,14 @@ export function* fetchLoginSuccessSaga(state) {
   yield put(fromProfileActions.loadProfile());
 }
 
+export function* fetchLogoutSaga() {
+  tokenService.removeStorage();
+  yield put(fromProfileActions.clearProfile());
+  yield put(fromActions.logoutSuccess());
+}
+
 export const loginSagas = [
   takeLatest(fromActions.LOGIN, fetchLoginSaga),
   takeLatest(fromActions.LOGIN_SUCCESS, fetchLoginSuccessSaga),
+  takeLatest(fromActions.LOGOUT, fetchLogoutSaga),
 ];

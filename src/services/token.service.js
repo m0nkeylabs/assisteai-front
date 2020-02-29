@@ -18,17 +18,6 @@ export default {
     return localStorage.getItem(TOKEN_KEY);
   },
 
-  // getHeader() {
-  //   const typeAuth = this.getAuthType();
-  //   const token = this.getToken();
-  //   const header = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     Authorization: typeAuth + ' ' + token
-  //   });
-
-  //   return header;
-  // },
-
   setAuthType(authType) {
     localStorage.setItem(AUTH_KEY, authType);
   },

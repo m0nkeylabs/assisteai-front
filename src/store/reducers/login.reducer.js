@@ -8,6 +8,7 @@ const INITIAL_STATE = {
 export default function loginReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case fromActions.LOGIN:
+    case fromActions.LOGOUT:
       return {
         ...state,
         isLoading: true,
@@ -18,6 +19,7 @@ export default function loginReducer(state = INITIAL_STATE, action) {
         isLoading: false,
         userLogged: action.payload,
       };
+    case fromActions.LOGOUT_SUCCESS:
     case fromActions.LOGIN_FAIL:
       return {
         ...state,

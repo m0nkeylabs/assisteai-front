@@ -6,15 +6,27 @@
   padding: 10px 0
   color: white
   background: $dark-01
-  border-bottom: 5px solid $logo-blue
+  border-bottom: 3px solid $dark-03
+
+  &.BLUE
+    border-color: $logo-blue  
+  &.GREEN
+    border-color: $logo-green  
+  &.PINK
+    border-color: $logo-pink
+  &.RED
+    border-color: $logo-red  
+  &.YELLOW
+    border-color: $logo-yellow
   
   #header-container
-    display: flex    
+    display: flex
     @extend .width-default
 
     #nav-web
       display: flex
       width: 100%
+      align-items: center
 
       #logo
         display: flex
@@ -32,6 +44,7 @@
         justify-content: space-between
         align-items: center
         width: 100%
+        min-height: 46px
 
         a, span
           position: relative
@@ -43,18 +56,18 @@
           cursor: pointer
           
           &:hover
-            color: $logo-blue
+            color: $logo-yellow
             
             &::before
               transform: scaleX(1)
 
           &::before
             content: ""
-            bottom: -25px
+            bottom: -24px
             position: absolute
             left: 0
             right: 0
-            height: 5px
+            height: 3px
             background-color: $black
             opacity: 0.65
             -webkit-transform: scaleX(0)
@@ -66,6 +79,59 @@
             margin-left: 0
           &:last-child
             margin-right: 0
+
+        .logged-menu
+          display: flex
+          align-items: center
+
+          .name-user:hover
+            color: inherit
+            cursor: default
+
+          #avatar
+            cursor: pointer
+            border: 3px solid
+            transition: all .3s ease
+
+            &:hover
+              transform: scale(0.95, 0.95)
+
+            &.BLUE
+              border-color: $logo-blue            
+            &.GREEN
+              border-color: $logo-green            
+            &.PINK
+              border-color: $logo-pink
+            &.RED
+              border-color: $logo-red            
+            &.YELLOW
+              border-color: $logo-yellow
+
+          .menu-popper
+            z-index: 5
+            margin-top: 5px
+            
+            &.BLUE .MuiPaper-root
+              background: $logo-blue            
+            &.GREEN .MuiPaper-root
+              background: $logo-green            
+            &.PINK .MuiPaper-root
+              background: $logo-pink
+            &.RED .MuiPaper-root
+              background: $logo-red            
+            &.YELLOW .MuiPaper-root
+              background: $logo-yellow
+              color: $dark-01
+
+            .MuiPaper-root
+              color: $white
+
+              .MuiListItem-root
+                font-size: 14px
+
+              .MuiSvgIcon-root
+                font-size: 20px
+                margin-right: 10px
 
       #hamburger-menu
         display: none
